@@ -1,0 +1,16 @@
+{
+    "crons": [
+        {
+            "path": "/api/archive-projects",
+            "schedule": "0 0 * * *"
+        },
+        {
+            "path": "/api/check-inactive-projects",
+            "schedule": "0 3 * * *"
+        },
+        {
+            "path": "/api/tasks/overdue",
+            "schedule": "0 0 * * *"
+        }
+    ]
+}
