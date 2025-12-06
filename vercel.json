@@ -7,10 +7,6 @@
         {
             "path": "/api/check-inactive-projects",
             "schedule": "0 3 * * *"
-        },
-        {
-            "path": "/api/tasks/overdue",
-            "schedule": "0 0 * * *"
         }
     ]
 }
