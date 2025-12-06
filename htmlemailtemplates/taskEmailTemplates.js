@@ -13,7 +13,7 @@ export const generateTaskOverdueEmail = (task) => {
       <td align="center">
         <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
           <tr>
-            <td style="background-color:#F33C38; color:#ffffff; text-align:center; padding:16px 0; font-size:20px; font-weight:bold;">
+            <td style="background-color:#39B54A; color:#ffffff; text-align:center; padding:16px 0; font-size:20px; font-weight:bold;">
               ⚠️ Task Overdue
             </td>
           </tr>
@@ -69,7 +69,7 @@ export const generateTaskNotification = (task_title, task_description, due_date,
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     .header {
-      background: #F33C38;
+      background: #39B54A;
       color: #fff;
       text-align: center;
       padding: 20px;
@@ -89,7 +89,7 @@ export const generateTaskNotification = (task_title, task_description, due_date,
     }
     .btn {
       display: inline-block;
-      background: #F33C38;
+      background: #39B54A;
       color: #fff !important;
       text-decoration: none;
       padding: 12px 20px;
@@ -161,7 +161,7 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     .header {
-      background: #F33C38;
+      background: #39B54A;
       color: #fff;
       text-align: center;
       padding: 14px;
@@ -182,7 +182,7 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
     }
     .btn {
       display: inline-block;
-      background: #F33C38;
+      background: #39B54A;
       color: #fff !important;
       text-decoration: none;
       padding: 10px 18px;

@@ -15,7 +15,7 @@ export const generateProjectStatusUpdateEmail = (projectTitle, newStatus, name, 
       .muted { color:#b8bac1!important; }
       .divider { border-color:#2a2d36!important; }
       .chip { background:#1e293b!important; color:#e5e7eb!important; border-color:#2a2d36!important; }
-      .btn { background:#F33C38!important; color:#ffffff!important; }
+      .btn { background:#39B54A!important; color:#ffffff!important; }
     }
   </style>
   <!--[if mso]>
@@ -40,7 +40,7 @@ export const generateProjectStatusUpdateEmail = (projectTitle, newStatus, name, 
 
           <!-- Brand / Header -->
           <tr>
-            <td style="padding:18px 24px;background:#F33C38;">
+            <td style="padding:18px 24px;background:#39B54A;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
@@ -164,7 +164,7 @@ export const generateInactiveProjectsAlertEmail = (projectCount) => {
                     </td>
                     <td style="text-align:right;vertical-align:middle;">
                       <!-- small badge -->
-                      <span style="display:inline-block;background:#F33C38;color:#fff;font-size:12px;padding:6px 10px;border-radius:999px;font-weight:600;">Admin Alert</span>
+                      <span style="display:inline-block;background:#39B54A;color:#fff;font-size:12px;padding:6px 10px;border-radius:999px;font-weight:600;">Admin Alert</span>
                     </td>
                   </tr>
                 </table>
@@ -206,7 +206,7 @@ export const generateInactiveProjectsAlertEmail = (projectCount) => {
                   <!-- CTA -->
                   <tr>
                     <td style="padding-top:18px;text-align:center;">
-                      <a href="https://your-app.example.com/admin/projects" target="_blank" style="display:inline-block;padding:12px 20px;border-radius:10px;background:#F33C38;color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;">Open Admin Dashboard</a>
+                      <a href="https://your-app.example.com/admin/projects" target="_blank" style="display:inline-block;padding:12px 20px;border-radius:10px;background:#39B54A;color:#ffffff;text-decoration:none;font-weight:600;font-size:14px;">Open Admin Dashboard</a>
                     </td>
                   </tr>
 

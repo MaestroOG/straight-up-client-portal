@@ -14,7 +14,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
       .card   { background:#121317 !important; }
       .text   { color:#e8e8ea !important; }
       .muted  { color:#b8bac1 !important; }
-      .btn    { background:#F33C38 !important; color:#ffffff !important; }
+      .btn    { background:#39B54A !important; color:#ffffff !important; }
       .divider{ border-color:#2a2d36 !important; }
     }
     /* Mobile tweaks */
@@ -40,7 +40,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
           
           <!-- Brand Header -->
           <tr>
-            <td style="background:#F33C38;padding:22px 28px;">
+            <td style="background:#39B54A;padding:22px 28px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td align="left">
@@ -119,12 +119,12 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
               <!-- Bulletproof Button -->
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0;">
                 <tr>
-                  <td align="left" style="border-radius:8px;" bgcolor="#F33C38">
+                  <td align="left" style="border-radius:8px;" bgcolor="#39B54A">
                     <a
                       href="${supportEmail}"
                       target="_blank"
                       class="btn"
-                      style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;text-decoration:none;padding:12px 18px;display:inline-block;border-radius:8px;background:#F33C38;color:#ffffff;font-weight:700;"
+                      style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:20px;text-decoration:none;padding:12px 18px;display:inline-block;border-radius:8px;background:#39B54A;color:#ffffff;font-weight:700;"
                     >
                       Contact Support
                     </a>
@@ -205,7 +205,7 @@ export function generateAuditEmail({ companyName, auditTitle, service, fields })
           
           <!-- Header -->
           <tr>
-            <td align="center" style="padding:30px; background:#F33C38; border-top-left-radius:12px; border-top-right-radius:12px; color:#ffffff;">
+            <td align="center" style="padding:30px; background:#39B54A; border-top-left-radius:12px; border-top-right-radius:12px; color:#ffffff;">
               <h1 style="margin:0; font-size:24px;">New Audit Created</h1>
             </td>
           </tr>

@@ -37,7 +37,7 @@ export const generateOTPEmail = (otp, name) => {
           
           <!-- Header bar -->
           <tr>
-            <td style="background:#F33C38;padding:18px 24px;">
+            <td style="background:#39B54A;padding:18px 24px;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.2;color:#ffffff;font-weight:700;">

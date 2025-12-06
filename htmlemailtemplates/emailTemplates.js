@@ -24,7 +24,7 @@ export const generatePartnershipEmailTemplate = (email, monthlyProjectVolume, na
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="680" class="container" style="width:680px; max-width:100%; background:#ffffff; border-radius:14px; box-shadow:0 6px 22px rgba(17,24,39,.10); overflow:hidden;">
             <!-- Header -->
             <tr>
-              <td style="background:#F33C38; padding:28px;">
+              <td style="background:#39B54A; padding:28px;">
                 <h1 class="h1" style="margin:0; color:#ffffff; font-size:26px; line-height:1.3; font-weight:800;">
                   New Partner Application
                 </h1>
@@ -197,7 +197,7 @@ export const generateAcceptEmailTemplate = () => {
   <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
     <!-- Header -->
     <tr>
-      <td align="center" style="background-color:#F33C38; padding:30px;">
+      <td align="center" style="background-color:#39B54A; padding:30px;">
         <h1 style="margin:0; font-size:28px; color:#ffffff; font-weight:bold;">Straight Up Digital</h1>
       </td>
     </tr>
@@ -225,7 +225,7 @@ export const generateAcceptEmailTemplate = () => {
         <!-- Call to Action -->
         <div style="text-align:center; margin:30px 0;">
           <a href="https://portal.Straight Up Digital.com/login" target="_blank" 
-             style="background-color:#F33C38; color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:8px; font-size:16px; font-weight:600; display:inline-block;">
+             style="background-color:#39B54A; color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:8px; font-size:16px; font-weight:600; display:inline-block;">
              Log In to Client Portal
           </a>
         </div>
@@ -272,7 +272,7 @@ export const generateRejectEmailTemplate = () => {
           
           <!-- Header -->
           <tr>
-            <td style="background:#F33C38; padding:28px;">
+            <td style="background:#39B54A; padding:28px;">
               <h1 style="margin:0; font-size:26px; line-height:1.3; color:#ffffff; font-weight:800;">
                 Straight Up Digital
               </h1>
@@ -285,7 +285,7 @@ export const generateRejectEmailTemplate = () => {
           <!-- Body -->
           <tr>
             <td style="padding:32px;">
-              <h2 style="margin:0 0 10px; font-size:22px; color:#F33C38; font-weight:700;">
+              <h2 style="margin:0 0 10px; font-size:22px; color:#39B54A; font-weight:700;">
                 Application Status: Not Approved
               </h2>
               <p style="margin:10px 0 14px; font-size:15px; line-height:1.6; color:#374151;">
@@ -351,7 +351,7 @@ export const generateProjectCreatedEmailTemplate = (companyName, projectTitle, s
         <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.05);">
           <!-- Header -->
           <tr>
-            <td align="center" style="padding:30px; background:#F33C38; border-top-left-radius:12px; border-top-right-radius:12px; color:#ffffff;">
+            <td align="center" style="padding:30px; background:#39B54A; border-top-left-radius:12px; border-top-right-radius:12px; color:#ffffff;">
               <h1 style="margin:0; font-size:24px;">New Project Created</h1>
             </td>
           </tr>
@@ -385,7 +385,7 @@ export const generateProjectCreatedEmailTemplate = (companyName, projectTitle, s
               <!-- View Project Button -->
               <div style="text-align:center; margin:30px 0;">
                 <a href="${projectUrl}" target="_blank" 
-                   style="display:inline-block; background:#F33C38; color:#ffffff; padding:12px 24px; font-size:15px; font-weight:bold; text-decoration:none; border-radius:6px;">
+                   style="display:inline-block; background:#39B54A; color:#ffffff; padding:12px 24px; font-size:15px; font-weight:bold; text-decoration:none; border-radius:6px;">
                   View Project
                 </a>
               </div>
@@ -446,7 +446,7 @@ export const generateApplicationReceivedUserEmail = (name, companyName, email) =
           <!-- Hero -->
           <!-- Hero -->
 <tr>
-  <td style="padding:24px 24px;background:#F33C38;">
+  <td style="padding:24px 24px;background:#39B54A;">
     <h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:24px;line-height:32px;color:#ffffff;font-weight:700;">
       Thanks for your interest, ${name}!
     </h1>
@@ -540,7 +540,7 @@ export const generateNoteCreatedEmailUserTemplate = (commentUrl, name, projectTi
       .text { color:#e8e8ea!important; }
       .muted { color:#b8bac1!important; }
       .divider { border-color:#2a2d36!important; }
-      .btn { background:#F33C38!important; color:#ffffff!important; }
+      .btn { background:#39B54A!important; color:#ffffff!important; }
       .btn span { color:#ffffff!important; }
     }
   </style>
@@ -565,7 +565,7 @@ export const generateNoteCreatedEmailUserTemplate = (commentUrl, name, projectTi
           
           <!-- Header / Brand Bar -->
           <tr>
-            <td style="padding:20px 24px;background:#F33C38;">
+            <td style="padding:20px 24px;background:#39B54A;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
@@ -600,10 +600,10 @@ export const generateNoteCreatedEmailUserTemplate = (commentUrl, name, projectTi
               <!-- Bulletproof button -->
               <table role="presentation" cellspacing="0" cellpadding="0">
                 <tr>
-                  <td align="center" bgcolor="#F33C38" style="border-radius:8px;">
+                  <td align="center" bgcolor="#39B54A" style="border-radius:8px;">
                     <a href="${commentUrl}" target="_blank"
                        class="btn"
-                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#F33C38;text-decoration:none;">
+                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#39B54A;text-decoration:none;">
                       <span class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;color:#ffffff;font-weight:700;">
                         View in Portal
                       </span>
@@ -640,7 +640,7 @@ export const generateAdminToUserEmailNoteTemplate = (projectTitle, name, created
       .muted { color:#b8bac1!important; }
       .divider { border-color:#2a2d36!important; }
       .chip { background:#1f2937!important;color:#e5e7eb!important;border-color:#2a2d36!important; }
-      .btn { background:#F33C38!important;color:#ffffff!important; }
+      .btn { background:#39B54A!important;color:#ffffff!important; }
       .btn span { color:#ffffff!important; }
     }
   </style>
@@ -664,7 +664,7 @@ export const generateAdminToUserEmailNoteTemplate = (projectTitle, name, created
           
           <!-- Header / Brand Bar -->
           <tr>
-            <td style="padding:18px 24px;background:#F33C38;">
+            <td style="padding:18px 24px;background:#39B54A;">
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
@@ -725,10 +725,10 @@ export const generateAdminToUserEmailNoteTemplate = (projectTitle, name, created
                 </tr>
               </table>
 <tr>
-                  <td align="center" bgcolor="#F33C38" style="border-radius:0px;">
+                  <td align="center" bgcolor="#39B54A" style="border-radius:0px;">
                     <a href="${commentUrl}" target="_blank"
                        class="btn"
-                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#F33C38;text-decoration:none;">
+                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#39B54A;text-decoration:none;">
                       <span class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;color:#ffffff;font-weight:700;">
                         View in Portal
                       </span>

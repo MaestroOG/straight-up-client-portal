@@ -27,7 +27,7 @@ export const generateRecoveryEmailTemplate = (resetLink) => {
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     .header {
-      background: linear-gradient(135deg, #F33C38, #F33C38);
+      background: linear-gradient(135deg, #39B54A, #39B54A);
       padding: 20px;
       text-align: center;
       color: #ffffff;
@@ -47,7 +47,7 @@ export const generateRecoveryEmailTemplate = (resetLink) => {
     }
     .button {
       display: inline-block;
-      background: #F33C38;
+      background: #39B54A;
       color: #ffffff !important;
       padding: 14px 28px;
       border-radius: 8px;
