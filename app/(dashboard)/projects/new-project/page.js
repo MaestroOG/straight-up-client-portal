@@ -13,7 +13,7 @@ export const metadata = {
 const NewProjectPage = async ({ searchParams }) => {
     const user = await getUser();
     let partners;
-    const { service } = searchParams;
+    const { service } = await searchParams;
     const formattedService = service?.toLowerCase()
         .split(' ')
         .map((word, index) => {

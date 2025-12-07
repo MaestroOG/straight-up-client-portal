@@ -19,7 +19,8 @@ export default function AddProjectSelect() {
     const handleValueChange = (value) => {
         const params = new URLSearchParams(searchParams)
         params.set("service", value)
-        router.replace(`?${params.toString()}`)
+        router.replace(`?${params.toString()}`, { scroll: false });
+        router.refresh();
     }
 
     return (
