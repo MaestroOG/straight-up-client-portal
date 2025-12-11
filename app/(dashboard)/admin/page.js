@@ -19,7 +19,7 @@ const SuperAdminPage = async () => {
     const deletedUser = await getAllDeletedUsers();
 
     return (
-        <main className='h-[100vh]'>
+        <main className='h-screen'>
             <Container className="bg-white px-2 md:px-4 py-3 flex flex-wrap items-center gap-2">
                 <Link href="/admin/projects">
                     <Button variant="link">See All Projects</Button>

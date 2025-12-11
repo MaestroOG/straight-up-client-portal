@@ -142,7 +142,7 @@ const Header = ({ userFromDB, pfpLink }) => {
 
 
     return (
-        <header className='bg-background w-full px-8 py-2 md:py-9 flex items-center justify-between md:justify-end gap-4 sticky top-0 z-50'>
+        <header className='bg-primary w-full px-8 py-2 md:py-9 flex items-center justify-between md:justify-end gap-4 sticky top-0 z-50'>
 
             <Link href={'/'} className='md:hidden'><Image src='/logo.png' alt="Straight Up Digital logo" width={135} height={37} priority /></Link>
             <div className='flex items-center gap-4'>

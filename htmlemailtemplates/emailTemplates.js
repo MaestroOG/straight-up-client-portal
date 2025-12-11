@@ -159,7 +159,7 @@ export const generatePartnershipEmailTemplate = (email, monthlyProjectVolume, na
                 </table>
 
                       <p style="margin:14px 0 0; font-size:12px; color:#6b7280;">
-                        Manage this request in the <a href="https://portal.Straight Up Digital.com" style="color:#2563eb;">Portal</a>.
+                        Manage this request in the <a href="https://portal.straightupdigital.com.au" style="color:#2563eb;">Portal</a>.
                       </p>
                     </td>
                   </tr>
@@ -219,12 +219,12 @@ export const generateAcceptEmailTemplate = () => {
 
         <!-- New sentence -->
         <p style="font-size:15px; line-height:1.6; margin-top:20px; text-align:center; color:#444;">
-          Want to learn how to use the portal? <a href="https://portal.Straight Up Digital.com/how-to" target="_blank" style="color:#0d47a1; font-weight:600; text-decoration:none;">Watch this video first</a>.
+          Want to learn how to use the portal? <a href="https://portal.straightupdigital.com.au/how-to" target="_blank" style="color:#0d47a1; font-weight:600; text-decoration:none;">Watch this video first</a>.
         </p>
 
         <!-- Call to Action -->
         <div style="text-align:center; margin:30px 0;">
-          <a href="https://portal.Straight Up Digital.com/login" target="_blank" 
+          <a href="https://portal.straightupdigital.com.au/login" target="_blank" 
              style="background-color:#39B54A; color:#ffffff; text-decoration:none; padding:14px 28px; border-radius:8px; font-size:16px; font-weight:600; display:inline-block;">
              Log In to Client Portal
           </a>

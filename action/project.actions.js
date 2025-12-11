@@ -79,7 +79,7 @@ export async function createProject(prevState, formData) {
                 byAdmin: true
             })
 
-            const html = generateProjectCreatedEmailTemplate(projectForUser?.companyName, projectTitle, service, packageSelected, `https://portal.straightup.com/projects/${project?._id}`);
+            const html = generateProjectCreatedEmailTemplate(projectForUser?.companyName, projectTitle, service, packageSelected, `https://portal.straightupdigital.com.au/projects/${project?._id}`);
 
             const transporter = createTransporter();
 
@@ -129,7 +129,7 @@ export async function createProject(prevState, formData) {
             })
 
 
-            const html = generateProjectCreatedEmailTemplate(user?.companyName, projectTitle, service, packageSelected, `https://portal.straightup.com/projects/${project?._id}`);
+            const html = generateProjectCreatedEmailTemplate(user?.companyName, projectTitle, service, packageSelected, `https://portal.straightupdigital.com.au/projects/${project?._id}`);
 
             const transporter = createTransporter();
 
@@ -172,7 +172,7 @@ export async function addNote(id, prevState, formData) {
 
         const transporter = createTransporter();
 
-        const html = generateNoteCreatedEmailUserTemplate(`https://portal.straightup.com/projects/${project?._id}`, user?.name, project?.projectTitle);
+        const html = generateNoteCreatedEmailUserTemplate(`https://portal.straightupdigital.com.au/projects/${project?._id}`, user?.name, project?.projectTitle);
 
         if (user?.role === 'user') {
             await transporter.sendMail({
@@ -185,7 +185,7 @@ export async function addNote(id, prevState, formData) {
 
         if (user?.role === 'superadmin') {
             const date = formatDateToYMD(project?.createdAt)
-            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, 'https://portal.straightup.com');
+            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, 'https://portal.straightupdigital.com.au');
             await transporter.sendMail({
                 from: '"Straight Up Digital" <portalstraightup@gmail.com>',
                 to: [project?.createdBy.email, 'portalstraightup@gmail.com'],
