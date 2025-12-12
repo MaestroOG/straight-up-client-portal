@@ -142,9 +142,9 @@ const Header = ({ userFromDB, pfpLink }) => {
 
 
     return (
-        <header className='bg-primary w-full px-8 py-2 md:py-9 flex items-center justify-between md:justify-end gap-4 sticky top-0 z-50'>
+        <header className='bg-primary w-full px-8 py-0 md:py-9 flex items-center justify-between md:justify-end gap-4 sticky top-0 z-50'>
 
-            <Link href={'/'} className='md:hidden'><Image src='/logo.png' alt="Straight Up Digital logo" width={135} height={37} priority /></Link>
+            <Link href={'/'} className='md:hidden'><Image src='/straight-up.png' alt="Straight Up Digital logo" width={135} height={37} priority /></Link>
             <div className='flex items-center gap-4'>
                 <div className="flex items-center gap-4">
                     {userFromDB?.credit > 0 && <div className="max-sm:hidden flex items-center gap-2 p-2 border border-primary">
@@ -209,26 +209,26 @@ const Header = ({ userFromDB, pfpLink }) => {
                 <div className="flex items-center md:hidden">
                     <Drawer direction="left" >
                         <DrawerTrigger className='md:hidden'><Menu className='text-white' size={23}></Menu></DrawerTrigger>
-                        <DrawerContent className={'bg-dark-blue'}>
+                        <DrawerContent>
                             <DrawerHeader>
                                 <DrawerClose>
-                                    <X className='text-white' />
+                                    <X className='text-primary' />
                                 </DrawerClose>
                                 <div className='mt-8'>
-                                    {userFromDB?.role !== 'manager' && <DrawerClose asChild>
+                                    {/* {userFromDB?.role !== 'manager' && <DrawerClose asChild>
                                         <Link href={'/projects/new-project'} className={`bg-white flex items-center gap-2.5 p-2 rounded-full cursor-pointer`}>
                                             <Image src={'/addIcon.png'} width={34} height={34} alt="Add_Icon" />
                                             <p className="font-medium text-sm">Create new project</p>
                                         </Link>
-                                    </DrawerClose>}
+                                    </DrawerClose>} */}
 
                                     <div className="sidebar-menu">
                                         {links.map((link, i) => (
                                             <DrawerClose asChild key={i}>
-                                                <Link href={link.href} className={`${pathname === link.href && 'bg-red'} sidebar-link`}>
-                                                    <div className="flex items-center gap-2 text-white">
+                                                <Link href={link.href} className={`${pathname === link.href ? 'bg-primary text-white' : 'text-primary'} sidebar-link`}>
+                                                    <div className="flex items-center gap-2">
                                                         {link.icon}
-                                                        <span className="text-white text-lg font-bold">{link.title}</span>
+                                                        <span className="text-lg font-bold">{link.title}</span>
                                                     </div>
                                                 </Link>
                                             </DrawerClose>
