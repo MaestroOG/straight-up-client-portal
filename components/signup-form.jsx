@@ -315,7 +315,13 @@ export function SignUpForm({
                             </div>
 
                             <div className="flex gap-3">
-                                <Checkbox id="masterServiceAgreement" value={formValues.masterServiceAgreement} onChange={handleChange} name="masterServiceAgreement" />
+                                <Checkbox id="masterServiceAgreement" value={formValues.masterServiceAgreement} checked={formValues.masterServiceAgreement}
+                                    onCheckedChange={(checked) =>
+                                        setFormValues(prev => ({
+                                            ...prev,
+                                            masterServiceAgreement: checked,
+                                        }))
+                                    } name="masterServiceAgreement" />
                                 <Label htmlFor="masterServiceAgreement" className={'text-heading'}>
                                     I agree to the Straight Up Digital
                                     <span>

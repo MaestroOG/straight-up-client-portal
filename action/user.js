@@ -131,7 +131,7 @@ export const SignUpUser = async (formValues, prevState, formData) => {
 
   // Validations
 
-  if (!isValidEmail(email) || password.length < 6 || !name) {
+  if (!isValidEmail(email) || password.length < 6 || !name || !masterServiceAgreement) {
     return {
       err: "Please fill the form correctly."
     }
