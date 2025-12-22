@@ -45,7 +45,7 @@ export function SignUpForm({
         monthlyProjectVolume: "",
         isUsingWhiteLabelProvider: "yes",
         challengeDetail: "",
-        "master-service-agreement": false,
+        masterServiceAgreement: false,
     });
 
     const [message, formAction, isPending] = useActionState(SignUpUser.bind(null, formValues), { err: "", success: false });
@@ -315,8 +315,8 @@ export function SignUpForm({
                             </div>
 
                             <div className="flex gap-3">
-                                <Checkbox id="master-service-agreement" value={formValues["master-service-agreement"]} onChange={handleChange} name="master-service-agreement" />
-                                <Label htmlFor="master-service-agreement" className={'text-heading'}>
+                                <Checkbox id="masterServiceAgreement" value={formValues.masterServiceAgreement} onChange={handleChange} name="masterServiceAgreement" />
+                                <Label htmlFor="masterServiceAgreement" className={'text-heading'}>
                                     I agree to the Straight Up Digital
                                     <span>
                                         <Link href={'https://straightupdigital.com.au/straight-up-digital-master-services-agreement/'} target="_blank" className="text-primary underline">
