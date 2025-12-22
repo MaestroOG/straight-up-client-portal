@@ -185,7 +185,7 @@ export async function addNote(id, prevState, formData) {
 
         if (user?.role === 'superadmin') {
             const date = formatDateToYMD(project?.createdAt)
-            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/${project?._id}`);
+            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/projects/${project?._id}`);
             await transporter.sendMail({
                 from: '"Straight Up Digital" <portalstraightup@gmail.com>',
                 to: [project?.createdBy.email, 'portalstraightup@gmail.com'],
