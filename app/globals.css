@@ -56,7 +56,7 @@ body {
 
   .sidebar-link::after {
     content: '';
-    @apply absolute left-0 bottom-0 h-[2px] bg-primary;
+    @apply absolute left-0 bottom-0 h-0.5 bg-primary;
     width: 100%;
     transform: scaleX(0);
     transform-origin: left;
