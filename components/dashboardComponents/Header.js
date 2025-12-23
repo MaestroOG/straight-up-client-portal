@@ -26,6 +26,7 @@ import { countUnreadNotifications } from '@/utils/notificationUtils';
 import Linkify from 'linkify-react';
 import Loader from '../Loader';
 import { useCountry } from "@/hooks/useCountry";
+import { ScrollArea } from "../ui/scroll-area";
 
 const Header = ({ userFromDB, pfpLink }) => {
     const pathname = usePathname();
@@ -221,8 +222,32 @@ const Header = ({ userFromDB, pfpLink }) => {
                                             <p className="font-medium text-sm">Create new project</p>
                                         </Link>
                                     </DrawerClose>} */}
+                                    <ScrollArea className="flex-1 overflow-y-auto">
+                                        <div className="sidebar-menu py-2">
+                                            {links.map((link, i) => {
+                                                const isActive =
+                                                    pathname === link.href ||
+                                                    pathname.startsWith(link.href + "/");
 
-                                    <div className="sidebar-menu">
+                                                return (
+                                                    <DrawerClose asChild key={i}>
+                                                        <Link
+                                                            href={link.href}
+                                                            className={`${isActive
+                                                                ? 'bg-primary text-white'
+                                                                : 'text-primary'
+                                                                } sidebar-link`}
+                                                        >
+                                                            {/* {link.icon} */}
+                                                            <span className="text-lg font-bold">{link.title}</span>
+                                                        </Link>
+                                                    </DrawerClose>
+                                                );
+                                            })}
+                                        </div>
+                                    </ScrollArea>
+
+                                    {/* <div className="sidebar-menu">
                                         {links.map((link, i) => (
                                             <DrawerClose asChild key={i}>
                                                 <Link href={link.href} className={`${pathname === link.href ? 'bg-primary text-white' : 'text-primary'} sidebar-link`}>
@@ -233,7 +258,7 @@ const Header = ({ userFromDB, pfpLink }) => {
                                                 </Link>
                                             </DrawerClose>
                                         ))}
-                                    </div>
+                                    </div> */}
                                 </div>
                             </DrawerHeader>
                             <DrawerFooter className={'w-full'}>
