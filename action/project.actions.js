@@ -84,8 +84,8 @@ export async function createProject(prevState, formData) {
             const transporter = createTransporter();
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: [projectForUser?.email, 'portalstraightup@gmail.com'],
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: [projectForUser?.email, 'admin@straightupdigital.com.au'],
                 subject: "Project Created - Straight Up Digital",
                 html,
             })
@@ -134,8 +134,8 @@ export async function createProject(prevState, formData) {
             const transporter = createTransporter();
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: [user?.email, 'portalstraightup@gmail.com'],
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: [user?.email, 'admin@straightupdigital.com.au'],
                 subject: "Project Created - Straight Up Digital",
                 html,
             })
@@ -176,8 +176,8 @@ export async function addNote(id, prevState, formData) {
 
         if (user?.role === 'user') {
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: 'portalstraightup@gmail.com',
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: 'admin@straightupdigital.com.au',
                 subject: "Note Created - Straight Up Digital",
                 html,
             })
@@ -187,8 +187,8 @@ export async function addNote(id, prevState, formData) {
             const date = formatDateToYMD(project?.createdAt)
             const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/projects/${project?._id}`);
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: [project?.createdBy.email, 'portalstraightup@gmail.com'],
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
                 subject: "Note Created - Straight Up Digital",
                 html: adminToUserHtml,
             })
@@ -221,8 +221,8 @@ export async function ApproveProject(projectId, prevState, formData) {
     const transporter = createTransporter();
 
     await transporter.sendMail({
-        from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-        to: [project?.createdBy.email, 'portalstraightup@gmail.com'],
+        from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+        to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
         subject: "Project Status Update - Straight Up Digital",
         html,
     })
@@ -261,8 +261,8 @@ export async function RejectProject(projectId, prevState, formData) {
         const transporter = createTransporter();
 
         await transporter.sendMail({
-            from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-            to: [user?.email, 'portalstraightup@gmail.com'],
+            from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+            to: [user?.email, 'admin@straightupdigital.com.au'],
             subject: "Project Status Update - Straight Up Digital",
             html,
         })
@@ -295,8 +295,8 @@ export async function changeProjectStatus(projectId, prevState, formData) {
     const transporter = createTransporter();
 
     await transporter.sendMail({
-        from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-        to: ["portalstraightup@gmail.com", user?.email],
+        from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+        to: ["admin@straightupdigital.com.au", user?.email],
         subject: "Project Status Update - Straight Up Digital",
         html,
     })

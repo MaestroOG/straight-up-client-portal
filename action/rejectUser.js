@@ -38,8 +38,8 @@ export async function rejectUser(prevState, formData) {
         const html = generateRejectEmailTemplate();
 
         await transporter.sendMail({
-            from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-            to: ['portalstraightup@gmail.com', user?.email],
+            from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+            to: ['admin@straightupdigital.com.au', user?.email],
             subject: "Partnership Application Update – Rejected",
             html,
         })

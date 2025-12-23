@@ -38,8 +38,8 @@ export async function GET() {
 
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: 'portalstraightup@gmail.com',
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: 'admin@straightupdigital.com.au',
                 subject: "Task Overdue Alert",
                 html,
             })

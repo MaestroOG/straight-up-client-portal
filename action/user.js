@@ -56,7 +56,7 @@ export const LoginUser = async (prevState, formData) => {
       transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.SMTP_USER, // e.g. "portalstraightup@gmail.com"
+          user: process.env.SMTP_USER, // e.g. "admin@straightupdigital.com.au"
           pass: process.env.SMTP_PASS, // Gmail app password, not your account password
         },
       });
@@ -67,7 +67,7 @@ export const LoginUser = async (prevState, formData) => {
     }
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <portalstraightup@gmail.com>',
+      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
       to: user?.email,
       subject: "Verify your OTP",
       html,
@@ -187,15 +187,15 @@ export const SignUpUser = async (formValues, prevState, formData) => {
     const userHtml = generateApplicationReceivedUserEmail(name, companyName, email);
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-      to: [email, 'portalstraightup@gmail.com'],
+      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      to: [email, 'admin@straightupdigital.com.au'],
       subject: "Thanks for your interest in partnering with Straight Up Digital",
       html: userHtml,
     })
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-      to: 'portalstraightup@gmail.com',
+      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      to: 'admin@straightupdigital.com.au',
       subject: "New User Application – Review Required",
       html,
     })

@@ -41,8 +41,8 @@ export async function GET() {
             const html = generateInactiveProjectsAlertEmail(inactiveProjects.length);
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <portalstraightup@gmail.com>',
-                to: ['portalstraightup@gmail.com', 'portalstraightup@gmail.com'],
+                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                to: 'admin@straightupdigital.com.au',
                 subject: "Inactive Projects Alert",
                 html,
             })
