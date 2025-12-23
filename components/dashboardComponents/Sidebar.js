@@ -59,11 +59,11 @@ const Sidebar = () => {
             title: "FAQs",
             href: '/faqs'
         },
-        {
-            icon: <CircleDollarSign />,
-            title: "Pricing",
-            href: "/pricing"
-        },
+        // {
+        //     icon: <CircleDollarSign />,
+        //     title: "Pricing",
+        //     href: "/pricing"
+        // },
         {
             icon: <MessageCircle />,
             title: "Comments",
