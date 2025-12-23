@@ -147,10 +147,10 @@ const Header = ({ userFromDB, pfpLink }) => {
             <Link href={'/'} className='md:hidden'><Image src='/straight-up.png' alt="Straight Up Digital logo" width={135} height={37} priority /></Link>
             <div className='flex items-center gap-4'>
                 <div className="flex items-center gap-4">
-                    {userFromDB?.credit > 0 && <div className="max-sm:hidden flex items-center gap-2 p-2 border border-primary">
+                    {/* {userFromDB?.credit > 0 && <div className="max-sm:hidden flex items-center gap-2 p-2 border border-primary">
                         <CircleDollarSign className="text-foreground" />
                         <p className="text-foreground">AUD {userFromDB?.credit}.00</p>
-                    </div>}
+                    </div>} */}
                     <div className="flex items-center">
                         {loading && <Loader size="h-4 w-4" />}
                         {!loading && !error && countryCode && <Image
