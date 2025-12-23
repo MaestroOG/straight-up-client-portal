@@ -209,10 +209,7 @@ export const generateAcceptEmailTemplate = () => {
         <p style="font-size:16px; line-height:1.6; margin-top:15px;">
           We’re excited to let you know that your request for a <strong>partnership with Straight Up Digital</strong> has been <span style="color:green; font-weight:bold;">accepted</span>.
         </p>
-        <!-- New credit line -->
-        <p style="font-size:16px; line-height:1.6; color:#333;">
-          You’ve also been <strong>credited 250 AUD</strong> by our admin team to help you get started.
-        </p>
+        
         <p style="font-size:16px; line-height:1.6;">
           You can now access your account and explore the <strong>Client Portal</strong>, where you’ll find all the tools and resources you need to get started.
         </p>
