@@ -28,11 +28,11 @@ const PricingPage = () => {
             </div>
 
             {/* PDF Section */}
-            {/* <div className="w-full h-auto md:h-[70vh] overflow-hidden md:overflow-auto rounded-lg border border-gray-200">
+            <div className="w-full h-auto md:h-[70vh] overflow-hidden md:overflow-auto rounded-lg border border-gray-200">
                 <PricingPDF />
-            </div> */}
+            </div>
 
-            <p className="text-center text-black p-6">Coming Soon.</p>
+            {/* <p className="text-center text-black p-6">Coming Soon.</p> */}
         </Container>
 
     )
