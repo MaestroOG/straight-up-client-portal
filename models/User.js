@@ -106,7 +106,7 @@ const UserSchema = new Schema({
     },
     useTwoFactor: {
         type: Boolean,
-        default: false
+        default: true
     },
     serviceManager: {
         type: [String],
