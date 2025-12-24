@@ -76,7 +76,7 @@ const Header = ({ userFromDB, pfpLink }) => {
             title: "Dashboard",
             href: "/",
         },
-        ...(userFromDB?.role !== "manager"
+        ...(userFromDB?.role !== "manager" && !userFromDB?.isRetail
             ? [
                 {
                     icon: <FolderCog />,
@@ -100,11 +100,15 @@ const Header = ({ userFromDB, pfpLink }) => {
             title: "FAQs",
             href: '/faqs'
         },
-        {
-            icon: <CircleDollarSign />,
-            title: "Pricing",
-            href: "/pricing"
-        },
+        ...(!userFromDB?.isRetail
+            ? [
+                {
+                    icon: <CircleDollarSign />,
+                    title: "Pricing",
+                    href: "/pricing",
+                },
+            ]
+            : []),
         {
             icon: <MessageCircle />,
             title: "Comments",

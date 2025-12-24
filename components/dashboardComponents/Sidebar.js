@@ -35,7 +35,7 @@ const Sidebar = () => {
             title: "Dashboard",
             href: "/",
         },
-        ...(user?.role !== "manager"
+        ...(user?.role !== "manager" && !user?.isRetail
             ? [
                 {
                     icon: <FolderCog />,
@@ -59,11 +59,15 @@ const Sidebar = () => {
             title: "FAQs",
             href: '/faqs'
         },
-        {
-            icon: <CircleDollarSign />,
-            title: "Pricing",
-            href: "/pricing"
-        },
+        ...(!user?.isRetail
+            ? [
+                {
+                    icon: <CircleDollarSign />,
+                    title: "Pricing",
+                    href: "/pricing",
+                },
+            ]
+            : []),
         {
             icon: <MessageCircle />,
             title: "Comments",

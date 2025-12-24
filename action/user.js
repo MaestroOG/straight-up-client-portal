@@ -7,12 +7,13 @@ import { comparePassword, hashPassword, isValidEmail, validateABN } from "@/util
 import PendingUser from "@/models/PendingUser";
 import { connectDB } from "@/lib/mongodb";
 import nodemailer from "nodemailer";
-import { generateApplicationReceivedUserEmail, generatePartnershipEmailTemplate } from "@/htmlemailtemplates/emailTemplates";
+import { generateAcceptEmailTemplate, generateApplicationReceivedUserEmail, generatePartnershipEmailTemplate } from "@/htmlemailtemplates/emailTemplates";
 import User from "@/models/User";
 import { createOTP } from "@/utils/formUtils";
 import OTP from "@/models/OTP";
 import { generateOTPEmail } from "@/htmlemailtemplates/otpEmailTemplate";
 import { revalidatePath } from "next/cache";
+import { createTransporter } from "@/utils/transporterFns";
 
 export const LoginUser = async (prevState, formData) => {
   const email = formData.get("email").toString().trim();
@@ -265,5 +266,76 @@ export const verifyOtpAndLogin = async (prevState, formData) => {
 
   await OTP.deleteOne({ otp: value });
   redirect('/');
+
+}
+
+export const createRetailUser = async (prevState, formData) => {
+  const email = formData.get("email").toString().trim();
+  const password = formData.get("password").toString().trim();
+  const name = formData.get("name").toString().trim();
+  const phoneNum = formData.get("phoneNum").toString().trim();
+  const companyName = formData.get("companyName").toString().trim();
+
+  if (!isValidEmail(email) || password.length < 6 || !name) {
+    return {
+      success: false,
+      err: "Please fill the form correctly."
+    }
+  }
+
+  try {
+    await connectDB();
+
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      return {
+        success: false,
+        err: "User with this email already exists."
+      }
+    }
+
+    const hashedPassword = await hashPassword(password);
+
+    const newRetailUser = await User.create({
+      email,
+      password: hashedPassword,
+      name,
+      phoneNum,
+      companyName,
+      isRetail: true,
+    })
+
+    if (!newRetailUser) {
+      return {
+        success: false,
+        err: "Error creating retail user. Please try again."
+      }
+    }
+
+    const transporter = createTransporter();
+
+    const html = generateAcceptEmailTemplate();
+
+    await transporter.sendMail({
+      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      to: [email, 'admin@straightupdigital.com.au'],
+      subject: "Partnership Accepted - Straight Up Digital",
+      html,
+    })
+
+    revalidatePath('/', 'layout');
+
+    return {
+      success: true,
+      message: "Retail user created successfully."
+    }
+  } catch (error) {
+    console.error("CreateRetailUser Error:", error);
+    return {
+      success: false,
+      err: "Failed to create retail user."
+    }
+  }
 
 }

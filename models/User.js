@@ -114,7 +114,11 @@ const UserSchema = new Schema({
     },
     credit: {
         type: Number,
-        default: 250
+        default: 0
+    },
+    isRetail: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true })
 
