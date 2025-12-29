@@ -78,6 +78,11 @@ const Sidebar = () => {
             title: "Audits",
             href: "/audits"
         },
+        {
+            icon: <ClipboardCheck />,
+            title: "Tasks",
+            href: "/tasks",
+        },
         ...(user?.role === "superadmin"
             ? [
                 // {
@@ -85,11 +90,6 @@ const Sidebar = () => {
                 //     title: "Invoices",
                 //     href: "/invoices",
                 // },
-                {
-                    icon: <ClipboardCheck />,
-                    title: "Tasks",
-                    href: "/tasks",
-                },
                 {
                     icon: <Users />,
                     title: "Discussions",

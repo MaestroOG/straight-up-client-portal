@@ -1,9 +1,12 @@
 import React from 'react'
 import Container from './dashboardComponents/Container'
-import { getUser } from '@/lib/user'
+import { getIntroText, getUser } from '@/lib/user'
+import parse from 'html-react-parser';
 
 const IntroText = async () => {
     const user = await getUser();
+    const introText = await getIntroText();
+
     return (
         <Container className={'bg-white p-4 rounded-lg max-sm:mt-0'}>
             <div className="max-w-2xl">
@@ -12,7 +15,7 @@ const IntroText = async () => {
                     <br />
                     {user?.name} - {user?.agency || user?.companyName}
                 </h1>
-                <p className="mt-3">This isn’t just a portal. It’s your direct line to projects, performance, and priority support, all built to keep your agency moving forward without friction.</p>
+                {/* <p className="mt-3">This isn’t just a portal. It’s your direct line to projects, performance, and priority support, all built to keep your agency moving forward without friction.</p>
 
                 <ul className='list-disc marker:text-primary ml-6'>
                     <li className='mt-3 text-2xl font-medium text-heading text-indent-[-0.5em]'>Launch Projects Instantly</li>
@@ -26,7 +29,12 @@ const IntroText = async () => {
 
                 </ul>
 
-                <p className="mt-4">We can’t wait to support your agency and it’s success.</p>
+                <p className="mt-4">We can’t wait to support your agency and it’s success.</p> */}
+
+                <div className='mt-4'>
+
+                    {parse(introText)}
+                </div>
             </div>
         </Container>
     )

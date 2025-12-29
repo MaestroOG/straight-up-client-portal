@@ -119,6 +119,11 @@ const Header = ({ userFromDB, pfpLink }) => {
             title: "Audits",
             href: "/audits"
         },
+        {
+            icon: <ClipboardCheck />,
+            title: "Tasks",
+            href: "/tasks",
+        },
         ...(userFromDB?.role === "superadmin"
             ? [
                 // {
@@ -126,11 +131,6 @@ const Header = ({ userFromDB, pfpLink }) => {
                 //     title: "Invoices",
                 //     href: "/invoices",
                 // },
-                {
-                    icon: <ClipboardCheck />,
-                    title: "Tasks",
-                    href: "/tasks",
-                },
                 {
                     icon: <Users />,
                     title: "Discussions",
