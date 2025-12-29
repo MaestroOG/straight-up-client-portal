@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Search } from "lucide-react"
 import { getUser } from "@/lib/user"
-import { getAllArchivedProjects, getAllArchivedProjectsCount, getAllCompletedProjects, getAllPendingProjects, getAllRunningProjects, getAllUserFinishedProjects, getAllUserPendingProjects, getAllUserProjects, getAllUserRunningProjects, getArchivedProjectsCount, getCompletedProjectsThisMonth, getEveryProject, getEveryUserProjects, getPendingProjectsThisMonth, getRunningProjectsThisMonth } from "@/lib/projects"
+import { getAllAgencyArchivedProjectsCount, getAllAgencyProjects, getAllArchivedProjects, getAllArchivedProjectsCount, getAllCompletedAgencyProjects, getAllCompletedProjects, getAllPendingAgencyProjects, getAllPendingProjects, getAllRunningAgencyProjects, getAllRunningProjects, getAllUserFinishedProjects, getAllUserPendingProjects, getAllUserProjects, getAllUserRunningProjects, getArchivedProjectsCount, getCompletedProjectsThisMonth, getEveryProject, getEveryUserProjects, getPendingProjectsThisMonth, getRunningProjectsThisMonth } from "@/lib/projects"
 import { Suspense } from "react"
 import HomePageDialog from "@/components/dashboardComponents/HomePageDialog"
 import { getLatestUnreadNotification } from "@/lib/notifications"
@@ -55,7 +55,14 @@ const HomePage = async ({ searchParams }) => {
     pendingProjectsThisMonth = await getAllPendingProjectsThisMonth();
     runningProjectsThisMonth = await getAllRunningProjectsThisMonth();
     archivedProjects = await getAllArchivedProjectsCount();
-  } else {
+  } else if (user?.role === 'team-member') {
+    projects = await getAllAgencyProjects(user?.companyName, user?._id);
+    completedProjectsThisMonth = await getAllCompletedAgencyProjects(user?.companyName);
+    pendingProjectsThisMonth = await getAllPendingAgencyProjects(user?.companyName);
+    runningProjectsThisMonth = await getAllRunningAgencyProjects(user?.companyName);
+    archivedProjects = await getAllAgencyArchivedProjectsCount(user?.companyName);
+  }
+  else {
     if (filter === 'finished') {
       projects = await getAllCompletedProjects();
     } else if (filter === 'running') {

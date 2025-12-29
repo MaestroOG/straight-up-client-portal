@@ -7,6 +7,7 @@ const FaqSchema = new Schema(
             required: true,
             trim: true,
             lowercase: true,
+            maxlength: 100,
             index: true,
         },
 

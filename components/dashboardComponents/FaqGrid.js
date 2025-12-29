@@ -21,10 +21,10 @@ const FaqGrid = () => {
                         key={project.id}
                         className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm"
                     >
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
                             {project.projectTitle}
                         </h5>
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        <p className="mb-3 font-normal text-gray-700">
                             {project.desc}
                         </p>
                         <Link href={`/faqs/${slugify(project.projectTitle, { lower: true, strict: true })}`}>
@@ -33,7 +33,7 @@ const FaqGrid = () => {
                     </div>
                 ))
             ) : (
-                <p className="col-span-4 text-center text-gray-500">No results found.</p>
+                <p className="col-span-fulltext-center text-gray-500">No results found.</p>
             )}
         </div>
     )

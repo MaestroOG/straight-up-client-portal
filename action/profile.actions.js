@@ -115,7 +115,12 @@ export async function addIntroText(prevState, formData) {
 
     try {
         await connectDB();
-        await IntroText.create({ text: introText });
+        const user = await getUser();
+        await IntroText.findOneAndUpdate(
+            { userId: user._id },
+            { text: introText, updatedAt: new Date() },
+            { upsert: true, new: true }
+        );
         revalidatePath('/', "layout");
 
         return {

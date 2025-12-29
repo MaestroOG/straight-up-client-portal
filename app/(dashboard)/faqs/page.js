@@ -1,7 +1,6 @@
 import Container from "@/components/dashboardComponents/Container"
 import FaqGrid from "@/components/dashboardComponents/FaqGrid"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { getUser } from "@/lib/user"
 import Link from "next/link"
 

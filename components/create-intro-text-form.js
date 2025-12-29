@@ -28,6 +28,10 @@ const CreateIntroTextForm = () => {
         if (state.success || state.message) {
             setOpen(true);
         }
+
+        if (state.success) {
+            setValue("");
+        }
     }, [state]);
 
     return (
@@ -37,7 +41,7 @@ const CreateIntroTextForm = () => {
                     ref={contentRef}
                     value={value}
                     tabIndex={1}
-                    onBlur={newContent => setValue(newContent)}
+                    onChange={newContent => setValue(newContent)}
                 />
 
                 <input type="hidden" name="introText" id="introText" value={value} />
@@ -51,7 +55,7 @@ const CreateIntroTextForm = () => {
                             {state.success ? "✅ Success" : "⚠️ Error"}
                         </DialogTitle>
                     </DialogHeader>
-                    <p>{state.message}</p>
+                    <p>{state.message || 'An unexpected error occurred.'}</p>
                 </DialogContent>
             </Dialog>
         </>

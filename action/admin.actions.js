@@ -772,6 +772,15 @@ export async function createFaq(prevState, formData) {
         }
     }
 
+    const currentUser = await getUser();
+
+    if (currentUser?.role !== 'superadmin' && currentUser?.role !== 'manager') {
+        return {
+            success: false,
+            message: 'You do not have permission to perform this action'
+        }
+    }
+
     try {
         await connectDB();
 
@@ -787,6 +796,8 @@ export async function createFaq(prevState, formData) {
                 message: "Failed to create FAQ. Please try again."
             }
         }
+
+        revalidatePath('/', 'layout');
 
         return {
             success: true,

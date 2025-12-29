@@ -29,7 +29,7 @@ const TasksPage = async () => {
         <Container className={'bg-white p-4 rounded-lg'}>
             <div className="flex items-center justify-between gap-4">
                 <h1 className="text-2xl font-medium">Tasks</h1>
-                {user?.role === 'user' || user?.role === 'superadmin' && (
+                {(user?.role === 'user' || user?.role === 'superadmin') && (
                     <Link href={'/tasks/new'}>
                         <Button>
                             Create Task
