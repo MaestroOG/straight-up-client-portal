@@ -121,11 +121,11 @@ const Header = ({ userFromDB, pfpLink }) => {
         },
         ...(userFromDB?.role === "superadmin"
             ? [
-                {
-                    icon: <Receipt />,
-                    title: "Invoices",
-                    href: "/invoices",
-                },
+                // {
+                //     icon: <Receipt />,
+                //     title: "Invoices",
+                //     href: "/invoices",
+                // },
                 {
                     icon: <ClipboardCheck />,
                     title: "Tasks",

@@ -14,7 +14,10 @@ const ProfilePage = async () => {
     return (
         <Container className="bg-white p-6 max-w-4xl mx-auto space-y-10">
             {/* Header */}
-            <ProfilePicture />
+            <div className="flex justify-between">
+                <ProfilePicture />
+                <Link href="/profile/edit"><Button>Edit Profile</Button></Link>
+            </div>
             <header className="border-b pb-6">
                 <h1 className="text-3xl font-bold">
                     {userDetail?.name}{" "}

@@ -80,11 +80,11 @@ const Sidebar = () => {
         },
         ...(user?.role === "superadmin"
             ? [
-                {
-                    icon: <Receipt />,
-                    title: "Invoices",
-                    href: "/invoices",
-                },
+                // {
+                //     icon: <Receipt />,
+                //     title: "Invoices",
+                //     href: "/invoices",
+                // },
                 {
                     icon: <ClipboardCheck />,
                     title: "Tasks",
