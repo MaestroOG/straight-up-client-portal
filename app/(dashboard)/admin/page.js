@@ -41,6 +41,14 @@ const SuperAdminPage = async () => {
                     <Button variant="link">Create Retail User</Button>
                 </Link>
 
+                <Link href="/admin/add-teammate-to-an-agency">
+                    <Button variant="link">Add Teammate to an Agency</Button>
+                </Link>
+
+                <Link href="/admin/add-intro-text">
+                    <Button variant="link">Add Intro Text</Button>
+                </Link>
+
                 {user?.name === "Muneeb Ur Rehman" && (
                     <Link href="/admin/create-superadmin">
                         <Button variant="link">Assign a Superadmin</Button>

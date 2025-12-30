@@ -3,6 +3,7 @@
 import { uploadImage } from "@/lib/cloudinary";
 import { connectDB } from "@/lib/mongodb";
 import { getUser, getUserFromDB } from "@/lib/user";
+import IntroText from "@/models/IntroText";
 import User from "@/models/User";
 import { comparePassword, hashPassword } from "@/utils/validatorFns";
 import { revalidatePath } from "next/cache";
@@ -100,4 +101,37 @@ export async function changeProfilePicture(prevState, formData) {
 
     revalidatePath('/', "layout")
     redirect('/profile')
+}
+
+export async function addIntroText(prevState, formData) {
+    const introText = formData.get('introText');
+
+    if (!introText) {
+        return {
+            success: false,
+            message: 'Intro text is required',
+        };
+    }
+
+    try {
+        await connectDB();
+        const user = await getUser();
+        await IntroText.findOneAndUpdate(
+            { userId: user._id },
+            { text: introText, updatedAt: new Date() },
+            { upsert: true, new: true }
+        );
+        revalidatePath('/', "layout");
+
+        return {
+            success: true,
+            message: 'Intro text added successfully',
+        };
+    } catch (error) {
+        console.error("Error adding intro text:", error);
+        return {
+            success: false,
+            message: 'An error occurred while adding intro text. Please try again later.',
+        };
+    }
 }

@@ -253,3 +253,82 @@ export function generateAuditEmail({ companyName, auditTitle, service, fields })
 </html>
   `;
 }
+
+
+export function generateTeammateWelcomeEmail(name, companyName) {
+  return `
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You’ve been added to the team</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f4f6f8; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#f4f6f8; padding:40px 0;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px; background:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+          
+          <!-- Header -->
+          <tr>
+            <td style="background:#39B54A; padding:28px; text-align:center;">
+              <h1 style="margin:0; color:#ffffff; font-size:24px; font-weight:600;">
+                Welcome to ${companyName}
+              </h1>
+            </td>
+          </tr>
+
+          <!-- Body -->
+          <tr>
+            <td style="padding:32px;">
+              <p style="margin:0 0 16px; color:#111827; font-size:16px;">
+                Hi <strong>${name}</strong>,
+              </p>
+
+              <p style="margin:0 0 16px; color:#374151; font-size:15px; line-height:1.6;">
+                You’ve been added as a <strong>team member</strong> for <strong>${companyName}</strong>.
+                Your account is now active and you can start exploring the portal right away.
+              </p>
+
+              <p style="margin:0 0 24px; color:#374151; font-size:15px; line-height:1.6;">
+                Inside the portal, you’ll be able to collaborate with your team, manage projects,
+                and access tools designed to help your agency move faster.
+              </p>
+
+              <!-- CTA -->
+              <div style="text-align:center; margin:32px 0;">
+                <a href="https://portal.straightupdigital.com.au/login" target="_blank"
+                   style="background:#39B54A; color:#ffffff; text-decoration:none; padding:14px 28px;
+                          border-radius:8px; font-size:15px; font-weight:600; display:inline-block;">
+                  Go to Portal
+                </a>
+              </div>
+
+              <p style="margin:0; color:#6b7280; font-size:14px; line-height:1.6;">
+                If you have any questions or need help getting started, feel free to reach out to your
+                agency admin.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="background:#f9fafb; padding:20px; text-align:center;">
+              <p style="margin:0; font-size:13px; color:#9ca3af;">
+                © ${new Date().getFullYear()} Straight Up Digital. All rights reserved.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
+  `;
+}

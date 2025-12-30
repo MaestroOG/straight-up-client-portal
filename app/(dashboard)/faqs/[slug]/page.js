@@ -6,12 +6,12 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import { faqs } from "@/constants";
+import { getFaqsForService } from "@/lib/user";
 
 
 const FAQDetailPage = async ({ params }) => {
     const { slug } = await params;
-    const serviceFaqs = faqs[slug] || [];
+    const serviceFaqs = await getFaqsForService(slug) || [];
     return (
         <Container className={'bg-white p-4 rounded-lg'}>
             <div className="flex items-center justify-between gap-4">

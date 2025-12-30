@@ -38,7 +38,6 @@ export default async function RootLayout({ children }) {
           <Header userFromDB={userFromDB} pfpLink={user?.profilePictureUrl} />
           {children}
         </MainContent>
-        {user && user.role !== "superadmin" && <TawkToChat />}
 
       </body>
     </html>
