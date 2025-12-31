@@ -109,17 +109,11 @@ export function toCamelCase(str) {
 }
 
 export function formatTo12HourTime(isoString) {
-    const date = new Date(isoString);
-
-    let hours = date.getHours();
-    const minutes = date.getMinutes();
-
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12; // convert 0 -> 12
-
-    const formattedMinutes = String(minutes).padStart(2, "0");
-
-    return `${hours}:${formattedMinutes} ${ampm}`;
+    return new Intl.DateTimeFormat(undefined, {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+    }).format(new Date(isoString));
 }
 
 export function isoDateToLocal12HourTime(isoDateString) {

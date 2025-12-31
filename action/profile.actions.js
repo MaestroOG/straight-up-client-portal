@@ -117,7 +117,7 @@ export async function addIntroText(prevState, formData) {
         await connectDB();
         const user = await getUser();
         await IntroText.findOneAndUpdate(
-            { userId: user._id },
+            { createdBy: user._id },
             { text: introText, updatedAt: new Date() },
             { upsert: true, new: true }
         );

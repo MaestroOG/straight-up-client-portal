@@ -61,13 +61,13 @@ const CommentsPage = async ({ searchParams }) => {
                                         {isUnread && (
                                             <span className="absolute top-4 right-4 h-3 w-3 rounded-full bg-red" />
                                         )}
-                                        <AlertTitle className="font-semibold text-base md:text-lg break-words pr-8">
+                                        <AlertTitle className="font-semibold text-base md:text-lg wrap-break-word pr-8">
                                             {note?.createdBy?.name} –{" "}
                                             {formatReadableDate(note?.createdAt)} –{" "}
                                             {timeAgo(note?.createdAt)} at{" "}
                                             {formatTo12HourTime(note?.createdAt)}
                                         </AlertTitle>
-                                        <AlertDescription className="mt-1 break-words">
+                                        <AlertDescription className="mt-1 wrap-break-word">
                                             <span className="font-bold">
                                                 on {note.projectId?.projectTitle}
                                             </span>
