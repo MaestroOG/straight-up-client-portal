@@ -53,6 +53,11 @@ export const yourProjects = [
         id: Math.random(),
         projectTitle: "Adhoc Support",
         desc: "On-demand technical assistance and troubleshooting for specific website issues or updates as needed."
+    },
+    {
+        id: Math.random(),
+        projectTitle: "Marketing Services",
+        desc: "Ongoing marketing assistance across multiple services as specified."
     }
 ];
 

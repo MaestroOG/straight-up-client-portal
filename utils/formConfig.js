@@ -121,6 +121,14 @@ export const formConfig = {
         { label: "Additional Notes", name: "additionalNotes", type: "textarea" }
     ],
 
+    marketingServices: [
+        { label: "Website Name or URL (Add https:// in front of the URL)", name: "websiteUrl", type: "url", required: true },
+        { label: "Type of Service", name: "serviceType", type: "text", required: true },
+        { label: "Detailed Description of the Project", name: "taskDetails", type: "textarea", required: true },
+        { label: "Priority Level (Low, Medium, High, Urgent)", name: "priorityLevel", type: "text" },
+        { label: "Additional Notes", name: "additionalNotes", type: "textarea" }
+    ],
+
 }
 
 export const auditFormConfig = {
@@ -232,7 +240,44 @@ export const auditFormConfig = {
         { label: "Priority Level (Low, Medium, High, Urgent)", name: "priorityLevel", type: "select", options: ["Low", "Medium", "High", "Urgent"] },
         { label: "Access Details (if applicable)", name: "accessDetails", type: "textarea" },
         { label: "Additional Notes", name: "additionalNotes", type: "textarea" }
+    ],
+    marketingServicesAudit: [
+        {
+            label: "Website URL (Add https:// in front of the URL)",
+            name: "websiteUrl",
+            type: "url",
+            required: true
+        },
+        {
+            label: "Type of Service",
+            name: "serviceType",
+            type: "text",
+            required: true
+        },
+        {
+            label: "Detailed Description of the Project",
+            name: "taskDetails",
+            type: "textarea",
+            required: true
+        },
+        {
+            label: "Priority Level (Low, Medium, High, Urgent)",
+            name: "priorityLevel",
+            type: "select",
+            options: ["Low", "Medium", "High", "Urgent"]
+        },
+        {
+            label: "Additional Notes",
+            name: "additionalNotes",
+            type: "textarea"
+        },
+        {
+            label: "Audit Comments / Findings",
+            name: "auditComments",
+            type: "textarea"
+        }
     ]
+
 };
 
 
@@ -451,6 +496,18 @@ export const pricingConfig = {
                 period: "/month",
                 description: "Complete email marketing campaigns"
             },
+            {
+                id: "custom-bundle",
+                label: "Custom Quote",
+                price: "custom",
+                period: "",
+                description: ""
+            },
+        ]
+    },
+
+    marketingServices: {
+        pricing: [
             {
                 id: "custom-bundle",
                 label: "Custom Quote",
