@@ -77,7 +77,7 @@ const NoteItem = ({ note, isUnread, onMarkAsRead, user }) => {
                 </Popover>}
             </div>
 
-            <div className="font-montserrat md:max-w-5xl w-full text-base sm:text-lg ml-0 sm:ml-11 font-medium text-content break-words whitespace-pre-wrapoverflow-hidden"
+            <div className="font-montserrat md:max-w-5xl w-full text-base sm:text-lg ml-0 sm:ml-11 font-medium text-content wrap-break-word whitespace-pre-wrapoverflow-hidden"
             >
                 {parse(note?.note)}
             </div>

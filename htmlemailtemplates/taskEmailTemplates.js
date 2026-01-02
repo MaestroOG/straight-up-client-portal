@@ -124,11 +124,11 @@ export const generateTaskNotification = (task_title, task_description, due_date,
       <a href="${cta_url}" class="btn">View Task</a>
 
       <p style="font-size:14px;color:#555;margin-top:20px;">
-        If you have any questions, reach out to support@Straight Up Digital.com.
+        If you have any questions, reach out to portal@straightupdigital.com.au.
       </p>
     </div>
     <div class="footer">
-      © 2025 Straight Up Digital — This is an automated message.
+      © 2026 Straight Up Digital — This is an automated message.
     </div>
   </div>
 </body>
@@ -221,7 +221,7 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
     </div>
 
     <div class="footer">
-      © 2025 TaskBoard — You’re receiving this because you’re assigned to the task.
+      © 2026 Straight Up Digital — You’re receiving this because you’re assigned to the task.
     </div>
   </div>
 </body>

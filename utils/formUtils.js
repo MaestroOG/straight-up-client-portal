@@ -23,65 +23,107 @@ export function capitalizeFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function formatDateToYMD(isoDateString) {
-    const date = new Date(isoDateString);
+export function formatDateToYMD(isoDateString, timeZone) {
+    if (!isoDateString) return "";
 
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // months start at 0
-    const day = String(date.getDate()).padStart(2, "0");
+    var date = new Date(isoDateString);
+    if (isNaN(date.getTime())) return "";
 
-    return `${year}-${month}-${day}`;
+    // Default to Australian timezone if nothing provided
+    var tz = timeZone ||
+        (typeof Intl !== "undefined" && Intl.DateTimeFormat
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone
+            : "Australia/Sydney");
+
+    // Get date parts in the specified timezone
+    var parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).formatToParts(date);
+
+    var year = parts.find(function (p) { return p.type === "year"; })?.value;
+    var month = parts.find(function (p) { return p.type === "month"; })?.value;
+    var day = parts.find(function (p) { return p.type === "day"; })?.value;
+
+    if (!year || !month || !day) return "";
+
+    return year + "-" + month + "-" + day;
 }
 
-export function formatReadableDate(dateInput) {
-    const date = new Date(dateInput);
-    if (isNaN(date)) return ""; // handle invalid dates
 
-    const day = date.getDate();
-    const month = date.toLocaleString("default", { month: "long" });
-    const year = date.getFullYear();
+export function formatReadableDate(dateInput, timeZone) {
+    if (!dateInput) return "";
 
-    // add suffix: st, nd, rd, th
-    const suffix =
-        day % 10 === 1 && day !== 11
-            ? "st"
-            : day % 10 === 2 && day !== 12
-                ? "nd"
-                : day % 10 === 3 && day !== 13
-                    ? "rd"
-                    : "th";
+    var date = new Date(dateInput);
+    if (isNaN(date.getTime())) return "";
 
-    return `${day}${suffix} ${month} ${year}`;
+    // Default to Australia/Sydney if no timezone
+    var tz = timeZone ||
+        (typeof Intl !== "undefined" && Intl.DateTimeFormat
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone
+            : "Australia/Sydney");
+
+    // Extract parts safely
+    var parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    }).formatToParts(date);
+
+    var day = Number(parts.find(function (p) { return p.type === "day"; })?.value);
+    var month = parts.find(function (p) { return p.type === "month"; })?.value;
+    var year = parts.find(function (p) { return p.type === "year"; })?.value;
+
+    if (!day || !month || !year) return "";
+
+    // Add ordinal suffix
+    var suffix =
+        day % 10 === 1 && day !== 11 ? "st" :
+            day % 10 === 2 && day !== 12 ? "nd" :
+                day % 10 === 3 && day !== 13 ? "rd" : "th";
+
+    return day + suffix + " " + month + " " + year;
 }
 
 
 
-export function timeAgo(isoDateString) {
-    const inputDate = new Date(isoDateString);
-    const now = new Date();
+
+export function timeAgo(isoDateString, timeZone) {
+    if (!isoDateString) return "";
+
+    var inputDate = new Date(isoDateString);
+    var inputTime = inputDate.getTime();
+    if (isNaN(inputTime)) return "";
+
+    // Current time in UTC
+    var nowTime = Date.now();
 
     // Difference in seconds
-    const diffInSeconds = Math.floor((now - inputDate) / 1000);
-
+    var diffInSeconds = Math.floor((nowTime - inputTime) / 1000);
+    if (diffInSeconds < 0) return "just now"; // future-proof
     if (diffInSeconds < 60) return "just now";
 
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    if (diffInMinutes < 60) return `${diffInMinutes} minute${diffInMinutes > 1 ? "s" : ""} ago`;
+    var diffInMinutes = Math.floor(diffInSeconds / 60);
+    if (diffInMinutes < 60) return diffInMinutes + " minute" + (diffInMinutes !== 1 ? "s" : "") + " ago";
 
-    const diffInHours = Math.floor(diffInMinutes / 60);
-    if (diffInHours < 24) return `${diffInHours} hour${diffInHours > 1 ? "s" : ""} ago`;
+    var diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) return diffInHours + " hour" + (diffInHours !== 1 ? "s" : "") + " ago";
 
-    const diffInDays = Math.floor(diffInHours / 24);
+    var diffInDays = Math.floor(diffInHours / 24);
     if (diffInDays === 1) return "a day ago";
-    if (diffInDays < 7) return `${diffInDays} days ago`;
+    if (diffInDays < 7) return diffInDays + " days ago";
 
-    const diffInWeeks = Math.floor(diffInDays / 7);
+    var diffInWeeks = Math.floor(diffInDays / 7);
     if (diffInWeeks === 1) return "a week ago";
-    if (diffInWeeks < 5) return `${diffInWeeks} weeks ago`;
+    if (diffInWeeks < 5) return diffInWeeks + " weeks ago";
 
-    // fallback -> show exact date using your function
-    return formatDateToYMD(isoDateString);
+    // fallback → user-timezone aware date
+    return formatDateToYMD(inputDate, timeZone || "Australia/Sydney");
 }
+
 
 
 export function getTodayDate() {
@@ -108,13 +150,30 @@ export function toCamelCase(str) {
         .replace(/\s+/g, '');
 }
 
-export function formatTo12HourTime(isoString) {
-    return new Intl.DateTimeFormat(undefined, {
+export function getUserTimeZone() {
+    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+}
+
+export function formatTo12HourTime(isoString, timeZone) {
+    if (!isoString) return "";
+
+    var date = new Date(isoString);
+    if (isNaN(date.getTime())) return "";
+
+    // Use user timezone if provided, otherwise default to Australia/Sydney
+    var tz = timeZone ||
+        (typeof Intl !== "undefined" && Intl.DateTimeFormat
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone
+            : "Australia/Sydney");
+
+    return new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
         hour: "numeric",
         minute: "2-digit",
-        hour12: true,
-    }).format(new Date(isoString));
+        hour12: true
+    }).format(date);
 }
+
 
 export function isoDateToLocal12HourTime(isoDateString) {
     // Extract the ISO string from ISODate('...')
@@ -196,4 +255,34 @@ export function truncateToSixWords(text) {
     const words = text.split(" "); // split by spaces
     if (words.length <= 6) return text; // if 6 or fewer words, return as is
     return words.slice(0, 6).join(" ") + "..."; // take first 6 words
+}
+
+
+export function toYMD(dateInput, timeZone) {
+    if (!dateInput) return "";
+
+    var date = new Date(dateInput);
+    if (isNaN(date.getTime())) return "";
+
+    // Use provided timezone, otherwise default to Australia/Sydney
+    var tz = timeZone ||
+        (typeof Intl !== "undefined" && Intl.DateTimeFormat
+            ? Intl.DateTimeFormat().resolvedOptions().timeZone
+            : "Australia/Sydney");
+
+    // Extract year/month/day in specified timezone
+    var parts = new Intl.DateTimeFormat("en-CA", {
+        timeZone: tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit"
+    }).formatToParts(date);
+
+    var y = parts.find(function (p) { return p.type === "year"; })?.value;
+    var m = parts.find(function (p) { return p.type === "month"; })?.value;
+    var d = parts.find(function (p) { return p.type === "day"; })?.value;
+
+    if (!y || !m || !d) return "";
+
+    return y + "-" + m + "-" + d;
 }

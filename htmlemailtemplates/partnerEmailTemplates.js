@@ -241,7 +241,7 @@ export function generateAuditEmail({ companyName, auditTitle, service, fields })
           <!-- Footer -->
           <tr>
             <td align="center" style="padding:20px; background:#f3f4f6; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-size:13px; color:#6b7280;">
-              © 2025 Straight Up Digital. All rights reserved.
+              © 2026 Straight Up Digital. All rights reserved.
             </td>
           </tr>
         </table>

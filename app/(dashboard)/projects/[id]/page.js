@@ -81,7 +81,7 @@ const ProjectDetailPage = async ({ params, searchParams }) => {
                                 <CardContent>
                                     <p
                                         className={`text-lg font-medium ${displayValue === "Not provided" ? "text-muted-foreground italic" : "text-foreground"
-                                            } break-words`}
+                                            } wrap-break-word`}
                                     >
                                         {displayValue}
                                     </p>
