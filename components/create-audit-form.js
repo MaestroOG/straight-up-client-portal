@@ -22,6 +22,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 import createAudit from '@/action/audits.actions';
+import { Checkbox } from './ui/checkbox';
 
 const CreateAuditForm = ({ partners, user, service, fields }) => {
     const [value, setValue] = useState("");
@@ -74,25 +75,39 @@ const CreateAuditForm = ({ partners, user, service, fields }) => {
                         {fields?.map((field) => (
                             <>
                                 <div key={field.name} className="flex flex-col gap-2">
-                                    <Label className="block font-medium">
-                                        {field.label}{" "}
-                                        {field.required && <span className="text-red-500">*</span>}
-                                    </Label>
-
-                                    {field.type === "textarea" ? (
-                                        <Textarea
-                                            name={field.name}
-                                            required={field.required}
-                                            className="border border-gray-300"
-                                        />
-                                    ) : (
-                                        <Input
-                                            type={field.type}
-                                            name={field.name}
-                                            required={field.required}
-                                            className="border border-gray-300"
-                                        />
+                                    {field.type !== 'checkbox' && (
+                                        <Label className="block font-medium">
+                                            {field.label}{" "}
+                                            {field.required && <span className="text-red-500">*</span>}
+                                        </Label>
                                     )}
+
+                                    {field.type === "checkbox" ? (
+                                        <div className="flex items-center gap-2">
+                                            <Checkbox
+                                                id={field.name}
+                                                name={field.name}
+                                                className="h-4 w-4"
+                                            />
+                                            <Label htmlFor={field.name} className="text-sm">
+                                                {field.label}
+                                            </Label>
+                                        </div>
+                                    ) :
+                                        field.type === "textarea" ? (
+                                            <Textarea
+                                                name={field.name}
+                                                required={field.required}
+                                                className="border border-gray-300"
+                                            />
+                                        ) : (
+                                            <Input
+                                                type={field.type}
+                                                name={field.name}
+                                                required={field.required}
+                                                className="border border-gray-300"
+                                            />
+                                        )}
                                 </div>
                             </>
                         ))}

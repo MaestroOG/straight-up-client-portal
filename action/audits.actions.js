@@ -3,6 +3,7 @@
 import { generateAuditEmail } from "@/htmlemailtemplates/partnerEmailTemplates";
 import { connectDB } from "@/lib/mongodb";
 import { getUser } from "@/lib/user";
+import Audit from "@/models/Audit";
 import User from "@/models/User";
 import { cleanFormEntries, validateEntries } from "@/utils/formUtils";
 import { createTransporter } from "@/utils/transporterFns";
@@ -62,6 +63,20 @@ export default async function createAudit(prevState, formData) {
                     message: "User email is missing."
                 };
             }
+
+            const audit = await Audit.create({
+                auditTitle,
+                service,
+                fields: cleanedEntries,
+                createdBy: user?._id,
+            })
+
+            if (!audit) {
+                return {
+                    success: false,
+                    message: "Failed to create audit record."
+                };
+            }
             const html = generateAuditEmail(emailData);
 
             await transporter.sendMail({
@@ -87,6 +102,21 @@ export default async function createAudit(prevState, formData) {
                 return {
                     success: false,
                     message: "Partner user not found or missing email."
+                };
+            }
+
+            const audit = await Audit.create({
+                auditTitle,
+                service,
+                fields: cleanedEntries,
+                createdBy: auditForUser?._id,
+                byAdmin: true
+            })
+
+            if (!audit) {
+                return {
+                    success: false,
+                    message: "Failed to create audit record."
                 };
             }
 

@@ -6,7 +6,7 @@ import { Badge } from "../ui/badge"
 
 const MainProjectCard = ({ project }) => {
     return (
-        <Card className="flex flex-col justify-between max-w-sm border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+        <Card className="flex flex-col justify-between max-w-sm border-gray-200 shadow-sm">
             <CardHeader>
                 <Badge variant="secondary" className="mb-2 w-fit">
                     {camelToNormal(project?.service)}
@@ -17,9 +17,11 @@ const MainProjectCard = ({ project }) => {
                 <CardDescription className="font-medium">
                     By: {project?.createdBy?.companyName ?? "Unknown"}
                 </CardDescription>
-                <p className="font-medium text-red animate-pulse">
-                    • {capitalizeFirst(project?.status) || ""}
-                </p>
+                {project?.status && (
+                    <p className="font-medium text-red animate-pulse">
+                        • {capitalizeFirst(project?.status) || ""}
+                    </p>
+                )}
             </CardHeader>
 
             <CardFooter className="mt-auto">
