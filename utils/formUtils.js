@@ -151,7 +151,11 @@ export function toCamelCase(str) {
 }
 
 export function getUserTimeZone() {
-    return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (typeof Intl !== "undefined" && Intl.DateTimeFormat) {
+
+        return Intl.DateTimeFormat().resolvedOptions().timeZone;
+    }
+    return "Australia/Sydney"; // fallback
 }
 
 export function formatTo12HourTime(isoString, timeZone) {

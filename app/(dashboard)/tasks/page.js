@@ -6,7 +6,7 @@ import { getUser } from "@/lib/user"
 import { toYMD } from "@/utils/formUtils"
 import Link from "next/link"
 
-const TasksPage = async () => {
+const TasksPage = async ({ searchParams }) => {
     const user = await getUser();
     let tasks = await getUserAssignedTasks(user?._id);
 

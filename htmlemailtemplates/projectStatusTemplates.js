@@ -187,7 +187,7 @@ export const generateInactiveProjectsAlertEmail = (projectCount) => {
                             <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
                               <div style="flex:1;">
                                 <div style="font-size:15px;color:#0f172a;font-weight:600;">Project Title</div>
-                                <div style="font-size:13px;color:#6b7280;margin-top:4px;">Service — Last note: Oct 24, 2026 (or None)</div>
+                                <div style="font-size:13px;color:#6b7280;margin-top:4px;">Service — Last note: Oct 24, 2025 (or None)</div>
                               </div>
                               <div style="white-space:nowrap;">
                                 <a href="https://your-app.example.com/projects/PROJECT_ID" style="display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;border:1px solid #e2e8f0;font-size:13px;color:#0f172a;background:#ffffff;">View</a>
