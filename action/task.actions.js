@@ -51,6 +51,14 @@ export async function createTask(selectedUsers, prevState, formData) {
     try {
         await connectDB();
 
+        const projectExists = await Project.findById(projectId);
+        if (!projectExists) {
+            return {
+                success: false,
+                message: "Project not found"
+            }
+        }
+
         const task = await Task.create({
             title,
             description,

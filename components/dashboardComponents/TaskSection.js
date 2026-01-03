@@ -26,10 +26,10 @@ function TaskSection({ title, tasks }) {
                 </CollapsibleTrigger>
 
                 <CollapsibleContent>
-                    {tasks.length > 0 ? (
+                    {tasks && tasks.length > 0 ? (
                         <div className="space-y-3 mt-2">
                             {tasks.map(task => (
-                                <TaskListItem key={task.id} task={task} />
+                                <TaskListItem key={task?.id} task={task} />
                             ))}
                         </div>
                     ) : (

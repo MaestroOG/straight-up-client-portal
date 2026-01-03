@@ -131,7 +131,7 @@ const CreateTaskForm = ({ users, projects }) => {
                 </div>
 
                 <div className="grid gap-2">
-                    <Label htmlFor="status">For Project</Label>
+                    <Label htmlFor="projectId">For Project</Label>
                     <Select name='projectId'>
                         <SelectTrigger className="w-full md:max-w-2xl">
                             <SelectValue placeholder="Select Project" />
