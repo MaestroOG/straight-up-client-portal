@@ -238,7 +238,7 @@ export const generateAcceptEmailTemplate = () => {
     <tr>
       <td align="center" style="background-color:#f0f3f9; padding:20px;">
         <p style="margin:0; font-size:13px; color:#777;">
-          © 2025 Straight Up Digital. All rights reserved.<br/>
+          © 2026 Straight Up Digital. All rights reserved.<br/>
           <a href="https://Straight Up Digital.com" style="color:#0d47a1; text-decoration:none;">Visit our website</a>
         </p>
       </td>
@@ -315,7 +315,7 @@ export const generateRejectEmailTemplate = () => {
           <!-- Footer -->
           <tr>
             <td style="background:#f0f3f9; padding:16px 24px; text-align:center; font-size:12px; color:#6b7280;">
-              © 2025 Straight Up Digital • This is an automated notification
+              © 2026 Straight Up Digital • This is an automated notification
             </td>
           </tr>
         </table>
@@ -396,7 +396,7 @@ export const generateProjectCreatedEmailTemplate = (companyName, projectTitle, s
           <!-- Footer -->
           <tr>
             <td align="center" style="padding:20px; background:#f3f4f6; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-size:13px; color:#6b7280;">
-              © 2025 Straight Up Digital. All rights reserved.
+              © 2026 Straight Up Digital. All rights reserved.
             </td>
           </tr>
         </table>

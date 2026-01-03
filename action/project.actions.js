@@ -5,6 +5,8 @@ import { generateProjectStatusUpdateEmail } from "@/htmlemailtemplates/projectSt
 import { addExpenditure } from "@/lib/admin";
 import { connectDB } from "@/lib/mongodb";
 import { getUser } from "@/lib/user";
+import Audit from "@/models/Audit";
+import AuditComment from "@/models/AuditComment";
 import Expenditure from "@/models/Expenditure";
 import Note from "@/models/Note";
 import Project from "@/models/Project";
@@ -12,6 +14,7 @@ import User from "@/models/User";
 import { cleanFormEntries, formatDateToYMD, validateEntries } from "@/utils/formUtils";
 import { createTransporter } from "@/utils/transporterFns";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export async function createProject(prevState, formData) {
     const user = await getUser();
@@ -421,6 +424,83 @@ export async function editComment(prevState, formData) {
         return {
             success: false,
             message: "Something went wrong"
+        }
+    }
+}
+
+export async function deleteAudit(prevState, formData) {
+    const auditId = formData.get('auditId');
+
+    try {
+        await connectDB();
+    } catch (error) {
+        console.error("Error connecting to DB", error);
+        return {
+            success: false,
+            message: "Something went wrong.",
+        }
+    }
+
+    const deletedAudit = await Audit.findByIdAndDelete(auditId);
+    if (!deletedAudit) {
+        return {
+            success: false,
+            message: "Failed to delete audit.",
+        }
+    }
+
+    // revalidatePath('/', 'layout');
+
+    redirect('/audits');
+}
+
+export async function addAuditComment(prevState, formData) {
+    const auditComment = formData.get('auditComment');
+    const auditId = formData.get('auditId');
+
+    if (!auditComment || !auditId) {
+        return {
+            success: false,
+            message: "auditComment is required."
+        }
+    }
+
+    const user = await getUser();
+
+    if (!user) {
+        return {
+            success: false,
+            message: "User must be logged in to add an audit Comment."
+        }
+    }
+
+    try {
+        await connectDB();
+
+        const addedAuditComment = await AuditComment.create({
+            auditComment,
+            createdBy: user?._id,
+            auditId
+        })
+
+        if (!addedAuditComment) {
+            return {
+                success: false,
+                message: "Failed to add auditComment. Please try again."
+            }
+        }
+
+        revalidatePath('/', 'layout');
+
+        return {
+            success: true,
+            message: "Comment added successfully."
+        }
+    } catch (error) {
+        console.error("Error adding auditComment:", error);
+        return {
+            success: false,
+            message: "An error occurred while adding the comment."
         }
     }
 }
