@@ -27,7 +27,7 @@ const JoditEditor = dynamic(() => import("jodit-react"), {
     ssr: false,
 });
 
-const CreateTaskForm = ({ users }) => {
+const CreateTaskForm = ({ users, projects }) => {
 
     const [open, setOpen] = useState(false)
     const [date, setDate] = useState(undefined)
@@ -126,6 +126,22 @@ const CreateTaskForm = ({ users }) => {
                             <SelectItem value="to-do">To-Do</SelectItem>
                             <SelectItem value="in-progress">In-Progress</SelectItem>
                             <SelectItem value="completed">Completed</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+
+                <div className="grid gap-2">
+                    <Label htmlFor="status">For Project</Label>
+                    <Select name='projectId'>
+                        <SelectTrigger className="w-full md:max-w-2xl">
+                            <SelectValue placeholder="Select Project" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {projects?.map((project) => (
+                                <SelectItem key={project?._id} value={project?._id}>
+                                    {project?.projectTitle} - {project?.createdBy?.companyName}
+                                </SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                 </div>

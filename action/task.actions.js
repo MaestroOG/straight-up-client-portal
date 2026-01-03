@@ -14,6 +14,7 @@ export async function createTask(selectedUsers, prevState, formData) {
     const description = formData.get('description')?.trim();
     const dueDate = formData.get('dueDate');
     const status = formData.get('status');
+    const projectId = formData.get('projectId');
     const assignees = selectedUsers;
 
     const user = await getUser();
@@ -56,6 +57,7 @@ export async function createTask(selectedUsers, prevState, formData) {
             dueDate,
             status,
             createdBy: user?._id,
+            forProject: projectId || null,
             assignees
         })
 

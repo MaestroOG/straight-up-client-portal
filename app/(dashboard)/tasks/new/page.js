@@ -1,6 +1,7 @@
 import CreateTaskForm from '@/components/create-task-form'
 import Container from '@/components/dashboardComponents/Container'
-import { getAllAdminAndManagers } from '@/lib/admin'
+import { getAllAdminAndManagers, getAllProjects } from '@/lib/admin'
+import { getAllUserProjects } from '@/lib/projects'
 import { getCompanyMembers } from '@/lib/task'
 import { getUser } from '@/lib/user'
 
@@ -8,7 +9,14 @@ const CreateTaskPage = async () => {
     const user = await getUser();
     let allManagingUsers = await getAllAdminAndManagers();
 
+    let projects = [];
+
+    if (user?.role === 'superadmin') {
+        projects = await getAllProjects();
+    }
+
     if (user?.role === 'user') {
+        projects = await getAllUserProjects(user?._id);
         allManagingUsers = await getCompanyMembers(user?.companyName);
     } else if (user?.role === 'team-member') {
         allManagingUsers = [];
@@ -20,7 +28,7 @@ const CreateTaskPage = async () => {
             </div>
 
             <div className='mt-6'>
-                <CreateTaskForm users={allManagingUsers || []} />
+                <CreateTaskForm users={allManagingUsers || []} projects={projects} />
             </div>
         </Container>
     )
