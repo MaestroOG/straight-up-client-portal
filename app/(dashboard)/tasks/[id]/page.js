@@ -23,7 +23,7 @@ const TaskDetailPage = async ({ params }) => {
 
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <h1 className="text-2xl font-bold">{task?.title}</h1>
+                    <h1 className="text-2xl font-bold">{task?.title} for {task?.forProject?.projectTitle || "No Project"}</h1>
                     <Badge
                         variant={
                             task?.status === "completed"

@@ -24,6 +24,10 @@ const taskSchema = new Schema({
         ref: "User", // assuming you have a User model
         required: true,
     },
+    forProject: {
+        type: Schema.Types.ObjectId,
+        ref: "Project", // assuming you have a Project model
+    },
     assignees: {
         type: [
             {
