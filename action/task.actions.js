@@ -3,6 +3,7 @@
 import { generateTaskCommentNotification, generateTaskNotification } from "@/htmlemailtemplates/taskEmailTemplates";
 import { connectDB } from "@/lib/mongodb";
 import { getUser } from "@/lib/user";
+import Project from "@/models/Project";
 import Task from "@/models/Task";
 import TaskComment from "@/models/TaskComment";
 import User from "@/models/User";

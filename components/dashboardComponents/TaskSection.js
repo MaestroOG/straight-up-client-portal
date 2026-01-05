@@ -29,7 +29,7 @@ function TaskSection({ title, tasks }) {
                     {tasks && tasks.length > 0 ? (
                         <div className="space-y-3 mt-2">
                             {tasks.map(task => (
-                                <TaskListItem key={task?.id} task={task} />
+                                <TaskListItem key={task?._id} task={task} />
                             ))}
                         </div>
                     ) : (
