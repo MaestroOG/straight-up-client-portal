@@ -1,5 +1,8 @@
 import crypto from 'crypto'
 
+
+const APP_TIMEZONE = "Australia/Brisbane";
+
 export function cleanFormEntries(entries) {
     const forbiddenKeys = ["$ACTION_REF_", "$ACTION_KEY", "$ACTION_"];
 
@@ -23,7 +26,7 @@ export function capitalizeFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function formatDateToYMD(isoDateString, timeZone) {
+export function formatDateToYMD(isoDateString, timeZone = "Australia/Brisbane") {
     if (!isoDateString) return "";
 
     var date = new Date(isoDateString);
@@ -33,11 +36,11 @@ export function formatDateToYMD(isoDateString, timeZone) {
     var tz = timeZone ||
         (typeof Intl !== "undefined" && Intl.DateTimeFormat
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
-            : "Australia/Sydney");
+            : "Australia/Brisbane");
 
     // Get date parts in the specified timezone
     var parts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: tz,
+        timeZone: APP_TIMEZONE,
         year: "numeric",
         month: "2-digit",
         day: "2-digit"
@@ -53,7 +56,7 @@ export function formatDateToYMD(isoDateString, timeZone) {
 }
 
 
-export function formatReadableDate(dateInput, timeZone) {
+export function formatReadableDate(dateInput, timeZone = "Australia/Brisbane") {
     if (!dateInput) return "";
 
     var date = new Date(dateInput);
@@ -63,11 +66,11 @@ export function formatReadableDate(dateInput, timeZone) {
     var tz = timeZone ||
         (typeof Intl !== "undefined" && Intl.DateTimeFormat
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
-            : "Australia/Sydney");
+            : "Australia/Brisbane");
 
     // Extract parts safely
     var parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz,
+        timeZone: APP_TIMEZONE,
         day: "numeric",
         month: "long",
         year: "numeric"
@@ -91,7 +94,7 @@ export function formatReadableDate(dateInput, timeZone) {
 
 
 
-export function timeAgo(isoDateString, timeZone) {
+export function timeAgo(isoDateString, timeZone = "Australia/Brisbane") {
     if (!isoDateString) return "";
 
     var inputDate = new Date(isoDateString);
@@ -121,7 +124,7 @@ export function timeAgo(isoDateString, timeZone) {
     if (diffInWeeks < 5) return diffInWeeks + " weeks ago";
 
     // fallback → user-timezone aware date
-    return formatDateToYMD(inputDate, timeZone || "Australia/Sydney");
+    return formatDateToYMD(inputDate, timeZone || "Australia/Brisbane");
 }
 
 
@@ -155,10 +158,10 @@ export function getUserTimeZone() {
 
         return Intl.DateTimeFormat().resolvedOptions().timeZone;
     }
-    return "Australia/Sydney"; // fallback
+    return "Australia/Brisbane"; // fallback
 }
 
-export function formatTo12HourTime(isoString, timeZone) {
+export function formatTo12HourTime(isoString, timeZone = "Australia/Brisbane") {
     if (!isoString) return "";
 
     var date = new Date(isoString);
@@ -168,10 +171,10 @@ export function formatTo12HourTime(isoString, timeZone) {
     var tz = timeZone ||
         (typeof Intl !== "undefined" && Intl.DateTimeFormat
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
-            : "Australia/Sydney");
+            : "Australia/Brisbane");
 
     return new Intl.DateTimeFormat("en-US", {
-        timeZone: tz,
+        timeZone: APP_TIMEZONE,
         hour: "numeric",
         minute: "2-digit",
         hour12: true
@@ -262,7 +265,7 @@ export function truncateToSixWords(text) {
 }
 
 
-export function toYMD(dateInput, timeZone) {
+export function toYMD(dateInput, timeZone = "Australia/Brisbane") {
     if (!dateInput) return "";
 
     var date = new Date(dateInput);
@@ -272,11 +275,11 @@ export function toYMD(dateInput, timeZone) {
     var tz = timeZone ||
         (typeof Intl !== "undefined" && Intl.DateTimeFormat
             ? Intl.DateTimeFormat().resolvedOptions().timeZone
-            : "Australia/Sydney");
+            : "Australia/Brisbane");
 
     // Extract year/month/day in specified timezone
     var parts = new Intl.DateTimeFormat("en-CA", {
-        timeZone: tz,
+        timeZone: APP_TIMEZONE,
         year: "numeric",
         month: "2-digit",
         day: "2-digit"

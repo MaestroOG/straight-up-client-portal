@@ -7,6 +7,7 @@ import Project from "@/models/Project";
 import Task from "@/models/Task";
 import TaskComment from "@/models/TaskComment";
 import User from "@/models/User";
+import { toYMD } from "@/utils/formUtils";
 import { createTransporter } from "@/utils/transporterFns";
 import { revalidatePath } from "next/cache";
 
@@ -274,8 +275,10 @@ export async function createTaskComment(prevState, formData) {
         const transporter = createTransporter();
 
         for (const assignedUsers of taskExists?.assignees) {
+            const taskCreatedDate = toYMD(taskComment?.createdAt)
+
             const assigneetoSendEmail = await User.findById(assignedUsers);
-            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://www.portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskComment?.createdAt)
+            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://www.portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskCreatedDate)
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: ['admin@straightupdigital.com.au', assigneetoSendEmail?.email],
