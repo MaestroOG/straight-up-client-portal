@@ -275,7 +275,7 @@ export async function createTaskComment(prevState, formData) {
 
         for (const assignedUsers of taskExists?.assignees) {
             const assigneetoSendEmail = await User.findById(assignedUsers);
-            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://www.portal.straightupdigital.com.au/${taskExists?._id}`, taskComment?.createdAt)
+            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://www.portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskComment?.createdAt)
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: ['admin@straightupdigital.com.au', assigneetoSendEmail?.email],
