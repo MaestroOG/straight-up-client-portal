@@ -73,7 +73,9 @@ export async function createTask(selectedUsers, prevState, formData) {
 
         const transporter = createTransporter();
 
-        const html = generateTaskNotification(title, "", dueDate, `https://www.portal.straightup.com/tasks/${task?._id}`);
+        const taskDueDate = toYMD(task?.dueDate);
+
+        const html = generateTaskNotification(title, "", taskDueDate, `https://www.portal.straightup.com/tasks/${task?._id}`);
 
         for (const selectedUser of selectedUsers) {
             const assigneeUser = await User.findById(selectedUser);
