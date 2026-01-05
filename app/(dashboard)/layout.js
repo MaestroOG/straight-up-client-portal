@@ -2,7 +2,7 @@ import Sidebar from "@/components/dashboardComponents/Sidebar";
 import "../globals.css";
 import MainContent from "@/components/dashboardComponents/MainContent";
 import Header from "@/components/dashboardComponents/Header";
-import TawkToChat from "@/components/TawkToChat";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { getUser, getUserFromDB } from "@/lib/user";
 import NextTopLoader from "nextjs-toploader";
 import Script from "next/script";
@@ -19,6 +19,19 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-5P46EQPE6Q"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-5P46EQPE6Q');
+          `}
+        </Script>
       </head>
       <body
         className={`antialiased bg-background-gray flex`}
@@ -39,6 +52,8 @@ export default async function RootLayout({ children }) {
           {children}
         </MainContent>
 
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );

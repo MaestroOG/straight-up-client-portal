@@ -63,7 +63,7 @@ const EditTaskForm = ({ task }) => {
             </Button>
 
             <Dialog open={editOpen} onOpenChange={setEditOpen}>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent>
                     <form action={formAction}>
                         <DialogHeader>
                             <DialogTitle>Edit task</DialogTitle>
