@@ -2,6 +2,7 @@ import NextTopLoader from 'nextjs-toploader';
 import '../globals.css'
 import Script from 'next/script';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 // app/login/layout.js
 export default function LoginLayout({ children }) {
@@ -37,6 +38,7 @@ export default function LoginLayout({ children }) {
 
                 {/* Vercel Speed Insights */}
                 <SpeedInsights />
+                <Analytics />
             </body>
         </html>
     );

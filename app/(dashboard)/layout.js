@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { getUser, getUserFromDB } from "@/lib/user";
 import NextTopLoader from "nextjs-toploader";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
   title: "Straight Up Digital Client Portal",
@@ -54,6 +55,7 @@ export default async function RootLayout({ children }) {
 
         {/* Vercel Speed Insights */}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
