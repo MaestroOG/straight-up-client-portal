@@ -10,7 +10,7 @@ const TasksPage = async ({ searchParams }) => {
     const user = await getUser();
     let tasks = await getUserAssignedTasks(user?._id);
 
-    if (user?.role === 'superadmin') {
+    if (user?.name === 'Muneeb Ur Rehman' || user?.name === 'Nabeel Ahmad') {
         tasks = await getTasks();
     }
 

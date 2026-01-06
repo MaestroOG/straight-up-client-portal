@@ -29,6 +29,8 @@ import {
 import { useActionState, useEffect, useRef, useState } from "react";
 import { editTask } from "@/action/task.actions";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
+
 
 const JoditEditor = dynamic(() => import("jodit-react"), {
     ssr: false,
@@ -42,6 +44,7 @@ const EditTaskForm = ({ task }) => {
     const [status, setStatus] = useState(task?.status);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [state, formAction, isPending] = useActionState(editTask, {});
+    const router = useRouter();
     const [description, setDescription] = useState(task?.description);
     const contentRef = useRef(null);
 
@@ -50,11 +53,23 @@ const EditTaskForm = ({ task }) => {
     }
 
     useEffect(() => {
-        if (state?.success || state?.message) {
+        if (state?.success) {
+            setEditOpen(false);
+            setDialogOpen(true);
+
+            const timer = setTimeout(() => {
+                router.push("/tasks");
+            }, 2000);
+
+            return () => clearTimeout(timer);
+        }
+
+        if (state?.message && !state?.success) {
             setEditOpen(false);
             setDialogOpen(true);
         }
-    }, [state])
+    }, [state, router]);
+
 
     return (
         <>
@@ -77,15 +92,21 @@ const EditTaskForm = ({ task }) => {
                                 <Label htmlFor='title'>Task Title</Label>
                                 <Input type={'text'} name='title' defaultValue={task?.title} />
                             </div>
-                            <div className="grid gap-3">
-                                <Label htmlFor='description'>Task Description</Label>
+                            <div className="grid gap-3 w-full max-w-2xl">
+                                <Label htmlFor="description">Task Description</Label>
+
                                 <JoditEditor
                                     ref={contentRef}
                                     value={description}
                                     tabIndex={1}
-                                    onBlur={newContent => setDescription(newContent)}
-                                    onChange={newContent => { }}
-                                    className="w-2xl max-w-2xl"
+                                    onBlur={(newContent) => setDescription(newContent)}
+                                    onChange={() => { }}
+                                    config={{
+                                        minHeight: 200,
+                                        maxHeight: 300,
+                                        allowResizeY: false,
+                                        statusbar: false,
+                                    }}
                                 />
                             </div>
 
