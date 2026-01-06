@@ -16,6 +16,17 @@ body {
   word-break: break-all;
 }
 
+/* Prevent long text from overflowing horizontally */
+.jodit-wysiwyg {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Kill horizontal scrollbars completely */
+.jodit-container {
+  overflow-x: hidden;
+}
+
 
 .jodit-wysiwyg a {
   color: #1d4ed8;

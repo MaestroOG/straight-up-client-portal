@@ -77,15 +77,21 @@ const EditTaskForm = ({ task }) => {
                                 <Label htmlFor='title'>Task Title</Label>
                                 <Input type={'text'} name='title' defaultValue={task?.title} />
                             </div>
-                            <div className="grid gap-3">
-                                <Label htmlFor='description'>Task Description</Label>
+                            <div className="grid gap-3 w-full max-w-2xl">
+                                <Label htmlFor="description">Task Description</Label>
+
                                 <JoditEditor
                                     ref={contentRef}
                                     value={description}
                                     tabIndex={1}
-                                    onBlur={newContent => setDescription(newContent)}
-                                    onChange={newContent => { }}
-                                    className="w-2xl max-w-2xl"
+                                    onBlur={(newContent) => setDescription(newContent)}
+                                    onChange={() => { }}
+                                    config={{
+                                        minHeight: 200,
+                                        maxHeight: 300,
+                                        allowResizeY: false,
+                                        statusbar: false,
+                                    }}
                                 />
                             </div>
 

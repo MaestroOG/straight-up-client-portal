@@ -9,7 +9,7 @@ export default function TaskListItem({ task }) {
   const { _id, title, assignees, status, dueDate } = task
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b hover:bg-muted/50 transition cursor-pointer">
+    <Link href={`/tasks/${_id}`} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 border-b hover:bg-muted/50 transition cursor-pointer">
       <div className="flex flex-col gap-1">
         <p className="font-medium">{title}</p>
         <p className="text-sm text-muted-foreground">
@@ -29,6 +29,6 @@ export default function TaskListItem({ task }) {
         <Link href={`/tasks/${_id}`}><Button variant="outline" size="sm">View</Button></Link>
         <DeleteTaskForm id={_id} />
       </div>
-    </div>
+    </Link>
   )
 }
