@@ -52,6 +52,7 @@ const ProjectDetailPage = async ({ params, searchParams }) => {
                             <div className='flex items-center gap-2 mt-2 max-sm:mb-2'>
                                 <ProjectDeleteForm id={id} />
                                 <Link href={`/projects/${id}/edit-package`}><Button>Edit Package</Button></Link>
+                                <Link href={`/projects/${id}/edit-details`}><Button>Edit Details</Button></Link>
                             </div>
                         }
                     </div>

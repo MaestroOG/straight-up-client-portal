@@ -505,3 +505,53 @@ export async function addAuditComment(prevState, formData) {
         }
     }
 }
+
+export async function editProjectDetails(prevState, formData) {
+    const projectId = formData.get('projectId');
+    const fields = JSON.parse(formData.get("fields") || "{}");
+
+    console.log({
+        projectId,
+        fields
+    })
+
+    if (!projectId) {
+        return {
+            success: false,
+            message: "Project ID is required.",
+        };
+    }
+
+
+
+    try {
+        await connectDB();
+
+        const updatedProject = await Project.findByIdAndUpdate(
+            projectId,
+            { $set: { fields: fields } },
+            { new: true }
+        );
+
+        if (!updatedProject) {
+            return {
+                success: false,
+                message: "Failed to update project details."
+            }
+        }
+
+        revalidatePath('/', 'layout');
+
+        return {
+            success: true,
+            message: "Project details updated successfully."
+        }
+
+    } catch (error) {
+        console.error(error.message);
+        return {
+            sucess: false,
+            message: "Something went wrong."
+        }
+    }
+}
