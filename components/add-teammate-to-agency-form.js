@@ -96,7 +96,7 @@ const AddTeammateToAgencyForm = ({ companies }) => {
                             <SelectGroup>
                                 <SelectLabel>Agencies</SelectLabel>
                                 {companies?.map(company => (
-                                    <SelectItem key={company.companyName} value={company.companyName}>{company.companyName}</SelectItem>
+                                    <SelectItem key={company} value={company}>{company}</SelectItem>
                                 ))}
                             </SelectGroup>
                         </SelectContent>
