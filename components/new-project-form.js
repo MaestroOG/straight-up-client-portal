@@ -30,18 +30,11 @@ const NewProjectForm = ({ partners, user, service, fields }) => {
     const [value, setValue] = useState("");
     const { countryCode, loading, error } = useCountry();
 
-    let pricing;
+    let pricing = pricingConfig[service];
 
     const [state, formAction, isPending] = useActionState(createProject, {})
 
     const [selectedPackage, setSelectedPackage] = useState("");
-    if (countryCode) {
-        if (countryCode?.trim() === 'ZA') {
-            pricing = saPricingConfig[service];
-        } else {
-            pricing = pricingConfig[service];
-        }
-    }
 
     return (
         <>
@@ -155,13 +148,13 @@ const NewProjectForm = ({ partners, user, service, fields }) => {
                                     {selectedPackage.startsWith("custom") && (
                                         <div className="flex flex-col gap-2">
                                             <Label className="block font-medium">
-                                                Additional Details <span className="text-destructive">*</span>
+                                                Add your custom package amount <span className="text-destructive">*</span>
                                             </Label>
                                             <Input
                                                 type="text"
                                                 name="customPrice"
                                                 required
-                                                placeholder="Enter any additional details"
+                                                placeholder="Enter any amount for custom package"
                                                 className="border border-gray-300"
                                             />
                                         </div>
