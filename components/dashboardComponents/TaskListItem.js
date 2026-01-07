@@ -28,7 +28,7 @@ export default function TaskListItem({ task, unreadCounts }) {
         }>
           {status}
         </Badge>
-        {unreadCounts[task._id.toString()] > 0 && (
+        {unreadCounts && unreadCounts[task._id.toString()] > 0 && (
           <span className="text-sm text-red-500">
             {unreadCounts[task._id.toString()]} unread
           </span>

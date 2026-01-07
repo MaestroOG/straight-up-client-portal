@@ -13,7 +13,11 @@ const TaskCommentMarkReadButton = ({ taskId, userId }) => {
             <Button type='submit' disabled={isPending} variant="outline">
                 {isPending ? 'Marking...' : state?.message ? state?.message : 'Mark All as Read'}
             </Button>
+            {state?.error && (
+                <p className="text-sm text-red-500 mt-2">{state.error}</p>
+            )}
         </form>
+
     )
 }
 
