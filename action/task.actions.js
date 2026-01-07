@@ -115,6 +115,8 @@ export async function editTask(prevState, formData) {
     const dueDate = formData.get('dueDate');
     const status = formData.get('status');
     const taskId = formData.get('taskId');
+    const assigneesRaw = formData.get('assignees');
+    const assignees = assigneesRaw ? JSON.parse(assigneesRaw) : [];
 
     const user = await getUser();
 
@@ -144,6 +146,10 @@ export async function editTask(prevState, formData) {
 
         if (status) {
             updates.status = status;
+        }
+
+        if (assignees) {
+            updates.assignees = assignees;
         }
 
         const updatedTask = await Task.findByIdAndUpdate(taskId, { $set: updates }, { new: true });

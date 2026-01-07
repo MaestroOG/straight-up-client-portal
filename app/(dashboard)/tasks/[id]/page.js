@@ -3,18 +3,29 @@ import Container from '@/components/dashboardComponents/Container';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { getTaskById, getTaskCommentByTaskId } from '@/lib/task';
+import { getCompanyMembers, getTaskById, getTaskCommentByTaskId } from '@/lib/task';
 import { formatTo12HourTime, timeAgo } from '@/utils/formUtils';
 import Image from 'next/image';
 import EditTaskForm from '@/components/edit-task-form';
 import { TaskDetailComments, TaskDetailDescription } from '@/components/dashboardComponents/TaskDetailParts';
+import { getUser } from '@/lib/user';
+import { getAllAdminAndManagers } from '@/lib/admin';
 
 const TaskDetailPage = async ({ params }) => {
 
+    const user = await getUser();
     const { id } = await params;
     const task = await getTaskById(id);
 
-    const taskComments = await getTaskCommentByTaskId(id)
+    let allManagingUsers = await getAllAdminAndManagers();
+
+    const taskComments = await getTaskCommentByTaskId(id);
+
+    if (user?.role === 'user') {
+        allManagingUsers = await getCompanyMembers(user?.companyName);
+    } else if (user?.role === 'team-member') {
+        allManagingUsers = [];
+    }
 
     return (
         <Container className={'bg-white p-4 rounded-lg'}>
@@ -71,7 +82,7 @@ const TaskDetailPage = async ({ params }) => {
 
                 {/* Actions */}
                 <div className="flex gap-2 mt-6">
-                    <EditTaskForm task={task} />
+                    <EditTaskForm users={allManagingUsers || []} task={task} />
                 </div>
             </div>
 
