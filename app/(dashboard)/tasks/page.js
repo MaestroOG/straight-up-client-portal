@@ -1,6 +1,6 @@
 import Container from "@/components/dashboardComponents/Container"
 import { Button } from "@/components/ui/button"
-import { getTasks, getUserAssignedTasks } from "@/lib/task"
+import { getTasks, getUnreadCountsForTasks, getUserAssignedTasks } from "@/lib/task"
 import { getUser } from "@/lib/user"
 import { toYMD } from "@/utils/formUtils"
 import Link from "next/link"
@@ -13,6 +13,9 @@ const TasksPage = async ({ searchParams }) => {
     if (user?.name === 'Muneeb Ur Rehman' || user?.name === 'Nabeel Ahmad') {
         tasks = await getTasks();
     }
+
+    const taskIds = tasks.map(t => t._id.toString());
+    const unreadCounts = await getUnreadCountsForTasks(taskIds, user?._id);
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const todayYMD = toYMD(new Date(), timeZone);
@@ -37,41 +40,28 @@ const TasksPage = async ({ searchParams }) => {
             <div className="flex items-center justify-between gap-4">
                 <h1 className="text-2xl font-medium">Tasks</h1>
                 {(user?.role === 'user' || user?.role === 'superadmin') && (
-                    <Link href={'/tasks/new'}>
-                        <Button>
-                            Create Task
-                        </Button>
-                    </Link>
+                    <div className="flex items-center gap-2">
+                        <Link href={'/tasks/new'}>
+                            <Button>
+                                Create Task
+                            </Button>
+                        </Link>
+                        <Link href={'/tasks/completed'}>
+                            <Button>
+                                See Completed Tasks
+                            </Button>
+                        </Link>
+                    </div>
                 )}
             </div>
 
             <div className="space-y-6 mt-6">
-                <TaskSection title="Overdue" tasks={overdue} />
-                <TaskSection title="Today" tasks={today} />
-                <TaskSection title="Upcoming" tasks={upcoming} />
+                <TaskSection unreadCounts={unreadCounts} title="Overdue" tasks={overdue} />
+                <TaskSection unreadCounts={unreadCounts} title="Today" tasks={today} />
+                <TaskSection unreadCounts={unreadCounts} title="Upcoming" tasks={upcoming} />
             </div>
         </Container>
     )
 }
 
 export default TasksPage
-
-
-
-
-// if (user?.role === 'manager') {
-//     tasks = await getTasks();
-// }
-// const today = tasks.filter(t => new Date(t.dueDate).toDateString() === new Date().toDateString())
-// const upcoming = tasks.filter(t => {
-//     const dueDate = new Date(t.dueDate);
-//     return dueDate > new Date() && dueDate.toDateString() !== new Date().toDateString();
-// })
-// const now = new Date();
-// now.setHours(0, 0, 0, 0);
-
-// const overdue = tasks.filter(t => {
-//     const due = new Date(t.dueDate);
-//     due.setHours(0, 0, 0, 0); // strip time
-//     return due < now && t.status !== "completed";
-// });

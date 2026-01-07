@@ -13,6 +13,7 @@ import Project from "@/models/Project";
 import User from "@/models/User";
 import { cleanFormEntries, formatDateToYMD, validateEntries } from "@/utils/formUtils";
 import { createTransporter } from "@/utils/transporterFns";
+import { isPositiveIntegerString } from "@/utils/validatorFns";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -501,6 +502,60 @@ export async function addAuditComment(prevState, formData) {
         return {
             success: false,
             message: "An error occurred while adding the comment."
+        }
+    }
+}
+
+export async function editProjectDetails(prevState, formData) {
+    const projectId = formData.get('projectId');
+    const fields = JSON.parse(formData.get("fields") || "{}");
+
+    const user = await getUser();
+
+    if (user?.role !== 'superadmin') {
+        return {
+            success: false,
+            message: "Unauthorized action.",
+        };
+    }
+
+    if (!projectId) {
+        return {
+            success: false,
+            message: "Project ID is required.",
+        };
+    }
+
+
+
+    try {
+        await connectDB();
+
+        const updatedProject = await Project.findByIdAndUpdate(
+            projectId,
+            { $set: { fields: fields } },
+            { new: true }
+        );
+
+        if (!updatedProject) {
+            return {
+                success: false,
+                message: "Failed to update project details."
+            }
+        }
+
+        revalidatePath('/', 'layout');
+
+        return {
+            success: true,
+            message: "Project details updated successfully."
+        }
+
+    } catch (error) {
+        console.error("Error updating project details:", error);
+        return {
+            success: false,
+            message: "Something went wrong."
         }
     }
 }

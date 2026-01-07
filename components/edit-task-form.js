@@ -30,18 +30,28 @@ import { useActionState, useEffect, useRef, useState } from "react";
 import { editTask } from "@/action/task.actions";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { Checkbox } from "./ui/checkbox";
 
 
 const JoditEditor = dynamic(() => import("jodit-react"), {
     ssr: false,
 });
 
-const EditTaskForm = ({ task }) => {
+const EditTaskForm = ({ users, task }) => {
 
     const [editOpen, setEditOpen] = useState(false);
     const [open, setOpen] = useState(false);
     const [date, setDate] = useState(task?.dueDate);
     const [status, setStatus] = useState(task?.status);
+    const [selectedUsers, setSelectedUsers] = useState(() => {
+        const assigneeIds = new Set(
+            (task?.assignees || []).map(id => id.toString())
+        );
+
+        return users
+            ?.map(user => user._id.toString())
+            .filter(id => assigneeIds.has(id)) || [];
+    });
     const [dialogOpen, setDialogOpen] = useState(false);
     const [state, formAction, isPending] = useActionState(editTask, {});
     const router = useRouter();
@@ -50,6 +60,12 @@ const EditTaskForm = ({ task }) => {
 
     const handleClick = () => {
         setEditOpen(true);
+    }
+
+    const handleToggle = (userId, checked) => {
+        setSelectedUsers(prev =>
+            checked ? [...prev, userId] : prev.filter(id => id !== userId)
+        )
     }
 
     useEffect(() => {
@@ -100,7 +116,6 @@ const EditTaskForm = ({ task }) => {
                                     value={description}
                                     tabIndex={1}
                                     onBlur={(newContent) => setDescription(newContent)}
-                                    onChange={() => { }}
                                     config={{
                                         minHeight: 200,
                                         maxHeight: 300,
@@ -153,6 +168,27 @@ const EditTaskForm = ({ task }) => {
                                 </Select>
                             </div>
                         </div>
+
+                        {/* Assign Users */}
+                        {users && users?.length > 0 && (
+                            <div className="grid gap-3">
+                                <Label className="text-xl">Assign Users</Label>
+                                <div className="flex flex-col gap-2 md:max-w-2xl">
+                                    {users?.map((user, index) => (
+                                        <div key={user?._id || index} className="flex items-center gap-2">
+                                            <Checkbox
+                                                id={user?._id}
+                                                checked={selectedUsers.includes(user._id.toString())}
+                                                onCheckedChange={(checked) =>
+                                                    handleToggle(user._id.toString(), !!checked)}
+                                            />
+                                            <Label htmlFor={user?._id}>{user?.name}</Label>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
                         <DialogFooter className={'mt-4'}>
                             <DialogClose asChild>
                                 <Button variant="outline">Cancel</Button>
@@ -164,6 +200,11 @@ const EditTaskForm = ({ task }) => {
                         <input type="hidden" name="status" value={status} />
                         <input type="hidden" name='taskId' value={task?._id} />
                         <input type="hidden" name='description' value={description} />
+                        <input
+                            type="hidden"
+                            name="assignees"
+                            value={JSON.stringify(selectedUsers)}
+                        />
                     </form>
                 </DialogContent>
             </Dialog>
