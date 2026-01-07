@@ -116,7 +116,17 @@ export async function editTask(prevState, formData) {
     const status = formData.get('status');
     const taskId = formData.get('taskId');
     const assigneesRaw = formData.get('assignees');
-    const assignees = assigneesRaw ? JSON.parse(assigneesRaw) : [];
+    let assignees = [];
+    if (assigneesRaw) {
+        try {
+            assignees = JSON.parse(assigneesRaw);
+        } catch (error) {
+            return {
+                success: false,
+                message: "Invalid assignees format"
+            };
+        }
+    }
 
     const user = await getUser();
 
@@ -148,7 +158,7 @@ export async function editTask(prevState, formData) {
             updates.status = status;
         }
 
-        if (assignees) {
+        if (assignees.length > 0) {
             updates.assignees = assignees;
         }
 

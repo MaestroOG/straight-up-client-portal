@@ -50,7 +50,7 @@ const EditTaskForm = ({ users, task }) => {
 
         return users
             ?.map(user => user._id.toString())
-            .filter(id => !assigneeIds.has(id)) || [];
+            .filter(id => assigneeIds.has(id)) || [];
     });
     const [dialogOpen, setDialogOpen] = useState(false);
     const [state, formAction, isPending] = useActionState(editTask, {});
@@ -170,23 +170,24 @@ const EditTaskForm = ({ users, task }) => {
                         </div>
 
                         {/* Assign Users */}
-                        <div className="grid gap-3">
-                            <Label className="text-xl">Assign Users</Label>
-                            <div className="flex flex-col gap-2 md:max-w-2xl">
-                                {users?.map((user, index) => (
-                                    <div key={user?._id || index} className="flex items-center gap-2">
-                                        <Checkbox
-                                            id={user?._id}
-                                            checked={selectedUsers.includes(user._id)}
-                                            onCheckedChange={(checked) =>
-                                                handleToggle(user._id, !!checked)
-                                            }
-                                        />
-                                        <Label htmlFor={user?._id}>{user?.name}</Label>
-                                    </div>
-                                ))}
+                        {users && users?.length > 0 && (
+                            <div className="grid gap-3">
+                                <Label className="text-xl">Assign Users</Label>
+                                <div className="flex flex-col gap-2 md:max-w-2xl">
+                                    {users?.map((user, index) => (
+                                        <div key={user?._id || index} className="flex items-center gap-2">
+                                            <Checkbox
+                                                id={user?._id}
+                                                checked={selectedUsers.includes(user._id.toString())}
+                                                onCheckedChange={(checked) =>
+                                                    handleToggle(user._id.toString(), !!checked)}
+                                            />
+                                            <Label htmlFor={user?._id}>{user?.name}</Label>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         <DialogFooter className={'mt-4'}>
                             <DialogClose asChild>

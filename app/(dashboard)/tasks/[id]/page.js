@@ -22,7 +22,9 @@ const TaskDetailPage = async ({ params }) => {
     const taskComments = await getTaskCommentByTaskId(id);
 
     if (user?.role === 'user') {
-        allManagingUsers = await getCompanyMembers(user?.companyName);
+        allManagingUsers = user?.companyName
+            ? await getCompanyMembers(user.companyName)
+            : [];
     } else if (user?.role === 'team-member') {
         allManagingUsers = [];
     }
