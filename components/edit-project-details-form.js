@@ -1,5 +1,4 @@
-'use client';
-
+'use client'; <input type="hidden" name="projectId" value={projectDetails?._id || ""} />
 import { useActionState, useEffect, useState } from "react";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
@@ -39,17 +38,17 @@ const EditProjectDetailForm = ({ projectDetails, fields }) => {
         if (state?.message && !state?.success) {
             setOpen(true);
         }
-    }, [state, router]);
-
+    }, [state, router, projectDetails]);
     return (
         <>
             <form action={formAction} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {fields.map((field) => (
                     <div key={field.name} className="grid gap-2">
-                        <Label>{field.label}</Label>
+                        <Label htmlFor={field.name}>{field.label}</Label>
 
                         {field.type === "textarea" ? (
                             <Textarea
+                                id={field.name}
                                 value={formValues[field.name] || ""}
                                 onChange={(e) =>
                                     setFormValues(prev => ({
@@ -61,6 +60,7 @@ const EditProjectDetailForm = ({ projectDetails, fields }) => {
                         ) : (
                             <Input
                                 type={field.type}
+                                id={field.name}
                                 value={formValues[field.name] || ""}
                                 onChange={(e) =>
                                     setFormValues(prev => ({

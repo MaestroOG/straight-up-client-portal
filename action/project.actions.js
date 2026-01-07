@@ -510,10 +510,14 @@ export async function editProjectDetails(prevState, formData) {
     const projectId = formData.get('projectId');
     const fields = JSON.parse(formData.get("fields") || "{}");
 
-    console.log({
-        projectId,
-        fields
-    })
+    const user = await getUser();
+
+    if (user?.role !== 'superadmin') {
+        return {
+            success: false,
+            message: "Unauthorized action.",
+        };
+    }
 
     if (!projectId) {
         return {
@@ -548,9 +552,9 @@ export async function editProjectDetails(prevState, formData) {
         }
 
     } catch (error) {
-        console.error(error.message);
+        console.error("Error updating project details:", error);
         return {
-            sucess: false,
+            success: false,
             message: "Something went wrong."
         }
     }
