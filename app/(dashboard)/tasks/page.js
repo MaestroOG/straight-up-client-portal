@@ -1,6 +1,6 @@
 import Container from "@/components/dashboardComponents/Container"
 import { Button } from "@/components/ui/button"
-import { getTasks, getUserAssignedTasks } from "@/lib/task"
+import { getTasks, getUnreadCountsForTasks, getUserAssignedTasks } from "@/lib/task"
 import { getUser } from "@/lib/user"
 import { toYMD } from "@/utils/formUtils"
 import Link from "next/link"
@@ -13,6 +13,9 @@ const TasksPage = async ({ searchParams }) => {
     if (user?.name === 'Muneeb Ur Rehman' || user?.name === 'Nabeel Ahmad') {
         tasks = await getTasks();
     }
+
+    const taskIds = tasks.map(t => t._id.toString());
+    const unreadCounts = await getUnreadCountsForTasks(taskIds, user?._id);
 
     const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const todayYMD = toYMD(new Date(), timeZone);
@@ -53,9 +56,9 @@ const TasksPage = async ({ searchParams }) => {
             </div>
 
             <div className="space-y-6 mt-6">
-                <TaskSection title="Overdue" tasks={overdue} />
-                <TaskSection title="Today" tasks={today} />
-                <TaskSection title="Upcoming" tasks={upcoming} />
+                <TaskSection unreadCounts={unreadCounts} title="Overdue" tasks={overdue} />
+                <TaskSection unreadCounts={unreadCounts} title="Today" tasks={today} />
+                <TaskSection unreadCounts={unreadCounts} title="Upcoming" tasks={upcoming} />
             </div>
         </Container>
     )

@@ -10,10 +10,12 @@ import Faq from "@/models/Faq";
 import HowToVideo from "@/models/HowToVideo";
 import Project from "@/models/Project";
 import Resource from "@/models/Resource";
+import TaskComment from "@/models/TaskComment";
 import User from "@/models/User";
 import { getYouTubeEmbedUrl } from "@/utils/formUtils";
 import { createTransporter } from "@/utils/transporterFns";
 import { hashPassword } from "@/utils/validatorFns";
+import mongoose from "mongoose";
 import { revalidatePath } from "next/cache";
 import slugify from "slugify";
 
@@ -811,4 +813,38 @@ export async function createFaq(prevState, formData) {
         }
     }
 
+}
+
+
+export async function taskCommentMarkRead(prevState, formData) {
+    const taskId = formData.get("taskId");
+    const userId = formData.get("userId");
+
+    if (!taskId || !userId) {
+        return { success: false, message: "Task ID and User ID are required." };
+    }
+
+    try {
+        await connectDB();
+
+        const taskComment = await TaskComment.updateMany(
+            {
+                taskId: new mongoose.Types.ObjectId(taskId),
+                readBy: { $ne: new mongoose.Types.ObjectId(userId) },
+            },
+            { $addToSet: { readBy: new mongoose.Types.ObjectId(userId) } } // ✅ use $addToSet to avoid duplicates
+        );
+
+        // Optionally revalidate path to refresh data
+        revalidatePath('/', 'layout');
+
+        if (!taskComment.modifiedCount) {
+            return { success: false, message: "No new unread comments to mark." };
+        }
+
+        return { success: true, message: "Marked all as read." };
+    } catch (error) {
+        console.error("Error marking task comments as read:", error);
+        return { success: false, message: "An error occurred while marking task comments as read." };
+    }
 }

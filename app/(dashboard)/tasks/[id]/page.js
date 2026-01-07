@@ -10,6 +10,7 @@ import EditTaskForm from '@/components/edit-task-form';
 import { TaskDetailComments, TaskDetailDescription } from '@/components/dashboardComponents/TaskDetailParts';
 import { getUser } from '@/lib/user';
 import { getAllAdminAndManagers } from '@/lib/admin';
+import TaskCommentMarkReadButton from '@/components/task-comment-mark-read-button';
 
 const TaskDetailPage = async ({ params }) => {
 
@@ -91,6 +92,7 @@ const TaskDetailPage = async ({ params }) => {
             <div className='mt-6'>
                 <div className="flex items-center justify-between gap-4">
                     <h1 className="text-2xl font-medium">Task Comments</h1>
+                    <TaskCommentMarkReadButton taskId={id} userId={user?._id} />
                 </div>
 
                 <CreateTaskCommentForm id={id} />

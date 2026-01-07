@@ -9,7 +9,7 @@ import TaskListItem from "@/components/dashboardComponents/TaskListItem"
 import { useState } from "react";
 import { ChevronDown } from "lucide-react"
 
-function TaskSection({ title, tasks }) {
+function TaskSection({ title, tasks, unreadCounts }) {
     const [open, setOpen] = useState(true)
 
     return (
@@ -29,7 +29,7 @@ function TaskSection({ title, tasks }) {
                     {tasks && tasks.length > 0 ? (
                         <div className="space-y-3 mt-2">
                             {tasks.map(task => (
-                                <TaskListItem key={task?._id} task={task} />
+                                <TaskListItem key={task?._id} unreadCounts={unreadCounts} task={task} />
                             ))}
                         </div>
                     ) : (

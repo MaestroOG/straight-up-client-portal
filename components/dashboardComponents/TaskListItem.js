@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import DeleteTaskForm from "../delete-task-form"
 
-export default function TaskListItem({ task }) {
+export default function TaskListItem({ task, unreadCounts }) {
   const { _id, title, assignees, status, dueDate } = task
 
   return (
@@ -28,6 +28,11 @@ export default function TaskListItem({ task }) {
         }>
           {status}
         </Badge>
+        {unreadCounts[task._id.toString()] > 0 && (
+          <span className="text-sm text-red-500">
+            {unreadCounts[task._id.toString()]} unread
+          </span>
+        )}
         <Link href={`/tasks/${_id}`}><Button variant="outline" size="sm">View</Button></Link>
         <DeleteTaskForm id={_id} />
       </div>

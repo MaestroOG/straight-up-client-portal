@@ -16,6 +16,12 @@ const taskCommentSchema = new Schema({
         ref: "Task",
         required: true
     },
+    readBy: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+    ]
 }, { timestamps: true });
 
 const TaskComment = models.TaskComment || model('TaskComment', taskCommentSchema);
