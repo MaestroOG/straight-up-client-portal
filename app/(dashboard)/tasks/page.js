@@ -37,11 +37,18 @@ const TasksPage = async ({ searchParams }) => {
             <div className="flex items-center justify-between gap-4">
                 <h1 className="text-2xl font-medium">Tasks</h1>
                 {(user?.role === 'user' || user?.role === 'superadmin') && (
-                    <Link href={'/tasks/new'}>
-                        <Button>
-                            Create Task
-                        </Button>
-                    </Link>
+                    <div className="flex items-center gap-2">
+                        <Link href={'/tasks/new'}>
+                            <Button>
+                                Create Task
+                            </Button>
+                        </Link>
+                        <Link href={'/tasks/completed'}>
+                            <Button>
+                                See Completed Tasks
+                            </Button>
+                        </Link>
+                    </div>
                 )}
             </div>
 
@@ -55,23 +62,3 @@ const TasksPage = async ({ searchParams }) => {
 }
 
 export default TasksPage
-
-
-
-
-// if (user?.role === 'manager') {
-//     tasks = await getTasks();
-// }
-// const today = tasks.filter(t => new Date(t.dueDate).toDateString() === new Date().toDateString())
-// const upcoming = tasks.filter(t => {
-//     const dueDate = new Date(t.dueDate);
-//     return dueDate > new Date() && dueDate.toDateString() !== new Date().toDateString();
-// })
-// const now = new Date();
-// now.setHours(0, 0, 0, 0);
-
-// const overdue = tasks.filter(t => {
-//     const due = new Date(t.dueDate);
-//     due.setHours(0, 0, 0, 0); // strip time
-//     return due < now && t.status !== "completed";
-// });
