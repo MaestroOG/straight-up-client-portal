@@ -162,11 +162,11 @@ export async function addNote(id, prevState, formData) {
     const user = await getUser();
     const commentText = formData.get('commentText');
 
-    const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
 
 
     try {
         await connectDB();
+        const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
         const project = await Project.findById(id).populate("createdBy");
         await Note.create({
             note: commentText,
