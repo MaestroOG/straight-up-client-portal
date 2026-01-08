@@ -4,7 +4,7 @@ import { generateAdminToUserEmailNoteTemplate, generateNoteCreatedEmailUserTempl
 import { generateProjectStatusUpdateEmail } from "@/htmlemailtemplates/projectStatusTemplates";
 import { addExpenditure } from "@/lib/admin";
 import { connectDB } from "@/lib/mongodb";
-import { getUser } from "@/lib/user";
+import { getAllUsersFromCompany, getUser } from "@/lib/user";
 import Audit from "@/models/Audit";
 import AuditComment from "@/models/AuditComment";
 import Expenditure from "@/models/Expenditure";
@@ -162,6 +162,8 @@ export async function addNote(id, prevState, formData) {
     const user = await getUser();
     const commentText = formData.get('commentText');
 
+    const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
+
 
     try {
         await connectDB();
@@ -182,6 +184,7 @@ export async function addNote(id, prevState, formData) {
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: 'admin@straightupdigital.com.au',
+                bcc: allCompanyUsers,
                 subject: "Note Created - Straight Up Digital",
                 html,
             })
@@ -193,15 +196,13 @@ export async function addNote(id, prevState, formData) {
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
+                bcc: allCompanyUsers,
                 subject: "Note Created - Straight Up Digital",
                 html: adminToUserHtml,
             })
         }
 
-        return {
-            success: true,
-            message: "Comment added successfully",
-        }
+
     } catch (error) {
         return {
             success: false,
