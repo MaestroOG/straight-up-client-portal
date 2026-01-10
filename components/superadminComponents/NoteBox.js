@@ -38,6 +38,9 @@ const NoteBox = ({ user, id }) => {
                     value={value}
                     tabIndex={1}
                     onBlur={newContent => setValue(newContent)}
+                    config={{
+                        statusbar: false
+                    }}
                 />
                 <input type="hidden" name="commentText" value={value} />
                 <Button disabled={isPending} type="submit">Send</Button>

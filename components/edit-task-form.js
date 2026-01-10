@@ -121,9 +121,16 @@ const EditTaskForm = ({ users, task }) => {
                                         maxHeight: 300,
                                         allowResizeY: false,
                                         statusbar: false,
+
+                                        // This is the magic
+                                        iframe: false,
+                                        style: {
+                                            overflowY: "auto",
+                                        }
                                     }}
                                 />
                             </div>
+
 
                             <div className="flex flex-col gap-3">
                                 <Label htmlFor="dueDate" className="px-1">

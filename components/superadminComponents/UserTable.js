@@ -10,6 +10,7 @@ import { Button } from "../ui/button"
 import Link from "next/link"
 import { Eye, FolderCog, Trash } from "lucide-react"
 import DeletePartnerForm from "../delete-partner-form"
+import { Badge } from "../ui/badge"
 
 const UserTable = ({ users }) => {
     return (
@@ -26,7 +27,10 @@ const UserTable = ({ users }) => {
                 <TableBody>
                     {users?.map((user) => (
                         <TableRow key={user?._id}>
-                            <TableCell className="font-medium">{user?.companyName}</TableCell>
+                            <TableCell className="font-medium flex items-center gap-2">
+                                <span>{user?.companyName}</span>
+                                {user?.isRetail ? <Badge>Retail</Badge> : <Badge variant={'secondary'}>Partner</Badge>}
+                            </TableCell>
                             <TableCell className={'max-sm:hidden'}>{user?.name}</TableCell>
                             <TableCell className={'max-sm:hidden'}>{user?.email}</TableCell>
                             <TableCell className="max-md:text-right flex items-center justify-end gap-2">
