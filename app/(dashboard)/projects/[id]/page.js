@@ -11,6 +11,7 @@ import ArchiveProjectForm from '@/components/archive-project-form'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import CommentsClient from '@/components/dashboardComponents/CommentsClient'
 
 
 export const metadata = {
@@ -111,20 +112,11 @@ const ProjectDetailPage = async ({ params, searchParams }) => {
                 <div className='flex items-end justify-between'>
                     <h1 className='text-4xl font-bold'>Comments</h1>
                 </div>
-                <NoteBox id={id} user={user} />
-                <div className="mt-6">
-                    <ul>
-                        {notes?.length > 0 ? (
-                            <ProjectNotesList
-                                user={user}
-                                isUnread={isUnread}
-                                projectId={id}
-                                initialNotes={notes}
-                            />) : (
-                            <p className="p-4 text-center">No Comments For Now.</p>
-                        )}
-                    </ul>
-                </div>
+                <CommentsClient
+                    user={user}
+                    projectId={id}
+                    initialNotes={notes}
+                />
             </Container>
         </>
     )

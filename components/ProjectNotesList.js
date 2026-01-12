@@ -95,13 +95,8 @@ export default function ProjectNotesList({ user, projectId, initialNotes }) {
     }, [page, fetchMore]);
 
     useEffect(() => {
-        const handleNewNote = (e) => {
-            const newNote = e.detail;
-            setNotes((prev) => [newNote, ...prev]);
-        };
-        window.addEventListener("note-added", handleNewNote);
-        return () => window.removeEventListener("note-added", handleNewNote);
-    }, []);
+        setNotes(initialNotes);
+    }, [initialNotes]);
 
     return (
         <ul className="max-sm:max-w-[435px]">

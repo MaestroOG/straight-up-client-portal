@@ -168,11 +168,14 @@ export async function addNote(id, prevState, formData) {
         await connectDB();
         const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
         const project = await Project.findById(id).populate("createdBy");
-        await Note.create({
+        const note = await Note.create({
             note: commentText,
             createdBy: user?._id,
             projectId: id,
+            readBy: [user._id]
         })
+
+        const populatedNote = await note.populate("createdBy");
 
         revalidatePath('/', "layout")
 
@@ -202,6 +205,11 @@ export async function addNote(id, prevState, formData) {
             })
         }
 
+        return {
+            success: true,
+            message: "Note added successfully",
+            note: JSON.parse(JSON.stringify(populatedNote))
+        };
 
     } catch (error) {
         return {
