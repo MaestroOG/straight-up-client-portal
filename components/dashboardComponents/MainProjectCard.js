@@ -11,7 +11,7 @@ const MainProjectCard = ({ project }) => {
                 <Badge variant="secondary" className="mb-2 w-fit">
                     {camelToNormal(project?.service)}
                 </Badge>
-                <CardTitle className="text-2xl font-bold text-gray-900 dark:text-white wrap-break-word">
+                <CardTitle className="text-2xl font-bold text-gray-900 break-words whitespace-normal overflow-hidden">
                     {project?.projectTitle}
                 </CardTitle>
                 <CardDescription className="font-medium">
