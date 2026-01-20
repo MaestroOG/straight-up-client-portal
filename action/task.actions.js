@@ -2,6 +2,7 @@
 
 import { generateTaskCommentNotification, generateTaskNotification } from "@/htmlemailtemplates/taskEmailTemplates";
 import { connectDB } from "@/lib/mongodb";
+import { getLastThreeTaskCommentByTask } from "@/lib/task";
 import { getUser } from "@/lib/user";
 import Project from "@/models/Project";
 import Task from "@/models/Task";
@@ -290,13 +291,16 @@ export async function createTaskComment(prevState, formData) {
                 message: "Cannot create comment"
             }
         }
+
+        const lastThreeComments = await getLastThreeTaskCommentByTask(taskId);
+
         const transporter = createTransporter();
 
         for (const assignedUsers of taskExists?.assignees) {
             const taskCreatedDate = toYMD(taskComment?.createdAt)
 
             const assigneetoSendEmail = await User.findById(assignedUsers);
-            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskCreatedDate)
+            const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskCreatedDate, lastThreeComments)
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: ['admin@straightupdigital.com.au', assigneetoSendEmail?.email],

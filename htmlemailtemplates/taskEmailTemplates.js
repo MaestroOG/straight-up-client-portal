@@ -136,9 +136,33 @@ export const generateTaskNotification = (task_title, task_description, due_date,
   `;
 }
 
-export const generateTaskCommentNotification = (user_name, task_title, task_url, comment_time) => {
+export const generateTaskCommentNotification = (
+  user_name,
+  task_title,
+  task_url,
+  comment_time,
+  lastThreeComments = []
+) => {
+
+  const commentsHtml = lastThreeComments
+    .map(
+      (item, index) => `
+        <div class="comment">
+          <div style="font-size:14px;color:#111827;line-height:1.5;">
+            ${item.comment.length > 300
+          ? item.comment.slice(0, 300) + "…"
+          : item.comment}
+          </div>
+          <div style="margin-top:6px;font-size:12px;color:#6b7280;">
+            Comment ${index + 1} • ${new Date(item.createdAt).toLocaleString()}
+          </div>
+        </div>
+      `
+    )
+    .join("");
+
   return `
-  <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -178,7 +202,7 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
       border: 1px solid #e5e7eb;
       border-radius: 6px;
       padding: 12px;
-      margin: 16px 0;
+      margin: 12px 0;
     }
     .btn {
       display: inline-block;
@@ -189,7 +213,7 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
       border-radius: 6px;
       font-weight: bold;
       font-size: 14px;
-      margin-top: 10px;
+      margin-top: 14px;
     }
     .footer {
       text-align: center;
@@ -207,16 +231,24 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
     <div class="content">
       <p>Hi ${user_name},</p>
 
-      <p>Someone commented on a task you’re assigned to:</p>
+      <p>There’s been a new comment on a task you’re assigned to:</p>
 
       <div class="comment">
-        <strong>${task_title}</strong><br>
+        <strong>${task_title}</strong>
       </div>
+
+      ${lastThreeComments.length
+      ? `<h4 style="margin:20px 0 8px;font-size:14px;color:#374151;">
+              Recent Comments
+            </h4>
+            ${commentsHtml}`
+      : ""
+    }
 
       <a href="${task_url}" class="btn">View Task</a>
 
       <p style="margin-top:20px; font-size:13px; color:#555;">
-        Posted on ${comment_time}.
+        Latest comment posted on ${comment_time}.
       </p>
     </div>
 
@@ -226,6 +258,5 @@ export const generateTaskCommentNotification = (user_name, task_title, task_url,
   </div>
 </body>
 </html>
-
-  `;
-}
+`;
+};

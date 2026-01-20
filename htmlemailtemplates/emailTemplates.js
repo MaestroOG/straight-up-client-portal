@@ -520,246 +520,207 @@ export const generateApplicationReceivedUserEmail = (name, companyName, email) =
   `;
 }
 
-export const generateNoteCreatedEmailUserTemplate = (commentUrl, name, projectTitle) => {
+export const generateNoteCreatedEmailUserTemplate = (
+  commentUrl,
+  name,
+  projectTitle,
+  lastThreeNotes = []
+) => {
+
+  const notesHtml = lastThreeNotes
+    .map(
+      (item, index) => `
+        <tr>
+          <td style="padding:12px 16px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#111827;line-height:22px;">
+              ${item.note}
+            </div>
+            <div style="margin-top:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
+              Note ${index + 1} • ${new Date(item.createdAt).toLocaleString()}
+            </div>
+          </td>
+        </tr>
+      `
+    )
+    .join("");
+
   return `
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" style="margin:0;padding:0;">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="x-apple-disable-message-reformatting" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Comment submitted</title>
-  <style>
-    a[x-apple-data-detectors]{ color:inherit!important; text-decoration:none!important; }
-    @media (prefers-color-scheme: dark) {
-      .bg { background:#0b0c10!important; }
-      .card { background:#121317!important; }
-      .text { color:#e8e8ea!important; }
-      .muted { color:#b8bac1!important; }
-      .divider { border-color:#2a2d36!important; }
-      .btn { background:#39B54A!important; color:#ffffff!important; }
-      .btn span { color:#ffffff!important; }
-    }
-  </style>
-  <!--[if mso]>
-    <style>
-      .fallback-font { font-family: Arial, sans-serif !important; }
-    </style>
-  <![endif]-->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>New comment added</title>
 </head>
-<body class="bg" style="margin:0;padding:0;background:#f4f6fa;">
-  <!-- Preheader (hidden in most clients) -->
-  <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0;">
-    Your comment was submitted successfully. Our admin team will review it shortly.
-  </div>
 
-  <!-- Wrapper -->
-  <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#f4f6fa;margin:0;padding:24px 0;">
-    <tr>
-      <td align="center" style="padding:0 16px;">
-        <!-- Card -->
-        <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;" class="card">
-          
-          <!-- Header / Brand Bar -->
-          <tr>
-            <td style="padding:20px 24px;background:#39B54A;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
-                    Straight Up Digital Client Portal
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Title -->
-          <tr>
-            <td style="padding:28px 28px 8px 28px;">
-              <h1 class="fallback-font text" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:22px;line-height:30px;color:#0f172a;font-weight:700;">
-                ${name}! just added a comment.
-              </h1>
-            </td>
-          </tr>
-
-          <!-- Intro -->
-          <tr>
-            <td style="padding:0 28px 16px 28px;">
-              <p class="fallback-font text" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#1f2937;">
-                on project with title "${projectTitle}"
-              </p>
-            </td>
-          </tr>
-
-          <!-- CTA -->
-          <tr>
-            <td align="center" style="padding:8px 28px 28px 28px;">
-              <!-- Bulletproof button -->
-              <table role="presentation" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td align="center" bgcolor="#39B54A" style="border-radius:8px;">
-                    <a href="${commentUrl}" target="_blank"
-                       class="btn"
-                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#39B54A;text-decoration:none;">
-                      <span class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;color:#ffffff;font-weight:700;">
-                        View in Portal
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-              </table>
-        </table>
-        <!-- /Card -->
-      </td>
-    </tr>
-  </table>
-  <!-- /Wrapper -->
-</body>
-</html>  `;
-}
-
-
-
-export const generateAdminToUserEmailNoteTemplate = (projectTitle, name, createdAt, commentUrl) => {
-  return `<!DOCTYPE html>
-<html lang="en" style="margin:0;padding:0;">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="x-apple-disable-message-reformatting" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New comment from Team Straight Up Digital</title>
-  <style>
-    a[x-apple-data-detectors]{ color:inherit!important; text-decoration:none!important; }
-    @media (prefers-color-scheme: dark) {
-      .bg { background:#0b0c10!important; }
-      .card { background:#121317!important; }
-      .text { color:#e8e8ea!important; }
-      .muted { color:#b8bac1!important; }
-      .divider { border-color:#2a2d36!important; }
-      .chip { background:#1f2937!important;color:#e5e7eb!important;border-color:#2a2d36!important; }
-      .btn { background:#39B54A!important;color:#ffffff!important; }
-      .btn span { color:#ffffff!important; }
-    }
-  </style>
-  <!--[if mso]>
-    <style>.fallback-font { font-family: Arial, sans-serif !important; }</style>
-  <![endif]-->
-</head>
-<body class="bg" style="margin:0;padding:0;background:#f4f6fa;">
-  <!-- Preheader (hidden) -->
-  <div style="display:none;overflow:hidden;line-height:1px;opacity:0;max-height:0;max-width:0;">
-    Team Straight Up Digital commented on “${projectTitle}”
-  </div>
-
-  <!-- Wrapper -->
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f6fa;margin:0;padding:24px 0;">
-    <tr>
-      <td align="center" style="padding:0 16px;">
-
-        <!-- Card -->
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="card" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;">
-          
-          <!-- Header / Brand Bar -->
-          <tr>
-            <td style="padding:18px 24px;background:#39B54A;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
-                    Straight Up Digital Client Portal
-                  </td>
-                  <td align="right" class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffeceb;">
-                    New Comment
-                  </td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-
-          <!-- Title -->
-          <tr>
-            <td style="padding:28px 28px 8px 28px;">
-              <h1 class="fallback-font text" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:22px;line-height:30px;color:#0f172a;font-weight:700;">
-                Hi ${name}, Team Straight Up Digital left a comment
-              </h1>
-            </td>
-          </tr>
-
-          <!-- Intro -->
-          <tr>
-            <td style="padding:0 28px 16px 28px;">
-              <p class="fallback-font text" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;color:#1f2937;">
-                Your project <strong>${projectTitle}</strong> has a new update from our team.
-              </p>
-            </td>
-          </tr>
-
-          <!-- Divider -->
-          <tr>
-            <td style="padding:8px 28px 0 28px;">
-              <hr class="divider" style="border:none;border-top:1px solid #e5e7eb;margin:0;">
-            </td>
-          </tr>
-
-          <!-- Comment Block -->
-          <tr>
-            <td style="padding:16px 28px 8px 28px;">
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-family:Arial,Helvetica,sans-serif;">
-                <tr>
-                  <td width="120" class="fallback-font muted" style="padding:6px 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;">
-                    From
-                  </td>
-                  <td class="fallback-font text" style="padding:6px 0;font-size:14px;color:#374151;font-weight:600;">
-                    Team Straight Up Digital
-                  </td>
-                </tr>
-                <tr>
-                  <td width="120" class="fallback-font muted" style="padding:6px 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6b7280;">
-                    Posted
-                  </td>
-                  <td class="fallback-font text" style="padding:6px 0;font-size:14px;color:#374151;">
-                    ${createdAt}
-                  </td>
-                </tr>
-              </table>
+<body style="margin:0;padding:0;background:#f4f6fa;">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:24px 0;">
 <tr>
-                  <td align="center" bgcolor="#39B54A" style="border-radius:0px;">
-                    <a href="${commentUrl}" target="_blank"
-                       class="btn"
-                       style="display:inline-block;padding:12px 20px;border-radius:8px;background:#39B54A;text-decoration:none;">
-                      <span class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:14px;color:#ffffff;font-weight:700;">
-                        View in Portal
-                      </span>
-                    </a>
-                  </td>
-                </tr>
-             
-            </td>
-          </tr>
+<td align="center">
 
-            </td>
-          </tr>
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:12px;">
+  
+  <!-- Header -->
+  <tr>
+    <td style="padding:20px 24px;background:#39B54A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;">
+      Straight Up Digital Client Portal
+    </td>
+  </tr>
 
+  <!-- Title -->
+  <tr>
+    <td style="padding:24px 24px 8px 24px;">
+      <h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:22px;color:#0f172a;">
+        ${name} just added a comment
+      </h1>
+    </td>
+  </tr>
 
-          <tr>
-            <td align="center" style="padding:18px;background:#f8fafc;">
-              <p class="fallback-font muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Straight Up Digital · Australia
-              </p>
-              <p class="fallback-font muted" style="margin:6px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Need help? <a href="mailto:support@Straight Up Digital.com" style="color:#2563eb;text-decoration:none;">support@Straight Up Digital.com</a>
-              </p>
-            </td>
-          </tr>
+  <!-- Project -->
+  <tr>
+    <td style="padding:0 24px 16px 24px;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">
+      On project <strong>${projectTitle}</strong>
+    </td>
+  </tr>
 
+  <!-- Notes -->
+  <tr>
+    <td style="padding:0 24px 16px 24px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0 10px;">
+        ${notesHtml}
+      </table>
+    </td>
+  </tr>
 
-        </table>
-        <!-- /Card -->
+  <!-- CTA -->
+  <tr>
+    <td align="center" style="padding:8px 24px 28px 24px;">
+      <a href="${commentUrl}" target="_blank"
+        style="display:inline-block;padding:12px 20px;background:#39B54A;color:#ffffff;
+        text-decoration:none;border-radius:8px;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:700;">
+        View in Portal
+      </a>
+    </td>
+  </tr>
 
-      </td>
-    </tr>
-  </table>
-  <!-- /Wrapper -->
+</table>
+
+</td>
+</tr>
+</table>
 </body>
 </html>
-  `;
-}
+`;
+};
+
+
+
+
+export const generateAdminToUserEmailNoteTemplate = (
+  projectTitle,
+  name,
+  createdAt,
+  commentUrl,
+  lastThreeNotes = []
+) => {
+
+  const notesHtml = lastThreeNotes
+    .map(
+      (note, index) => `
+        <tr>
+          <td style="padding:12px 16px;border:1px solid #e5e7eb;border-radius:8px;background:#f9fafb;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;color:#111827;">
+              ${note.note.slice(0, 300)}
+            </div>
+            <div style="margin-top:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
+              Team Straight Up Digital • ${new Date(note.createdAt).toLocaleString()}
+            </div>
+          </td>
+        </tr>
+      `
+    )
+    .join("");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>New comment from Team Straight Up Digital</title>
+</head>
+
+<body style="margin:0;padding:0;background:#f4f6fa;">
+<table width="100%" cellpadding="0" cellspacing="0" style="padding:24px 0;">
+<tr>
+<td align="center">
+
+<table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:12px;overflow:hidden;">
+
+  <!-- Header -->
+  <tr>
+    <td style="padding:18px 24px;background:#39B54A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;">
+      Straight Up Digital Client Portal
+    </td>
+  </tr>
+
+  <!-- Title -->
+  <tr>
+    <td style="padding:28px 28px 8px 28px;">
+      <h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:22px;color:#0f172a;">
+        Hi ${name}, Team Straight Up Digital left a comment
+      </h1>
+    </td>
+  </tr>
+
+  <!-- Intro -->
+  <tr>
+    <td style="padding:0 28px 16px 28px;font-family:Arial,Helvetica,sans-serif;font-size:15px;color:#374151;">
+      Your project <strong>${projectTitle}</strong> has a new update from our team.
+    </td>
+  </tr>
+
+  <!-- Meta -->
+  <tr>
+    <td style="padding:0 28px 16px 28px;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#6b7280;">
+      Posted: ${createdAt}
+    </td>
+  </tr>
+
+  <!-- Notes Section -->
+  <tr>
+    <td style="padding:0 28px 16px 28px;">
+      <table width="100%" cellpadding="0" cellspacing="0" style="border-spacing:0 10px;">
+        ${notesHtml}
+      </table>
+    </td>
+  </tr>
+
+  <!-- CTA -->
+  <tr>
+    <td align="center" style="padding:8px 28px 28px 28px;">
+      <a href="${commentUrl}" target="_blank"
+        style="display:inline-block;padding:12px 20px;background:#39B54A;color:#ffffff;
+        text-decoration:none;border-radius:8px;font-family:Arial,Helvetica,sans-serif;
+        font-size:14px;font-weight:700;">
+        View in Portal
+      </a>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td align="center" style="padding:18px;background:#f8fafc;">
+      <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
+        Straight Up Digital · Australia
+      </p>
+    </td>
+  </tr>
+
+</table>
+
+</td>
+</tr>
+</table>
+</body>
+</html>`;
+};

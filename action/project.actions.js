@@ -4,6 +4,7 @@ import { generateAdminToUserEmailNoteTemplate, generateNoteCreatedEmailUserTempl
 import { generateProjectStatusUpdateEmail } from "@/htmlemailtemplates/projectStatusTemplates";
 import { addExpenditure } from "@/lib/admin";
 import { connectDB } from "@/lib/mongodb";
+import { getLastThreeNotesByProject } from "@/lib/projects";
 import { getAllUsersFromCompany, getUser } from "@/lib/user";
 import Audit from "@/models/Audit";
 import AuditComment from "@/models/AuditComment";
@@ -162,8 +163,6 @@ export async function addNote(id, prevState, formData) {
     const user = await getUser();
     const commentText = formData.get('commentText');
 
-
-
     try {
         await connectDB();
         const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
@@ -177,11 +176,13 @@ export async function addNote(id, prevState, formData) {
 
         const populatedNote = await note.populate("createdBy");
 
-        revalidatePath('/', "layout")
+        revalidatePath('/', "layout");
 
         const transporter = createTransporter();
 
-        const html = generateNoteCreatedEmailUserTemplate(`https://portal.straightupdigital.com.au/projects/${project?._id}`, user?.name, project?.projectTitle);
+        const lastThreeNotes = await getLastThreeNotesByProject(id)
+
+        const html = generateNoteCreatedEmailUserTemplate(`https://portal.straightupdigital.com.au/projects/${project?._id}`, user?.name, project?.projectTitle, lastThreeNotes);
 
         if (user?.role === 'user') {
             await transporter.sendMail({
@@ -195,7 +196,7 @@ export async function addNote(id, prevState, formData) {
 
         if (user?.role === 'superadmin') {
             const date = formatDateToYMD(project?.createdAt)
-            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/projects/${project?._id}`);
+            const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/projects/${project?._id}`, lastThreeNotes);
             await transporter.sendMail({
                 from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
                 to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
