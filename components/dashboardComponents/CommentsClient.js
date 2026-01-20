@@ -4,7 +4,7 @@ import { useState } from "react";
 import NoteBox from "../superadminComponents/NoteBox";
 import ProjectNotesList from "../ProjectNotesList";
 
-export default function CommentsClient({ user, projectId, initialNotes }) {
+export default function CommentsClient({ user, projectId, initialNotes = [] }) {
     const [notes, setNotes] = useState(initialNotes);
 
     const addNewNote = (note) => {

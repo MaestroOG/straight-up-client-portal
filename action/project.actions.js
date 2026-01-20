@@ -171,7 +171,7 @@ export async function addNote(id, prevState, formData) {
             note: commentText,
             createdBy: user?._id,
             projectId: id,
-            readBy: [user._id]
+            readBy: [user?._id]
         })
 
         const populatedNote = await note.populate("createdBy");
