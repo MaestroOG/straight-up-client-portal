@@ -294,6 +294,8 @@ export async function createTaskComment(prevState, formData) {
 
         const lastThreeComments = await getLastThreeTaskCommentByTask(taskId);
 
+        console.log(lastThreeComments)
+
         const transporter = createTransporter();
 
         for (const assignedUsers of taskExists?.assignees) {

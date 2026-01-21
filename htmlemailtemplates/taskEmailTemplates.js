@@ -149,9 +149,9 @@ export const generateTaskCommentNotification = (
       (item, index) => `
         <div class="comment">
           <div style="font-size:14px;color:#111827;line-height:1.5;">
-            ${item.comment.length > 300
-          ? item.comment.slice(0, 300) + "…"
-          : item.comment}
+            ${item.commentText.length > 300
+          ? item.commentText.slice(0, 300) + "…"
+          : item.commentText}
           </div>
           <div style="margin-top:6px;font-size:12px;color:#6b7280;">
             Comment ${index + 1} • ${new Date(item.createdAt).toLocaleString()}

@@ -176,7 +176,6 @@ export async function addNote(id, prevState, formData) {
 
         const populatedNote = await note.populate("createdBy");
 
-        revalidatePath('/', "layout");
 
         const transporter = createTransporter();
 
@@ -205,6 +204,8 @@ export async function addNote(id, prevState, formData) {
                 html: adminToUserHtml,
             })
         }
+
+        revalidatePath('/', "layout");
 
         return {
             success: true,
