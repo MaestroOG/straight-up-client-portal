@@ -96,7 +96,7 @@ export async function createProject(prevState, formData) {
             })
         }
 
-        if (user?.role === 'user') {
+        if (user?.role === 'user' || user?.role === 'team-member') {
 
             const userFromDB = await User.findById(user?._id);
 
