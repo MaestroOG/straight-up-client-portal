@@ -165,7 +165,6 @@ export async function addNote(id, prevState, formData) {
 
     try {
         await connectDB();
-        const allCompanyUsers = await getAllUsersFromCompany(user?.companyName);
         const project = await Project.findById(id).populate("createdBy");
         const note = await Note.create({
             note: commentText,
@@ -177,6 +176,8 @@ export async function addNote(id, prevState, formData) {
         const populatedNote = await note.populate("createdBy");
 
 
+
+        const allCompanyUsers = await getAllUsersFromCompany(project?.createdBy.companyName);
         const transporter = createTransporter();
 
         const lastThreeNotes = await getLastThreeNotesByProject(id)
