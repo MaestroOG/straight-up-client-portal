@@ -175,7 +175,12 @@ export async function addNote(id, prevState, formData) {
 
         const populatedNote = await note.populate("createdBy");
 
-
+        if (!project || !project.createdBy) {
+            return {
+                success: false,
+                message: "Project or project creator not found"
+            };
+        }
 
         const allCompanyUsers = await getAllUsersFromCompany(project?.createdBy.companyName);
         const transporter = createTransporter();
