@@ -95,9 +95,13 @@ function FileRow({ file }) {
     const icon = getIcon(file.category);
 
     async function download() {
-        const res = await fetch(`/api/files/download?fileId=${file._id}`);
-        const { url } = await res.json();
-        window.open(url, "_blank");
+        try {
+            const res = await fetch(`/api/files/download?fileId=${file._id}`);
+            const { url } = await res.json();
+            window.open(url, "_blank");
+        } catch (error) {
+            console.error(error.message)
+        }
     }
 
     return (

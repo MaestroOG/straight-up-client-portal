@@ -17,7 +17,11 @@ const ALLOWED_FILE_TYPES = {
 
 
 export function validateFile({ fileName, mimeType }) {
-    const ext = fileName.split(".").pop().toLowerCase();
+    const parts = fileName.split(".");
+    if (parts.length < 2) {
+        throw new Error("Unsupported file type");
+    }
+    const ext = parts.pop().toLowerCase();
     const allowedExts = ALLOWED_FILE_TYPES[mimeType];
 
     if (!allowedExts || !allowedExts.includes(ext)) {
@@ -28,6 +32,6 @@ export function validateFile({ fileName, mimeType }) {
 export function getFileCategory(mime) {
     if (mime.startsWith("image/")) return "image";
     if (mime === "application/pdf") return "document";
-    if (mime.includes("zip") || mime.includes("rar")) return "archive";
+    if (mime.includes("zip") || mime.includes("rar") || mime === "application/octet-stream") return "archive";
     return "other";
 }
