@@ -30,7 +30,7 @@ export async function GET(req) {
         return NextResponse.json({ url: data.signedUrl });
     } catch (error) {
         return NextResponse.json(
-            { error: err.message },
+            { error: error.message },
             { status: 400 }
         );
     }

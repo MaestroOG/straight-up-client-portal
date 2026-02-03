@@ -13,12 +13,22 @@ export async function POST(req) {
         const body = await req.json();
         const { projectId, fileName, fileSize, mimeType } = body;
 
-        console.log("Received upload request:", body);
+        if (!projectId || !fileName || !mimeType || fileSize === undefined) {
+            return NextResponse.json(
+                { error: "Missing required fields" },
+                { status: 400 }
+            );
+        }
 
         const user = await getUser();
 
-        console.log("USER:", user);
 
+        if (!user || !user._id) {
+            return NextResponse.json(
+                { error: "Unauthorized" },
+                { status: 401 }
+            );
+        }
 
         const userId = user?._id;
         const userRole = user?.role || "user";
@@ -58,13 +68,11 @@ export async function POST(req) {
         });
 
     } catch (error) {
-        console.error("🔥 CREATE UPLOAD FULL ERROR:", error);
+        console.error("CREATE UPLOAD FULL ERROR:", error);
 
         return NextResponse.json(
             {
-                error: error.message,
-                stack: error.stack,
-                name: error.name,
+                error: error.message
             },
             { status: 400 }
         );

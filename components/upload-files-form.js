@@ -12,6 +12,10 @@ export default function FileCenterForm({ projectId }) {
     const [uploading, setUploading] = useState(false);
     const [progress, setProgress] = useState(0);
     const fileInputRef = useRef(null);
+    const [dialogOpen, setDialogOpen] = useState(false);
+    const [dialogType, setDialogType] = useState("success");
+    const [dialogMessage, setDialogMessage] = useState("");
+
 
     useEffect(() => {
         fetch(`/api/files/list?projectId=${projectId}`)
@@ -26,43 +30,62 @@ export default function FileCenterForm({ projectId }) {
 
         setUploading(true);
 
-        const res = await fetch("/api/files/create-upload", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                projectId,
-                fileName: file.name,
-                fileSize: file.size,
-                mimeType: file.type,
-            }),
-        });
+        setProgress(10);
+        try {
+            const res = await fetch("/api/files/create-upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    projectId,
+                    fileName: file.name,
+                    fileSize: file.size,
+                    mimeType: file.type,
+                }),
+            });
 
-        if (!res.ok) {
-            throw new Error(res.error || "Upload failed");
+            if (!res.ok) {
+                throw new Error(res.error || "Upload failed");
+            }
+
+            setProgress(40);
+
+            const { uploadUrl, fileId } = await res.json();
+
+            await fetch(uploadUrl, {
+                method: "PUT",
+                body: file,
+                headers: {
+                    "Content-Type": file.type || "application/octet-stream",
+                },
+            });
+
+            setProgress(80);
+
+            await fetch("/api/files/confirm-upload", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ fileId }),
+            });
+
+            setProgress(100);
+
+            setDialogType("success");
+            setDialogMessage("File uploaded successfully.");
+            setDialogOpen(true);
+
+            fetch(`/api/files/list?projectId=${projectId}`)
+                .then((res) => res.json())
+                .then(setFiles);
+        } catch (error) {
+            console.error(error);
+
+            setDialogType("error");
+            setDialogMessage(error.message || "Something went wrong");
+            setDialogOpen(true);
+        } finally {
+            setUploading(false);
+            setProgress(0);
         }
-
-        const { uploadUrl, fileId } = await res.json();
-
-        await fetch(uploadUrl, {
-            method: "PUT",
-            body: file,
-            headers: {
-                "Content-Type": file.type || "application/octet-stream",
-            },
-        });
-
-        await fetch("/api/files/confirm-upload", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fileId }),
-        });
-
-        setUploading(false);
-        setProgress(0);
-
-        fetch(`/api/files/list?projectId=${projectId}`)
-            .then((res) => res.json())
-            .then(setFiles);
     }
 
     const handleButtonClick = () => {
@@ -82,7 +105,7 @@ export default function FileCenterForm({ projectId }) {
             </CardHeader>
 
             <CardContent className="space-y-3">
-                {uploading && <Progress value={55} />}
+                {uploading && <Progress value={progress} />}
 
                 {files.length === 0 && (
                     <p className="text-sm text-muted-foreground">No files uploaded yet.</p>

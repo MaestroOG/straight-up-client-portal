@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
 import File from "@/models/File";
 import { connectDB } from "@/lib/mongodb";
+import { getUser } from "@/lib/user";
 
 export async function POST(req) {
     try {
         await connectDB();
+
+        const user = await getUser();
+
+        if (!user) {
+            return NextResponse.json(
+                { error: "Unauthorized" },
+                { status: 401 }
+            );
+        }
 
         const { fileId } = await req.json();
 
