@@ -21,6 +21,7 @@ export default function FileCenterForm({ projectId }) {
 
     async function handleUpload(e) {
         const file = e.target.files[0];
+        console.log(file);
         if (!file) return;
 
         setUploading(true);
@@ -35,6 +36,10 @@ export default function FileCenterForm({ projectId }) {
                 mimeType: file.type,
             }),
         });
+
+        if (!res.ok) {
+            throw new Error(res.error || "Upload failed");
+        }
 
         const { uploadUrl, fileId } = await res.json();
 
@@ -77,7 +82,7 @@ export default function FileCenterForm({ projectId }) {
             </CardHeader>
 
             <CardContent className="space-y-3">
-                {uploading && <Progress value={progress} />}
+                {uploading && <Progress value={55} />}
 
                 {files.length === 0 && (
                     <p className="text-sm text-muted-foreground">No files uploaded yet.</p>
@@ -109,7 +114,7 @@ function FileRow({ file }) {
             <div className="flex items-center gap-3">
                 {icon}
                 <div>
-                    <p className="text-sm font-medium">{file.originalName}</p>
+                    <p className="text-sm font-medium">{file.fileName}</p>
                     <p className="text-xs text-muted-foreground">
                         {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>

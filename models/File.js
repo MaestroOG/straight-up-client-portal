@@ -13,10 +13,24 @@ const FileSchema = new Schema({
         ref: "User",
         required: true
     },
+    status: {
+        type: String,
+        enum: ["pending", "uploaded", "failed"],
+        default: "pending"
+    },
+    uploaderRole: {
+        type: String,
+        enum: ["superadmin", "team-member", "user"],
+        required: true,
+        default: "user"
+    },
     fileName: {
         type: String,
     },
     mimeType: {
+        type: String,
+    },
+    size: {
         type: String,
     },
     storagePath: {

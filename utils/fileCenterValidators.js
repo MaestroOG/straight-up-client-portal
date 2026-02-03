@@ -16,7 +16,7 @@ const ALLOWED_FILE_TYPES = {
 };
 
 
-export function validateFile({ fileName, mimeType }) {
+export function validateFile(fileName, mimeType) {
     const parts = fileName.split(".");
     if (parts.length < 2) {
         throw new Error("Unsupported file type");
