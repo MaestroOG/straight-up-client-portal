@@ -6,6 +6,13 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
+
 
 export default function FileCenterForm({ projectId }) {
     const [files, setFiles] = useState([]);
@@ -93,29 +100,52 @@ export default function FileCenterForm({ projectId }) {
     };
 
     return (
-        <Card className="rounded-2xl shadow-sm">
-            <CardHeader className="flex flex-row items-center justify-between">
-                <h2 className="text-xl font-semibold">File Center</h2>
-                <label className="cursor-pointer">
-                    <Input type="file" ref={fileInputRef} className="hidden" onChange={handleUpload} />
-                    <Button size="sm" disabled={uploading} onClick={handleButtonClick}>
-                        <Upload className="mr-2 h-4 w-4" /> Upload File
-                    </Button>
-                </label>
-            </CardHeader>
+        <>
+            <Card className="rounded-2xl shadow-sm">
+                <CardHeader className="flex flex-row items-center justify-between">
+                    <h2 className="text-xl font-semibold">File Center</h2>
+                    <label className="cursor-pointer">
+                        <Input type="file" ref={fileInputRef} className="hidden" onChange={handleUpload} />
+                        <Button size="sm" disabled={uploading} onClick={handleButtonClick}>
+                            <Upload className="mr-2 h-4 w-4" /> Upload File
+                        </Button>
+                    </label>
+                </CardHeader>
 
-            <CardContent className="space-y-3">
-                {uploading && <Progress value={progress} />}
+                <CardContent className="space-y-3">
+                    {uploading && <Progress value={progress} />}
 
-                {files.length === 0 && (
-                    <p className="text-sm text-muted-foreground">No files uploaded yet.</p>
-                )}
+                    {files.length === 0 && (
+                        <p className="text-sm text-muted-foreground">No files uploaded yet.</p>
+                    )}
 
-                {files.map((file) => (
-                    <FileRow key={file._id} file={file} />
-                ))}
-            </CardContent>
-        </Card>
+                    {files.map((file) => (
+                        <FileRow key={file._id} file={file} />
+                    ))}
+                </CardContent>
+            </Card>
+
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+                <DialogContent className="max-w-sm">
+                    <DialogHeader>
+                        <DialogTitle>
+                            {dialogType === "success" ? "Upload Complete" : "Upload Failed"}
+                        </DialogTitle>
+                    </DialogHeader>
+
+                    <p className="text-sm text-muted-foreground">
+                        {dialogMessage}
+                    </p>
+
+                    <div className="flex justify-end pt-4">
+                        <Button onClick={() => setDialogOpen(false)}>
+                            OK
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+        </>
     );
 }
 
