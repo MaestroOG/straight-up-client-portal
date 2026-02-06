@@ -49,13 +49,16 @@ const ProjectDetailPage = async ({ params, searchParams }) => {
                         </div>
                         <h3 className='mt-2'>{service} by {projectDetails?.createdBy?.companyName ?? ""}</h3>
                         {projectDetails?.byAdmin ? <p className='text-sm mt-2'>Created By Admin</p> : ''}
-                        {user?.role === 'superadmin' &&
-                            <div className='flex items-center gap-2 mt-2 max-sm:mb-2'>
-                                <ProjectDeleteForm id={id} />
-                                <Link href={`/projects/${id}/edit-package`}><Button>Edit Package</Button></Link>
-                                <Link href={`/projects/${id}/edit-details`}><Button>Edit Details</Button></Link>
-                            </div>
-                        }
+                        <div className='flex items-center gap-2 mt-2 max-sm:mb-2'>
+                            {user?.role === 'superadmin' &&
+                                <>
+                                    <ProjectDeleteForm id={id} />
+                                    <Link href={`/projects/${id}/edit-package`}><Button>Edit Package</Button></Link>
+                                    <Link href={`/projects/${id}/edit-details`}><Button>Edit Details</Button></Link>
+                                </>
+                            }
+                            <Link href={`/projects/${id}/file-center`}><Button>File Center</Button></Link>
+                        </div>
                     </div>
                     <div className='flex flex-wrap items-start md:items-center md:flex-row flex-col gap-2 md:gap-4'>
                         <p className='text-red font-medium animate-pulse whitespace-nowrap'>• {status}</p>
