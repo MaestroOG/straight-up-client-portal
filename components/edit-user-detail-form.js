@@ -9,22 +9,22 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 
 const EditUserDetailForm = ({ user, userId }) => {
     const [formValues, setFormData] = useState({
-        name: user.name,
-        position: user.position,
-        companyName: user.companyName,
-        email: user.email,
-        phoneNum: user.phoneNum,
-        contactEmail: user.contactEmail,
-        companyWebsite: user.companyWebsite,
-        businessAddress: user.businessAddress,
-        abn: user.abn,
-        yearsInBiz: user.yearsInBiz,
-        numOfActiveClients: user.numOfActiveClients,
-        primaryServices: user.primaryServices,
-        industriesWorkWith: user.industriesWorkWith,
-        regionsServe: user.regionsServe,
-        monthlyProjectVolume: user.monthlyProjectVolume,
-        socialMediaLinks: user.socialMediaLinks,
+        name: user?.name,
+        position: user?.position,
+        companyName: user?.companyName,
+        email: user?.email,
+        phoneNum: user?.phoneNum,
+        contactEmail: user?.contactEmail,
+        companyWebsite: user?.companyWebsite,
+        businessAddress: user?.businessAddress,
+        abn: user?.abn,
+        yearsInBiz: user?.yearsInBiz,
+        numOfActiveClients: user?.numOfActiveClients,
+        primaryServices: user?.primaryServices,
+        industriesWorkWith: user?.industriesWorkWith,
+        regionsServe: user?.regionsServe,
+        monthlyProjectVolume: user?.monthlyProjectVolume,
+        socialMediaLinks: user?.socialMediaLinks,
     })
 
     const [state, formAction, isPending] = useActionState(updateUserDetails.bind(null, formValues), {})
