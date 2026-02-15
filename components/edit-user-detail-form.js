@@ -50,35 +50,35 @@ const EditUserDetailForm = ({ user, userId }) => {
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className='grid gap-2'>
                         <Label>Name</Label>
-                        <Input value={formValues.name} onChange={(e) => handleChange("name", e.target.value)} />
+                        <Input value={formValues?.name} onChange={(e) => handleChange("name", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Position</Label>
-                        <Input value={formValues.position} onChange={(e) => handleChange("position", e.target.value)} />
+                        <Input value={formValues?.position} onChange={(e) => handleChange("position", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Company Name</Label>
-                        <Input value={formValues.companyName} onChange={(e) => handleChange("companyName", e.target.value)} />
+                        <Input value={formValues?.companyName} onChange={(e) => handleChange("companyName", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Email</Label>
-                        <Input type="email" value={formValues.email} onChange={(e) => handleChange("email", e.target.value)} />
+                        <Input type="email" value={formValues?.email} onChange={(e) => handleChange("email", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Phone Number</Label>
-                        <Input value={formValues.phoneNum} onChange={(e) => handleChange("phoneNum", e.target.value)} />
+                        <Input value={formValues?.phoneNum} onChange={(e) => handleChange("phoneNum", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Contact Email</Label>
-                        <Input type="email" value={formValues.contactEmail} onChange={(e) => handleChange("contactEmail", e.target.value)} />
+                        <Input type="email" value={formValues?.contactEmail} onChange={(e) => handleChange("contactEmail", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Website</Label>
-                        <Input value={formValues.companyWebsite} onChange={(e) => handleChange("companyWebsite", e.target.value)} />
+                        <Input value={formValues?.companyWebsite} onChange={(e) => handleChange("companyWebsite", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Business Address</Label>
-                        <Input value={formValues.businessAddress} onChange={(e) => handleChange("businessAddress", e.target.value)} />
+                        <Input value={formValues?.businessAddress} onChange={(e) => handleChange("businessAddress", e.target.value)} />
                     </div>
                 </section>
 
@@ -86,31 +86,31 @@ const EditUserDetailForm = ({ user, userId }) => {
                 <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className='grid gap-2'>
                         <Label>ABN</Label>
-                        <Input value={formValues.abn} onChange={(e) => handleChange("abn", e.target.value)} />
+                        <Input value={formValues?.abn} onChange={(e) => handleChange("abn", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Years in Business</Label>
-                        <Input value={formValues.yearsInBiz} onChange={(e) => handleChange("yearsInBiz", e.target.value)} />
+                        <Input value={formValues?.yearsInBiz} onChange={(e) => handleChange("yearsInBiz", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Active Clients</Label>
-                        <Input value={formValues.numOfActiveClients} onChange={(e) => handleChange("numOfActiveClients", e.target.value)} />
+                        <Input value={formValues?.numOfActiveClients} onChange={(e) => handleChange("numOfActiveClients", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Primary Services</Label>
-                        <Input value={formValues.primaryServices} onChange={(e) => handleChange("primaryServices", e.target.value)} />
+                        <Input value={formValues?.primaryServices} onChange={(e) => handleChange("primaryServices", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Industries</Label>
-                        <Input value={formValues.industriesWorkWith} onChange={(e) => handleChange("industriesWorkWith", e.target.value)} />
+                        <Input value={formValues?.industriesWorkWith} onChange={(e) => handleChange("industriesWorkWith", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Regions</Label>
-                        <Input value={formValues.regionsServe} onChange={(e) => handleChange("regionsServe", e.target.value)} />
+                        <Input value={formValues?.regionsServe} onChange={(e) => handleChange("regionsServe", e.target.value)} />
                     </div>
                     <div className='grid gap-2'>
                         <Label>Monthly Projects</Label>
-                        <Input value={formValues.monthlyProjectVolume} onChange={(e) => handleChange("monthlyProjectVolume", e.target.value)} />
+                        <Input value={formValues?.monthlyProjectVolume} onChange={(e) => handleChange("monthlyProjectVolume", e.target.value)} />
                     </div>
                 </section>
 
@@ -118,7 +118,7 @@ const EditUserDetailForm = ({ user, userId }) => {
                 <section className='grid gap-2'>
                     <Label>Social Media Links (comma separated)</Label>
                     <Input
-                        value={formValues.socialMediaLinks.join(", ")}
+                        value={formValues?.socialMediaLinks.join(", ")}
                         onChange={(e) => handleChange("socialMediaLinks", e.target.value.split(",").map((s) => s.trim()))}
                     />
                 </section>
