@@ -44,7 +44,7 @@ export const generateProjectStatusUpdateEmail = (projectTitle, newStatus, name, 
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#ffffff;">
-                    Straight Up Digital Client Portal
+                    Straight Up One Client Portal
                   </td>
                   <td align="right" class="fallback-font" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffeceb;">
                     Status Update
@@ -118,10 +118,10 @@ export const generateProjectStatusUpdateEmail = (projectTitle, newStatus, name, 
           <tr>
             <td align="center" style="padding:18px;background:#f8fafc;">
               <p class="fallback-font muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Straight Up Digital · Australia
+                Straight Up One · Australia
               </p>
               <p class="fallback-font muted" style="margin:6px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Need help? <a href="mailto:support@Straight Up Digital.com" style="color:#2563eb;text-decoration:none;">support@Straight Up Digital.com</a>
+                Need help? <a href="mailto:support@straightupone.com" style="color:#2563eb;text-decoration:none;">mailto:support@straightupone.com</a>
               </p>
             </td>
           </tr>
@@ -225,8 +225,8 @@ export const generateInactiveProjectsAlertEmail = (projectCount) => {
               <td style="padding:16px 28px 24px 28px;background:#fbfdff;border-top:1px solid #eef2ff;">
                 <table role="presentation" width="100%">
                   <tr>
-                    <td style="font-size:13px;color:#94a3b8;">Sent by <strong>Admin Team at Straight Up Digital</strong></td>
-                    <td style="text-align:right;font-size:13px;color:#94a3b8;">Need help? <a href="mailto:support@Straight Up Digital.com" style="color:#2563eb;text-decoration:none;">support@Straight Up Digital.com</a></td>
+                    <td style="font-size:13px;color:#94a3b8;">Sent by <strong>Admin Team at Straight Up One</strong></td>
+                    <td style="text-align:right;font-size:13px;color:#94a3b8;">Need help? <a href="mailto:support@straightupone.com" style="color:#2563eb;text-decoration:none;">support@straightupone.com</a></td>
                   </tr>
                 </table>
               </td>

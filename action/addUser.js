@@ -49,7 +49,7 @@ export async function addUser(prevState, formData) {
         const html = generateAcceptEmailTemplate();
 
         await transporter.sendMail({
-            from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+            from: '"Straight Up One" <admin@straightupdigital.com.au>',
             to: ["admin@straightupdigital.com.au", user?.email],
             subject: "Partnership Application Update – Accepted",
             html,

@@ -83,7 +83,7 @@ export const generateRecoveryEmailTemplate = (resetLink) => {
 
       <!-- Footer -->
       <div class="footer">
-        <p>&copy; ${new Date().getFullYear()} Straight Up Digital. All rights reserved.</p>
+        <p>&copy; ${new Date().getFullYear()} Straight Up One. All rights reserved.</p>
       </div>
     </div>
   </div>

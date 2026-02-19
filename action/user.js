@@ -68,7 +68,7 @@ export const LoginUser = async (prevState, formData) => {
     }
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      from: '"Straight Up One" <admin@straightupdigital.com.au>',
       to: user?.email,
       subject: "Verify your OTP",
       html,
@@ -188,14 +188,14 @@ export const SignUpUser = async (formValues, prevState, formData) => {
     const userHtml = generateApplicationReceivedUserEmail(name, companyName, email);
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      from: '"Straight Up One" <admin@straightupdigital.com.au>',
       to: [email, 'admin@straightupdigital.com.au'],
-      subject: "Thanks for your interest in partnering with Straight Up Digital",
+      subject: "Thanks for your interest in partnering with Straight Up One",
       html: userHtml,
     })
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      from: '"Straight Up One" <admin@straightupdigital.com.au>',
       to: 'admin@straightupdigital.com.au',
       subject: "New User Application – Review Required",
       html,
@@ -318,9 +318,9 @@ export const createRetailUser = async (prevState, formData) => {
     const html = generateAcceptEmailTemplate();
 
     await transporter.sendMail({
-      from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+      from: '"Straight Up One" <admin@straightupdigital.com.au>',
       to: [email, 'admin@straightupdigital.com.au'],
-      subject: "Partnership Accepted - Straight Up Digital",
+      subject: "Partnership Accepted - Straight Up One",
       html,
     })
 

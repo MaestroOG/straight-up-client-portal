@@ -9,7 +9,7 @@ const PricingPage = () => {
             <div className="flex justify-end mb-4">
                 <a
                     href="/sud-pricelist.pdf"
-                    download="Straight Up Digital Pricelist"
+                    download="Straight Up One Pricelist"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

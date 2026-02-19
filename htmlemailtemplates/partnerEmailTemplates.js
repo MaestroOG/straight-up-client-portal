@@ -28,7 +28,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
 <body class="bg" style="margin:0;padding:0;background:#f4f6fa;">
   <!-- Preheader (hidden preview text) -->
   <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
-    Your partnership with Straight Up Digital has ended. Here’s what happens next.
+    Your partnership with Straight Up One has ended. Here’s what happens next.
   </div>
 
   <!-- Wrapper -->
@@ -45,7 +45,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
                 <tr>
                   <td align="left">
                     <span style="font-family:Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;color:#ffffff;font-weight:700;letter-spacing:.3px;">
-                      Straight Up Digital
+                      Straight Up One
                     </span>
                   </td>
                   <td align="right">
@@ -74,7 +74,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
           <tr>
             <td class="px" style="padding:0 28px 8px 28px;">
               <p class="text" style="margin:0 0 10px 0;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:24px;color:#1f2937;">
-                We’re writing to let you know that your partnership with <strong>Straight Up Digital</strong> for <strong>${companyName}</strong> has been formally ended as of <strong>${endDate}</strong>.
+                We’re writing to let you know that your partnership with <strong>Straight Up One</strong> for <strong>${companyName}</strong> has been formally ended as of <strong>${endDate}</strong>.
               </p>
             </td>
           </tr>
@@ -142,7 +142,7 @@ export const generatePartnerShipEndEmail = (email, name, companyName, endDate, s
           <tr>
             <td align="center" style="padding:22px;background:#f8fafc;">
               <p class="muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Straight Up Digital · Australia
+                Straight Up One · Australia
               </p>
               <p class="muted" style="margin:8px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
                 This message was sent to ${email}. If you believe this was an error, please contact support.
@@ -241,7 +241,7 @@ export function generateAuditEmail({ companyName, auditTitle, service, fields })
           <!-- Footer -->
           <tr>
             <td align="center" style="padding:20px; background:#f3f4f6; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-size:13px; color:#6b7280;">
-              © ${new Date().getFullYear()} Straight Up Digital. All rights reserved.            </td>
+              © ${new Date().getFullYear()} Straight Up One. All rights reserved.            </td>
           </tr>
         </table>
       </td>
@@ -316,7 +316,7 @@ export function generateTeammateWelcomeEmail(name, companyName) {
           <tr>
             <td style="background:#f9fafb; padding:20px; text-align:center;">
               <p style="margin:0; font-size:13px; color:#9ca3af;">
-                © ${new Date().getFullYear()} Straight Up Digital. All rights reserved.
+                © ${new Date().getFullYear()} Straight Up One. All rights reserved.
               </p>
             </td>
           </tr>

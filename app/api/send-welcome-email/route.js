@@ -9,9 +9,9 @@ export async function GET() {
         const html = generateAcceptEmailTemplate();
 
         await transporter.sendMail({
-            from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+            from: '"Straight Up One" <admin@straightupdigital.com.au>',
             to: ["info@terramedia.com.au", "adam@mmbroker.com.au",],
-            subject: "Partnership Accepted - Straight Up Digital",
+            subject: "Partnership Accepted - Straight Up One",
             html,
         });
 

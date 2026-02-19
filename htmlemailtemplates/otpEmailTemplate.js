@@ -25,7 +25,7 @@ export const generateOTPEmail = (otp, name) => {
 <body class="bg" style="margin:0;padding:0;background:#f4f6fa;">
   <!-- Preheader (hidden in most clients) -->
   <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
-    Your Straight Up Digital verification code is ${otp}. It expires in 10 minutes.
+    Your Straight Up One verification code is ${otp}. It expires in 10 minutes.
   </div>
 
   <!-- Wrapper -->
@@ -41,7 +41,7 @@ export const generateOTPEmail = (otp, name) => {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.2;color:#ffffff;font-weight:700;">
-                    Straight Up Digital
+                    Straight Up One
                   </td>
                   <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#ffefef;">
                     Secure Verification
@@ -107,10 +107,10 @@ export const generateOTPEmail = (otp, name) => {
           <tr>
             <td align="center" style="padding:20px;background:#f8fafc;">
               <p class="muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
-                Straight Up Digital · Australia
+                Straight Up One · Australia
               </p>
               <p class="muted" style="margin:6px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
-                Need help? <a href="mailto:support@Straight Up Digital.com" style="color:#2563eb;text-decoration:none;">support@Straight Up Digital.com</a>
+                Need help? <a href="mailto:support@straightupdigital.com.au" style="color:#2563eb;text-decoration:none;">support@straightupdigital.com.au</a>
               </p>
             </td>
           </tr>

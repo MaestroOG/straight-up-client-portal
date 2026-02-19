@@ -288,7 +288,7 @@ export function SignUpForm({
                             </div>
 
                             <div className="grid gap-3">
-                                <Label htmlFor="monthlyProjectVolume" className={'text-heading'}>Anticipated Monthly Project Volume for Straight Up Digital (Optional)</Label>
+                                <Label htmlFor="monthlyProjectVolume" className={'text-heading'}>Anticipated Monthly Project Volume for Straight Up One (Optional)</Label>
                                 <Input id="monthlyProjectVolume" value={formValues.monthlyProjectVolume} onChange={handleChange} type="text" name="monthlyProjectVolume" className={'border border-gray-300'} />
                             </div>
 
@@ -323,7 +323,7 @@ export function SignUpForm({
                                         }))
                                     } name="masterServiceAgreement" />
                                 <Label htmlFor="masterServiceAgreement" className={'text-heading'}>
-                                    I agree to the Straight Up Digital
+                                    I agree to the Straight Up One
                                     <span>
                                         <Link href={'https://straightupdigital.com.au/straight-up-digital-master-services-agreement/'} target="_blank" className="text-primary underline">
                                             Master Services Agreement
