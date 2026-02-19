@@ -89,8 +89,8 @@ export async function createProject(prevState, formData) {
             const transporter = createTransporter();
 
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: [projectForUser?.email, 'admin@straightupdigital.com.au'],
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: [projectForUser?.email, 'admin@straightup.one'],
                 subject: "Project Created - Straight Up One",
                 html,
             })
@@ -139,8 +139,8 @@ export async function createProject(prevState, formData) {
             const transporter = createTransporter();
 
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: [user?.email, 'admin@straightupdigital.com.au'],
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: [user?.email, 'admin@straightup.one'],
                 subject: "Project Created - Straight Up One",
                 html,
             })
@@ -191,8 +191,8 @@ export async function addNote(id, prevState, formData) {
 
         if (user?.role === 'user') {
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: 'admin@straightupdigital.com.au',
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: 'admin@straightup.one',
                 bcc: allCompanyUsers,
                 subject: "Note Created - Straight Up One",
                 html,
@@ -203,8 +203,8 @@ export async function addNote(id, prevState, formData) {
             const date = formatDateToYMD(project?.createdAt)
             const adminToUserHtml = generateAdminToUserEmailNoteTemplate(project?.projectTitle, project?.createdBy?.name, date, `https://portal.straightupdigital.com.au/projects/${project?._id}`, lastThreeNotes);
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: [project?.createdBy.email, 'admin@straightup.one'],
                 bcc: allCompanyUsers,
                 subject: "Note Created - Straight Up One",
                 html: adminToUserHtml,
@@ -242,8 +242,8 @@ export async function ApproveProject(projectId, prevState, formData) {
     const transporter = createTransporter();
 
     await transporter.sendMail({
-        from: '"Straight Up One" <admin@straightupdigital.com.au>',
-        to: [project?.createdBy.email, 'admin@straightupdigital.com.au'],
+        from: '"Straight Up One" <admin@straightup.one>',
+        to: [project?.createdBy.email, 'admin@straightup.one'],
         subject: "Project Status Update - Straight Up One",
         html,
     })
@@ -282,8 +282,8 @@ export async function RejectProject(projectId, prevState, formData) {
         const transporter = createTransporter();
 
         await transporter.sendMail({
-            from: '"Straight Up One" <admin@straightupdigital.com.au>',
-            to: [user?.email, 'admin@straightupdigital.com.au'],
+            from: '"Straight Up One" <admin@straightup.one>',
+            to: [user?.email, 'admin@straightup.one'],
             subject: "Project Status Update - Straight Up One",
             html,
         })
@@ -316,8 +316,8 @@ export async function changeProjectStatus(projectId, prevState, formData) {
     const transporter = createTransporter();
 
     await transporter.sendMail({
-        from: '"Straight Up One" <admin@straightupdigital.com.au>',
-        to: ["admin@straightupdigital.com.au", user?.email],
+        from: '"Straight Up One" <admin@straightup.one>',
+        to: ["admin@straightup.one", user?.email],
         subject: "Project Status Update - Straight Up One",
         html,
     })

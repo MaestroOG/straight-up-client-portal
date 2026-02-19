@@ -57,7 +57,7 @@ export const LoginUser = async (prevState, formData) => {
       transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: process.env.SMTP_USER, // e.g. "admin@straightupdigital.com.au"
+          user: process.env.SMTP_USER, // e.g. "admin@straightup.one"
           pass: process.env.SMTP_PASS, // Gmail app password, not your account password
         },
       });
@@ -68,7 +68,7 @@ export const LoginUser = async (prevState, formData) => {
     }
 
     await transporter.sendMail({
-      from: '"Straight Up One" <admin@straightupdigital.com.au>',
+      from: '"Straight Up One" <admin@straightup.one>',
       to: user?.email,
       subject: "Verify your OTP",
       html,
@@ -188,15 +188,15 @@ export const SignUpUser = async (formValues, prevState, formData) => {
     const userHtml = generateApplicationReceivedUserEmail(name, companyName, email);
 
     await transporter.sendMail({
-      from: '"Straight Up One" <admin@straightupdigital.com.au>',
-      to: [email, 'admin@straightupdigital.com.au'],
+      from: '"Straight Up One" <admin@straightup.one>',
+      to: [email, 'admin@straightup.one'],
       subject: "Thanks for your interest in partnering with Straight Up One",
       html: userHtml,
     })
 
     await transporter.sendMail({
-      from: '"Straight Up One" <admin@straightupdigital.com.au>',
-      to: 'admin@straightupdigital.com.au',
+      from: '"Straight Up One" <admin@straightup.one>',
+      to: 'admin@straightup.one',
       subject: "New User Application – Review Required",
       html,
     })
@@ -318,8 +318,8 @@ export const createRetailUser = async (prevState, formData) => {
     const html = generateAcceptEmailTemplate();
 
     await transporter.sendMail({
-      from: '"Straight Up One" <admin@straightupdigital.com.au>',
-      to: [email, 'admin@straightupdigital.com.au'],
+      from: '"Straight Up One" <admin@straightup.one>',
+      to: [email, 'admin@straightup.one'],
       subject: "Partnership Accepted - Straight Up One",
       html,
     })

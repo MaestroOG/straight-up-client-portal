@@ -739,8 +739,8 @@ export async function AddTeammateToAgency(prevState, formData) {
         const html = generateTeammateWelcomeEmail(name, agency);
 
         await transporter.sendMail({
-            from: '"Straight Up One" <admin@straightupdigital.com.au>',
-            to: ['admin@straightupdigital.com.au', email],
+            from: '"Straight Up One" <admin@straightup.one>',
+            to: ['admin@straightup.one', email],
             subject: "You’ve been added to the team",
             html,
         })

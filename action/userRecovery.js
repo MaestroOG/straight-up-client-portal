@@ -22,8 +22,8 @@ export async function getRecoveryEmail(prevState, formData) {
     const html = generateRecoveryEmailTemplate(`https://portal.straightupdigital.com.au/reset-password?email=${user?.email}`);
 
     await transporter.sendMail({
-        from: '"Straight Up One" <admin@straightupdigital.com.au>',
-        to: [user?.email, 'admin@straightupdigital.com.au'],
+        from: '"Straight Up One" <admin@straightup.one>',
+        to: [user?.email, 'admin@straightup.one'],
         subject: "Password Reset - Straight Up One",
         html,
     })

@@ -81,8 +81,8 @@ export async function createTask(selectedUsers, prevState, formData) {
         for (const selectedUser of selectedUsers) {
             const assigneeUser = await User.findById(selectedUser);
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: ['admin@straightupdigital.com.au', assigneeUser?.email],
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: ['admin@straightup.one', assigneeUser?.email],
                 subject: "New Task Assigned",
                 html,
             })
@@ -304,8 +304,8 @@ export async function createTaskComment(prevState, formData) {
             const assigneetoSendEmail = await User.findById(assignedUsers);
             const html = generateTaskCommentNotification(assigneetoSendEmail?.name, taskExists?.title, `https://portal.straightupdigital.com.au/tasks/${taskExists?._id}`, taskCreatedDate, lastThreeComments)
             await transporter.sendMail({
-                from: '"Straight Up One" <admin@straightupdigital.com.au>',
-                to: ['admin@straightupdigital.com.au', assigneetoSendEmail?.email],
+                from: '"Straight Up One" <admin@straightup.one>',
+                to: ['admin@straightup.one', assigneetoSendEmail?.email],
                 subject: "New Comment On Task",
                 html,
             })
