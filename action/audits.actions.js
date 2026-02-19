@@ -80,9 +80,9 @@ export default async function createAudit(prevState, formData) {
             const html = generateAuditEmail(emailData);
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+                from: '"Straight Up One" <admin@straightupdigital.com.au>',
                 to: [user?.email, 'admin@straightupdigital.com.au'],
-                subject: "Audit Request - Straight Up Digital",
+                subject: "Audit Request - Straight Up One",
                 html,
             });
         }
@@ -126,9 +126,9 @@ export default async function createAudit(prevState, formData) {
             });
 
             await transporter.sendMail({
-                from: '"Straight Up Digital" <admin@straightupdigital.com.au',
+                from: '"Straight Up One" <admin@straightupdigital.com.au',
                 to: [auditForUser?.email, 'admin@straightupdigital.com.au'],
-                subject: "Audit Request - Straight Up Digital",
+                subject: "Audit Request - Straight Up One",
                 html,
             });
         }

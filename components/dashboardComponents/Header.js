@@ -149,7 +149,7 @@ const Header = ({ userFromDB, pfpLink }) => {
     return (
         <header className='bg-primary w-full px-8 py-0 md:py-9 flex items-center justify-between md:justify-end gap-4 sticky top-0 z-50'>
 
-            <Link href={'/'} className='md:hidden'><Image src='/straight-up.png' alt="Straight Up Digital logo" width={135} height={37} priority /></Link>
+            <Link href={'/'} className='md:hidden'><Image src='/straight-up.png' alt="Straight Up One logo" width={135} height={37} priority /></Link>
             <div className='flex items-center gap-4'>
                 <div className="flex items-center gap-4">
                     {/* {userFromDB?.credit > 0 && <div className="max-sm:hidden flex items-center gap-2 p-2 border border-primary">

@@ -30,7 +30,7 @@ export const generateTaskOverdueEmail = (task) => {
           </tr>
           <tr>
             <td style="background-color:#f1f1f1; text-align:center; padding:16px; font-size:12px; color:#888;">
-              © ${new Date().getFullYear()} Straight Up Digital. All rights reserved.
+              © ${new Date().getFullYear()} Straight Up One. All rights reserved.
             </td>
           </tr>
         </table>
@@ -128,7 +128,7 @@ export const generateTaskNotification = (task_title, task_description, due_date,
       </p>
     </div>
     <div class="footer">
-      © 2026 Straight Up Digital — This is an automated message.
+      © 2026 Straight Up One — This is an automated message.
     </div>
   </div>
 </body>
@@ -253,7 +253,7 @@ export const generateTaskCommentNotification = (
     </div>
 
     <div class="footer">
-      © 2026 Straight Up Digital — You’re receiving this because you’re assigned to the task.
+      © 2026 Straight Up One — You’re receiving this because you’re assigned to the task.
     </div>
   </div>
 </body>

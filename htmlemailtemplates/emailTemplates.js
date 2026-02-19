@@ -29,7 +29,7 @@ export const generatePartnershipEmailTemplate = (email, monthlyProjectVolume, na
                   New Partner Application
                 </h1>
                 <p style="margin:6px 0 0; color:#cbd5e1; font-size:13px;">
-                  Submitted via Straight Up Digital Portal
+                  Submitted via Straight Up One Portal
                 </p>
               </td>
             </tr>
@@ -170,7 +170,7 @@ export const generatePartnershipEmailTemplate = (email, monthlyProjectVolume, na
             <!-- Footer -->
             <tr>
               <td style="background:#f8fafc; padding:16px 24px; font-size:12px; color:#6b7280; text-align:center;">
-                Straight Up Digital • Automated Notification • Please do not reply
+                Straight Up One • Automated Notification • Please do not reply
               </td>
             </tr>
           </table>
@@ -191,14 +191,14 @@ export const generateAcceptEmailTemplate = () => {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Partnership Accepted - Straight Up Digital</title>
+  <title>Partnership Accepted - Straight Up One</title>
 </head>
 <body style="margin:0; padding:0; font-family: Arial, sans-serif; background-color:#f4f6fa; color:#333;">
   <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
     <!-- Header -->
     <tr>
       <td align="center" style="background-color:#39B54A; padding:30px;">
-        <h1 style="margin:0; font-size:28px; color:#ffffff; font-weight:bold;">Straight Up Digital</h1>
+        <h1 style="margin:0; font-size:28px; color:#ffffff; font-weight:bold;">Straight Up One</h1>
       </td>
     </tr>
 
@@ -207,7 +207,7 @@ export const generateAcceptEmailTemplate = () => {
       <td style="padding:40px 30px;">
         <h2 style="margin:0; font-size:22px; color:#0d47a1; font-weight:600;">🎉 Congratulations!</h2>
         <p style="font-size:16px; line-height:1.6; margin-top:15px;">
-          We’re excited to let you know that your request for a <strong>partnership with Straight Up Digital</strong> has been <span style="color:green; font-weight:bold;">accepted</span>.
+          We’re excited to let you know that your request for a <strong>partnership with Straight Up One</strong> has been <span style="color:green; font-weight:bold;">accepted</span>.
         </p>
         
         <p style="font-size:16px; line-height:1.6;">
@@ -228,7 +228,7 @@ export const generateAcceptEmailTemplate = () => {
         </div>
 
         <p style="font-size:15px; line-height:1.6; color:#555;">
-          Thank you for trusting Straight Up Digital. We’re excited to begin this journey with you.  
+          Thank you for trusting Straight Up One. We’re excited to begin this journey with you.  
           If you have any questions or need help, feel free to reach out to our support team anytime.
         </p>
       </td>
@@ -238,8 +238,8 @@ export const generateAcceptEmailTemplate = () => {
     <tr>
       <td align="center" style="background-color:#f0f3f9; padding:20px;">
         <p style="margin:0; font-size:13px; color:#777;">
-          © 2026 Straight Up Digital. All rights reserved.<br/>
-          <a href="https://Straight Up Digital.com" style="color:#0d47a1; text-decoration:none;">Visit our website</a>
+          © 2026 Straight Up One. All rights reserved.<br/>
+          <a href="https://straightupdigital.com.au" style="color:#0d47a1; text-decoration:none;">Visit our website</a>
         </p>
       </td>
     </tr>
@@ -259,7 +259,7 @@ export const generateRejectEmailTemplate = () => {
   <meta charset="UTF-8" />
   <meta name="x-apple-disable-message-reformatting">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Partnership Application – Straight Up Digital</title>
+  <title>Partnership Application – Straight Up One</title>
 </head>
 <body style="margin:0; padding:24px; background:#f4f6fa; font-family:Arial, Helvetica, sans-serif; color:#111827;">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -271,7 +271,7 @@ export const generateRejectEmailTemplate = () => {
           <tr>
             <td style="background:#39B54A; padding:28px;">
               <h1 style="margin:0; font-size:26px; line-height:1.3; color:#ffffff; font-weight:800;">
-                Straight Up Digital
+                Straight Up One
               </h1>
               <p style="margin:6px 0 0; color:#cfe0ff; font-size:13px;">
                 Partnership Application Update
@@ -287,7 +287,7 @@ export const generateRejectEmailTemplate = () => {
               </h2>
               <p style="margin:10px 0 14px; font-size:15px; line-height:1.6; color:#374151;">
                 Hi there,  
-                Thank you for your interest in partnering with <strong>Straight Up Digital</strong>. After careful review,
+                Thank you for your interest in partnering with <strong>Straight Up One</strong>. After careful review,
                 we’re unable to proceed with your application at this time.
               </p>
               <p style="margin:0 0 16px; font-size:15px; line-height:1.6; color:#374151;">
@@ -315,7 +315,7 @@ export const generateRejectEmailTemplate = () => {
           <!-- Footer -->
           <tr>
             <td style="background:#f0f3f9; padding:16px 24px; text-align:center; font-size:12px; color:#6b7280;">
-              © 2026 Straight Up Digital • This is an automated notification
+              © 2026 Straight Up One • This is an automated notification
             </td>
           </tr>
         </table>
@@ -396,7 +396,7 @@ export const generateProjectCreatedEmailTemplate = (companyName, projectTitle, s
           <!-- Footer -->
           <tr>
             <td align="center" style="padding:20px; background:#f3f4f6; border-bottom-left-radius:12px; border-bottom-right-radius:12px; font-size:13px; color:#6b7280;">
-              © 2026 Straight Up Digital. All rights reserved.
+              © 2026 Straight Up One. All rights reserved.
             </td>
           </tr>
         </table>
@@ -502,10 +502,10 @@ export const generateApplicationReceivedUserEmail = (name, companyName, email) =
           <tr>
             <td align="center" style="padding:22px;background:#f8fafc;">
               <p class="muted" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Straight Up Digital · Australia
+                Straight Up One · Australia
               </p>
               <p class="muted" style="margin:8px 0 0 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:18px;color:#6b7280;">
-                Need help? <a href="mailto:support@Straight Up Digital.com" style="color:#2563eb;text-decoration:none;">support@Straight Up Digital.com</a>
+                Need help? <a href="mailto:support@straightupdigital.com.au" style="color:#2563eb;text-decoration:none;">support@straightupdigital.com.au</a>
               </p>
             </td>
           </tr>
@@ -563,7 +563,7 @@ export const generateNoteCreatedEmailUserTemplate = (
   <!-- Header -->
   <tr>
     <td style="padding:20px 24px;background:#39B54A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;">
-      Straight Up Digital Client Portal
+      Straight Up One Client Portal
     </td>
   </tr>
 
@@ -633,7 +633,7 @@ export const generateAdminToUserEmailNoteTemplate = (
               ${note.note.slice(0, 300)}
             </div>
             <div style="margin-top:6px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
-              Team Straight Up Digital • ${new Date(note.createdAt).toLocaleString()}
+              Team Straight Up One • ${new Date(note.createdAt).toLocaleString()}
             </div>
           </td>
         </tr>
@@ -646,7 +646,7 @@ export const generateAdminToUserEmailNoteTemplate = (
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>New comment from Team Straight Up Digital</title>
+<title>New comment from Team Straight Up One</title>
 </head>
 
 <body style="margin:0;padding:0;background:#f4f6fa;">
@@ -659,7 +659,7 @@ export const generateAdminToUserEmailNoteTemplate = (
   <!-- Header -->
   <tr>
     <td style="padding:18px 24px;background:#39B54A;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;">
-      Straight Up Digital Client Portal
+      Straight Up One Client Portal
     </td>
   </tr>
 
@@ -667,7 +667,7 @@ export const generateAdminToUserEmailNoteTemplate = (
   <tr>
     <td style="padding:28px 28px 8px 28px;">
       <h1 style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:22px;color:#0f172a;">
-        Hi ${name}, Team Straight Up Digital left a comment
+        Hi ${name}, Team Straight Up One left a comment
       </h1>
     </td>
   </tr>
@@ -711,7 +711,7 @@ export const generateAdminToUserEmailNoteTemplate = (
   <tr>
     <td align="center" style="padding:18px;background:#f8fafc;">
       <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#6b7280;">
-        Straight Up Digital · Australia
+        Straight Up One · Australia
       </p>
     </td>
   </tr>

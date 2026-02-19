@@ -16,7 +16,7 @@ import MainProjectCard from "@/components/dashboardComponents/MainProjectCard"
 
 
 export const metadata = {
-  title: "Straight Up Digital Client Portal"
+  title: "Straight Up One Client Portal"
 }
 
 const HomePage = async ({ searchParams }) => {

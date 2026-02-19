@@ -28,7 +28,7 @@ export async function deletePartner(prevState, formData) {
         const html = generatePartnerShipEndEmail(user?.email, user?.name, user?.companyName, todaysDate, 'support@straightupdigital.com')
         const transporter = createTransporter();
         await transporter.sendMail({
-            from: '"Straight Up Digital" <admin@straightupdigital.com.au>',
+            from: '"Straight Up One" <admin@straightupdigital.com.au>',
             to: [user?.email, 'admin@straightupdigital.com.au'],
             subject: "Partnership Update - Ended",
             html,

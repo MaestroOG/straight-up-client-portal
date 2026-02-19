@@ -9,7 +9,7 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next"
 
 export const metadata = {
-  title: "Straight Up Digital Client Portal",
+  title: "Straight Up One Client Portal",
   description: "A client portal for managing projects and communication",
 };
 

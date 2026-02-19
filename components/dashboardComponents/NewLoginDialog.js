@@ -17,7 +17,7 @@ const NewLoginDialog = ({ userId, firstLogin }) => {
         <Dialog open={firstLogin}>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Welcome to Straight Up Digital Client Portal</DialogTitle>
+                    <DialogTitle>Welcome to Straight Up One Client Portal</DialogTitle>
                     <DialogDescription>
                         <form action={formAction} className="flex flex-col gap-2">
                             <p>Please watch the introduction video to find out how to use the portal</p>

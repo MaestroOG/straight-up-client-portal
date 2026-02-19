@@ -110,7 +110,7 @@ const Sidebar = () => {
             <Link href={'/'} className="relative w-60 h-32 mb-8 hidden md:flex">
                 <Image
                     src="/logo.png"
-                    alt="Straight Up Digital"
+                    alt="Straight Up One"
                     fill
                     className="object-contain"
                 />

@@ -54,7 +54,7 @@ const NoteItem = ({ note, isUnread, onMarkAsRead, user }) => {
                     <div>
                         <p className="text-sm text-gray-600">
                             <span className="font-bold">
-                                {note?.createdBy === null ? "Straight Up Digital Team" : note?.createdBy?.name}
+                                {note?.createdBy === null ? "Straight Up One Team" : note?.createdBy?.name}
                             </span>{" "}
                             - {timeAgo(note?.createdAt)} at {formatTo12HourTime(note?.createdAt)}
                             {/* {isUnread && (

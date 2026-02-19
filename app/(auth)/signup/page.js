@@ -19,7 +19,7 @@ export default function SignUpPage() {
             </div>
             <div className="bg-primary relative hidden lg:flex items-center justify-center">
                 <div className="w-[235px] h-[67px] z-50">
-                    <Image src='/straight-up.png' alt="Straight Up Digital logo" width={235} height={67} priority />
+                    <Image src='/straight-up.png' alt="Straight Up One logo" width={235} height={67} priority />
                 </div>
             </div>
         </div>)

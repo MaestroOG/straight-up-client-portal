@@ -8,7 +8,7 @@ import { getUser } from '@/lib/user';
 import Link from 'next/link';
 
 export const metadata = {
-    title: "SuperAdmin Panel - Straight Up Digital Client Portal"
+    title: "SuperAdmin Panel - Straight Up One Client Portal"
 }
 
 const SuperAdminPage = async () => {
